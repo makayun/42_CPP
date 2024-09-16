@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42prague.com    +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:33:38 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/13 19:45:37 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:38:55 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,46 +24,67 @@ int PhoneBook::add_contact(void)
 {
 	Contact		new_cont;
 	std::string	input;
-	
+
 	std::cout << "Enter first name:" << std::endl;
-	std::getline(std::cin, input);
+	while (input.empty())
+		std::getline(std::cin, input);
+	input[0] = (char)std::toupper(input[0]);
 	new_cont.set_field(FIRST_NAME, input);
-	
+	input.clear();
+
 	std::cout << "Enter second name:" << std::endl;
-	std::getline(std::cin, input);
+	while (input.empty())
+		std::getline(std::cin, input);
+	input[0] = (char)std::toupper(input[0]);
 	new_cont.set_field(SECOND_NAME, input);
-	
+	input.clear();
+
 	std::cout << "Enter a nickname:\n";
-	std::getline(std::cin, input);
+	while (input.empty())
+		std::getline(std::cin, input);
 	new_cont.set_field(NICKNAME, input);
-	
+	input.clear();
+
 	std::cout << "Enter phone number:\n";
-	std::getline(std::cin, input);
+	while (input.empty())
+	{
+		std::getline(std::cin, input);
+		for (size_t j = 0; j < input.size(); j++)
+			if (!isdigit(input[j]))
+			{
+				std::cout << "Not a number! Try again:" << std::endl;
+				input.clear();
+				break ;
+			}
+	}
 	new_cont.set_field(PHONE_NUM, input);
+	input.clear();
 
 	std::cout << "Enter a secret:\n";
-	std::getline(std::cin, input);
+	while (input.empty())
+		std::getline(std::cin, input);
 	new_cont.set_field(SECRET, input);
-	
-	for (size_t i = this->book.size() - 1; i > 0; i--)
+
+	for (size_t i = MAX_CONTACTS - 1; i > 0; i--)
 		this->book[i] = this->book[i - 1];
 	this->book[0] = new_cont;
+
 	this->print_head();
 	this->print_contact(0);
-	this->contacts_total += (this->contacts_total < 8);
+	this->contacts_total += (this->contacts_total < MAX_CONTACTS);
 	std::cout << std::endl;
 	return (ALL_FINE);
 }
 
 
-void fancy_line(void)
+void	PhoneBook::fancy_line(void)
 {
 	for (int i = 0; i < 4; i++)
 		std::cout << "+" << std::setfill('-') << std::setw(10) << "-";
 	std::cout << std::setfill(' ') << "+" << std::endl;
 }
 
-void fancy_field(std::string str)
+void	PhoneBook::fancy_field(std::string str)
 {
 	std::cout << "|" << std::setw(10) << str;
 }
@@ -108,7 +129,7 @@ int PhoneBook::print_contact(int id)
 int	PhoneBook::print_book(void)
 {
 	this->print_head();
-	for (int i = 0; i < 8; i++)
+	for (int i = 0; i < MAX_CONTACTS; i++)
 		this->print_contact(i);
 	std::cout << std::endl;
 	return (ALL_FINE);
@@ -116,11 +137,11 @@ int	PhoneBook::print_book(void)
 
 int PhoneBook::search(void)
 {
-	std::string	field[5] = {"First name:",
-							"Second name:",
-							"Nickname:",
-							"Phone number:",
-							"Secret:"};
+	std::string	field[MAX_FIELDS] = {"First name:",
+									"Second name:",
+									"Nickname:",
+									"Phone number:",
+									"Secret:"};
 	char		input;
 
 	if (this->contacts_total <= 0)
@@ -130,17 +151,17 @@ int PhoneBook::search(void)
 	}
 	this->print_book();
 	std::cout << "Enter an index:" << std::endl;
-	std::getline(std::cin, input);
+	std::cin >> input;
 	input -= '0';
 	if (input < 0 || input >= this->contacts_total)
 	{
 		std::cout << "Bad index" << std::endl;
 		return (ERROR);
 	}
-	for (size_t i = 0; i < this->book[0].get_max_fields(); i++)
+	for (size_t i = 0; i < MAX_FIELDS; i++)
 	{
 		std::cout << std::left << std::setw(15) << field[i];
-		std::cout << this->book[input].get_field(i) << std::endl;
+		std::cout << this->book[(int)input].get_field(i) << std::endl;
 	}
 	std::cout << std::endl;
 	return (ALL_FINE);

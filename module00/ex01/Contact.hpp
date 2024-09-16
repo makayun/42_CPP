@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42prague.com    +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:33:26 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/13 11:02:30 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:37:04 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 #define ERROR   -1
 #define ALL_FINE 1
 
-enum e_fields
+#define MAX_FIELDS 5
+
+enum e_field_type
 {
 	FIRST_NAME,
 	SECOND_NAME,
@@ -31,21 +33,17 @@ enum e_fields
 	SECRET
 };
 
-
 class Contact
 {
 	private:
-		std::array<std::string, 5> field;
-	
+		std::string field[MAX_FIELDS];
+
 	public:
 		Contact();
 		~Contact();
 
-		int	set_field(int type, std::string field);
-
-		std::string get_field(int type);
-
-		size_t get_max_fields(void);
+		int			set_field(int type, std::string field);
+		std::string	get_field(int type) const;
 };
 
 #endif

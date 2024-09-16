@@ -1,28 +1,28 @@
 NAME = megaphone
-CC1 = clang++
-CC2 = g++
+CC = clang++
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic -fsanitize=address
 RM = rm -rf
+
+DEF_COLOR	= "\033[0;39m"
+GRAY		= "\033[0;90m"
 
 FILES = megaphone
 
 SRCS = $(addsuffix .cpp, $(FILES))
 
-HDRS = $(wildcard *.hpp)
-
 all: $(NAME)
 
-$(NAME): $(SRCS) $(HDRS)
-	$(CC2) $(CPP_FLAGS) -o $(NAME) $(SRCS)
-	$(RM) $(NAME)
-	$(CC1) $(CPP_FLAGS) -o $(NAME) $(SRCS)
+$(NAME): $(SRCS)
+	@printf $(GRAY)
+	$(CC) $(CPP_FLAGS) -o $(NAME) $(SRCS)
+	@printf $(DEF_COLOR)
 
 clean:
 	$(RM) $(NAME)
 
 fclean: clean
 	$(RM) $(OBJS)
-	 
+
 re: clean all
 
 fre: fclean all

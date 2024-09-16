@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42prague.com    +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:33:15 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/13 18:16:17 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:23:50 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,18 @@
 
 #include "Contact.hpp"
 
+#define MAX_CONTACTS 8
+
 class	PhoneBook
 {
 	private:
-		std::array<Contact, 8>	book;
-		int						contacts_total;
+		Contact	book[MAX_CONTACTS];
+		int		contacts_total;
+		void	fancy_line(void);
+		void	fancy_field(std::string str);
+		int		print_head(void);
+		int		print_contact(int id);
+		int		print_book(void);
 
 	public:
 		PhoneBook();
@@ -29,9 +36,6 @@ class	PhoneBook
 
 		int	add_contact(void);
 		int	search(void);
-		int	print_head(void);
-		int	print_contact(int id);
-		int	print_book(void);
 };
 
 #endif
