@@ -6,15 +6,13 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:33:38 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/16 12:38:55 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:32:43 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook()
-{
-	this->contacts_total = 0;
+PhoneBook::PhoneBook(): contacts_total(0) {
 }
 
 PhoneBook::~PhoneBook() {
