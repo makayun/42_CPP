@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 01:10:01 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/18 01:43:50 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/18 07:03:53 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ class HumanB
 		HumanB (std::string in_name);
 		~HumanB ( void );
 		int	setWeapon(Weapon &new_weapon);
-		int	atack ( void );
+		int	attack ( void );
 };

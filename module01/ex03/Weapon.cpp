@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 23:02:29 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/18 01:29:20 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/18 08:46:38 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 Weapon::Weapon( void ) : type("bare hands") {
 }
 
-Weapon::Weapon ( std::string in_type) : type(in_type) {
+Weapon::Weapon (std::string in_type) : type(in_type) {
 }
 
 Weapon::~Weapon ( void ) {

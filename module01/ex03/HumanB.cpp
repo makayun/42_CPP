@@ -6,17 +6,20 @@
 /*   By: mmakagon <mmakagon@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 01:16:48 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/18 01:50:26 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/18 09:06:59 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
 
-HumanB::HumanB (std::string in_name) : name(in_name), weapon()
-{	
+HumanB::HumanB (std::string in_name) : name(in_name)
+{
+	this->weapon = new Weapon();
 }
 
-HumanB::~HumanB ( void ) {
+HumanB::~HumanB ( void )
+{
+	delete this->weapon;
 }
 
 int	HumanB::setWeapon(Weapon &new_weapon)
@@ -25,7 +28,7 @@ int	HumanB::setWeapon(Weapon &new_weapon)
 	return (1);
 }
 
-int HumanB::atack ( void )
+int HumanB::attack ( void )
 {
 	std::string out_weapon;
 
