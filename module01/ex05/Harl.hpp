@@ -12,12 +12,23 @@
 
 #include <iostream>
 
+#define MAX_HARL_LEVEL 4
+
 class Harl {
 	private:
-		void	debug( void );
-		void	info( void );
-		void	warning( void );
-		void	error( void );
+		void		debug( void );
+		void		info( void );
+		void		warning( void );
+		void		error( void );
+		void		wrong_input( void );
+		void		(Harl::*funcArray[MAX_HARL_LEVEL + 1])();
+		std::string levels[MAX_HARL_LEVEL];
+
+	public:
+		Harl();
+		~Harl();
+
+		void	complain ( std::string level ); 
 
 
-}
+};

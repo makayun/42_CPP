@@ -11,16 +11,15 @@
 /* ************************************************************************** */
 
 #include <iostream>
+#include "Harl.hpp"
 
 int main()
 {
-	size_t i;
+	Harl harl;
 
-	while (1)
-	{
-		i = 0;
-		while (i < 1000000000)
-			i++;
-		std::cout << "." << std::flush;
-	}
+	harl.complain("DEBUG");
+	harl.complain("INFO");
+	harl.complain("WARNING");
+	harl.complain("ERROR");
+	harl.complain("blahblah");
 }

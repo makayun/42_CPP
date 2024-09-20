@@ -1,4 +1,4 @@
-NAME = unnecessary_violence
+NAME = so_harl
 CC = clang++
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -Wpedantic -g -fsanitize=address
 RM = rm -rf
