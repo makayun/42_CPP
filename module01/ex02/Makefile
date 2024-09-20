@@ -18,7 +18,9 @@ $(NAME): $(SRCS)
 	@printf $(DEF_COLOR)
 
 clean:
+	@printf $(GRAY)
 	$(RM) $(NAME)
+	@printf $(DEF_COLOR)
 
 fclean: clean
 

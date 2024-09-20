@@ -6,9 +6,7 @@ RM = rm -rf
 DEF_COLOR	= "\033[0;39m"
 GRAY		= "\033[0;90m"
 
-FILES =	Weapon \
-		HumanA \
-		HumanB \
+FILES =	Harl \
 		main \
 
 SRCS = $(addsuffix .cpp, $(FILES))

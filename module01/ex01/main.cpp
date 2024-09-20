@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42prague.com    +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:16:07 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/19 03:13:47 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/20 12:42:01 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	print_separator( void )
 int horde_process(const std::string &greeting, const std::string &name, int size)
 {
 	Zombie	*horde;
-	
+
 	print_separator();
 
 	std::cout	<< "\n" + greeting + "\n"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42prague.com    +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:16:07 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/17 23:44:12 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/20 12:42:08 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main()
 	std::cout << "str value: " << str << std::endl;
 	std::cout << "PTR value: " << *stringPTR << std::endl;
 	std::cout << "REF value: " << stringREF << std::endl; //might be dangerous!!!
-	
+
 	std::cout << std::endl;
 
 	str = "NO BRAINS LEFT";

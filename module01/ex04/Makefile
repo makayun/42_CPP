@@ -1,4 +1,4 @@
-NAME = megaphone
+NAME = sad_sed
 CC = clang++
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic -fsanitize=address
 RM = rm -rf

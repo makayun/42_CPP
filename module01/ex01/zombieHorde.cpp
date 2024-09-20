@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42prague.com    +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 14:07:24 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/18 01:48:03 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/20 12:39:55 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Zombie* zombieHorde(int N, std::string name)
 		return (NULL);
 	}
 
-	void		*rawMemory = operator new[](N * sizeof(Zombie)); // good way
+	void	*rawMemory = operator new[](N * sizeof(Zombie)); // good way
 	Zombie	*horde = static_cast<Zombie*>(rawMemory); // continue the good way
 	// Zombie	*horde = (Zombie *)rawMemory; // bad continuation
 	// Zombie	*horde = (Zombie *) operator new[](N * sizeof(Zombie)); // the worst way!!! =)
