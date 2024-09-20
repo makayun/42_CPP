@@ -22,7 +22,7 @@ class Weapon
 
 	public:
 		Weapon ( void );
-		Weapon ( std::string in_type );
+		explicit Weapon ( const std::string &in_type );
 		~Weapon( void );
 
 		const std::string	&getType ( void ) const;

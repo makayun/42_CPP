@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 01:10:01 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/18 07:03:53 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/19 02:38:49 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ class HumanB
 		Weapon		*weapon;
 	
 	public:
-		HumanB (std::string in_name);
+		explicit HumanB (const std::string &in_name);
+		HumanB (const std::string &in_name, Weapon &in_weapon);
 		~HumanB ( void );
 		int	setWeapon(Weapon &new_weapon);
 		int	attack ( void );

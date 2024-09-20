@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:16:07 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/17 16:06:00 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/19 03:13:47 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,36 @@
 
 int	bad_thing( void )
 {
-	std::cout << "Something went really wrong..." << std::endl;
+	std::cout << "Something went really wrong...\n" << std::endl;
 	return (-1);
 }
 
-int horde_process(std::string greeting, std::string name, int size)
+void	print_separator( void )
 {
-	std::cout	<< std::endl
-				<< greeting + "\n"
+	std::cout << std::setfill('=') << std::setw(50) << "=" << std::endl;
+}
+
+int horde_process(const std::string &greeting, const std::string &name, int size)
+{
+	Zombie	*horde;
+	
+	print_separator();
+
+	std::cout	<< "\n" + greeting + "\n"
 				<< std::endl;
 
-	Zombie	*horde = zombieHorde(size, name);
+	horde = zombieHorde(size, name);
 
 	if (!horde)
 		return (bad_thing());
 
-	std::cout	<< std::endl
-				<< "Roar, my majestic horde!\n"
+	std::cout	<< "\nRoar, my majestic horde!\n"
 				<< std::endl;
 
 	for (int i = 0; i < size; i++)
 		horde[i].announce();
 
-	std::cout	<< std::endl
-				<< "Now rest, all of you!\n"
+	std::cout	<< "\nNow rest, all of you!\n"
 				<< std::endl;
 
 	for (int i = 0; i < size; i++)
@@ -53,25 +59,15 @@ int	main()
 {
 	int medium = 8;
 	int tiny = 1;
-	int huge = 10000;
+	// int huge = 10000;
 
-	std::cout << std::setfill('=') << std::setw(50) << "=" << std::endl;
-	horde_process("HUUUGE!", "Mr Big", huge);
+	// horde_process("HUUUGE!", "Mr Big", huge); // better to output into some file...
 
-	std::cout << std::setfill('=') << std::setw(50) << "=" << std::endl;
 	horde_process("Rise, my sweet zombies!", "Bob", medium);
-
-	std::cout << std::setfill('=') << std::setw(50) << "=" << std::endl;
 	horde_process("Try a tiny horde?", "Casey", tiny);
-
-	std::cout << std::setfill('=') << std::setw(50) << "=" << std::endl;
 	horde_process("Try an empty horde?", "Kate", 0);
-
-	std::cout << std::setfill('=') << std::setw(50) << "=" << std::endl;
-	horde_process("Go crazy?", "", medium);
-
-	std::cout << std::setfill('=') << std::setw(50) << "=" << std::endl;
-	horde_process("More crazy?", "HELP", -1);
+	horde_process("Some serious brain damage?", "", medium);
+	horde_process("Go crazy?", "HELP", -1);
 
 	return (0);
 }

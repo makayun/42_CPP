@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:03:21 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/17 14:02:47 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/18 00:43:03 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ class Zombie {
 		std::string	name;
 		std::string color;
 		std::string set_color( void );
+		void		nameless_zombie( void );
 
 	public:
 		Zombie ( void );
-		Zombie (std::string input_name);
+		explicit Zombie (const std::string &input_name);
 		~Zombie ( void );
 
 		void		announce ( void );
