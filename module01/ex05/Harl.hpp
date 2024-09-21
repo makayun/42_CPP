@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef HARL_HPP
+#define HARL_HPP
+
 #include <iostream>
 
 #define MAX_HARL_LEVEL 4
@@ -28,7 +31,8 @@ class Harl {
 		Harl();
 		~Harl();
 
-		void	complain ( std::string level ); 
-
-
+		void	complain( std::string level );
+		void	complain( const char *c_style_level );
 };
+
+#endif

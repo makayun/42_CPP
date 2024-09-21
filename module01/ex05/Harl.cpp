@@ -13,16 +13,16 @@
 #include "Harl.hpp"
 
 Harl::Harl() {
-    this->funcArray[0] = &Harl::debug;
-    this->funcArray[1] = &Harl::info;
-    this->funcArray[2] = &Harl::warning;
-    this->funcArray[3] = &Harl::error;
-    this->funcArray[4] = &Harl::wrong_input;
+    funcArray[0] = &Harl::debug;
+    funcArray[1] = &Harl::info;
+    funcArray[2] = &Harl::warning;
+    funcArray[3] = &Harl::error;
+    funcArray[MAX_HARL_LEVEL] = &Harl::wrong_input;
 
-    this->levels[0] = "DEBUG";
-    this->levels[1] = "INFO";
-    this->levels[2] = "WARNING";
-    this->levels[3] = "ERROR";
+    levels[0] = "DEBUG";
+    levels[1] = "INFO";
+    levels[2] = "WARNING";
+    levels[3] = "ERROR";
 }
 
 Harl::~Harl() {
@@ -61,4 +61,16 @@ void Harl::complain( std::string level )
     while (i < MAX_HARL_LEVEL && this->levels[i].compare(level))
         i++;
     (this->*funcArray[i])();
+}
+
+void Harl::complain( const char *c_style_level )
+{
+    std::cout << "\001\033[36m\002";
+
+    if (c_style_level == NULL)
+        std::cout << "Don't you try to make me angry!" << std::endl;
+    else
+        Harl::complain(std::string(c_style_level));
+
+    std::cout << "\001\033[0m\002";
 }
