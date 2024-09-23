@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:41:30 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/20 15:14:40 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:11:41 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,13 @@ int main()
 
 	fancy_separator();
 
-	std::string arg;
-	char *str;
+	std::string	arg;
+	char		*str;
 
 	harl.complain("");
 	harl.complain(arg);
 	harl.complain(str);
-	harl.complain(nullptr);
+	harl.complain(NULL);
 
 	fancy_separator();
 
