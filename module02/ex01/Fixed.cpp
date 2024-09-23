@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 00:54:48 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/23 00:58:58 by maxmakagono      ###   ########.fr       */
+/*   Updated: 2024/09/23 12:25:59 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Fixed::Fixed( const int input ) : value(input << fractional_bits)
     std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed( const float input ) : value(std::roundf(input * (1 << fractional_bits)))
+Fixed::Fixed( const float input ) : value(roundf(input * (1 << fractional_bits)))
 {
     std::cout << "Float constructor called" << std::endl;
 }
@@ -43,7 +43,7 @@ Fixed &Fixed::operator= ( const Fixed &copy )
 
 Fixed::~Fixed()
 {
-    std::cout << "Destructor called" << std::endl; 
+    std::cout << "Destructor called" << std::endl;
 }
 
 int Fixed::getRawBits( void ) const
