@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 12:25:02 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/20 14:36:31 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:32:42 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int main(int argc, char **argv)
 	std::ofstream output_file(out_filename.c_str());
 	if (!output_file)
 	{
+		input_file.close();
 		std::cerr << "Error: Can't open the file: " << out_filename << std::endl;
 		return (1);
 	}

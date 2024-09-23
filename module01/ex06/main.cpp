@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 14:41:30 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/20 15:14:40 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:49:24 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main()
 	std::string	input;
 
 	std::cout << "Enter message level:\n( DEBUG / INFO / WARNING / ERROR )" << std::endl;
-	
+
 	while (input.empty() && std::cin.good())
 		std::getline(std::cin, input);
 

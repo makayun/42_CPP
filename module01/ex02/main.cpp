@@ -6,12 +6,23 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:16:07 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/20 12:42:08 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/23 11:29:56 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <iomanip>
+
+void	outer_function(std::string &str)
+{
+	std::cout << "str address outside: " << &str << std::endl;
+	std::cout << "str value outside: " << str << std::endl;
+
+	std::cout << std::endl;
+
+	str = "WAIT, THERE IS A BIT OF BRAIN";
+	std::cout << "new str value outside: " << str << std::endl;
+}
 
 int	main()
 {
@@ -44,5 +55,13 @@ int	main()
 	std::cout << "str value: " << str << std::endl;
 	std::cout << "PTR value: " << *stringPTR << std::endl;
 	std::cout << "REF value: " << stringREF << std::endl;
+
+	std::cout << std::endl;
+
+	std::cout << "str address in main: " << &str << std::endl;
+
+	outer_function(str);
+
+	std::cout << "new str value in main: " << str << std::endl;
 	return (0);
 }
