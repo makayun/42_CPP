@@ -38,6 +38,7 @@ int main()
 		bob.attack();
 
 		jim.setWeapon(knife);
+		bob.setWeapon(knife);
 		jim.attack();
 		bob.attack();
 

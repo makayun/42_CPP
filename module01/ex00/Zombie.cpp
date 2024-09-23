@@ -23,7 +23,7 @@ std::string	Zombie::set_color( void )
 	};
 	int		index;
 
-	index = 2 * this->name[0] % 5;
+	index = this->name[0] % 5;
 	return (colors[index]);
 }
 
