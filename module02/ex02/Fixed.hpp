@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 00:39:42 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/23 15:38:16 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/24 11:15:49 by maxmakagono      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include <iostream>
 #include <cmath>
 
-class Fixed {
+class Fixed
+{
     private:
         int                 value;
         static const int    fractional_bits = 8;
@@ -30,7 +31,7 @@ class Fixed {
         ~Fixed();
 
     // Copy assignment operator overload
-        Fixed & operator= ( const Fixed &copy );
+        Fixed &operator= ( const Fixed &copy );
 
     // Comparison operators
         bool operator>  ( const Fixed &to_compare ) const;
@@ -41,14 +42,31 @@ class Fixed {
         bool operator!= ( const Fixed &to_compare ) const;
 
     // Arithmetic operators
-        Fixed &operator+ ( const Fixed &second_number );
-		Fixed &operator- ( const Fixed &second_number );
-		Fixed &operator* ( const Fixed &second_number );
-		Fixed &operator/ ( const Fixed &second_number );
+        Fixed operator+ ( const Fixed &second_number );
+		Fixed operator- ( const Fixed &second_number );
+		Fixed operator* ( const Fixed &second_number );
+		Fixed operator/ ( const Fixed &second_number );
 
+    // Increment / decrement
+
+        Fixed   &operator++( void );
+        Fixed   &operator--( void );
+
+        Fixed   operator++( int );
+        Fixed   operator--( int );
+
+    // Min / max
+        static Fixed &min( Fixed &a, Fixed &b );
+        static Fixed &max( Fixed &a, Fixed &b );
+        
+        static const Fixed &min( const Fixed &a, const Fixed &b );
+        static const Fixed &max( const Fixed &a, const Fixed &b );
+
+    // Convert
         float   toFloat( void ) const;
         int     toInt( void ) const;
 
+    // Get / set
         int     getRawBits( void ) const;
         void    setRawBits( int const raw );
 };

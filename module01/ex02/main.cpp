@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:16:07 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/23 11:29:56 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/23 23:21:56 by maxmakagono      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main()
 
 	std::cout << "str value: " << str << std::endl;
 	std::cout << "PTR value: " << *stringPTR << std::endl;
-	std::cout << "REF value: " << stringREF << std::endl; //might be dangerous!!!
+	// std::cout << "REF value: " << stringREF << std::endl; //might be dangerous!!!
 
 	std::cout << std::endl;
 
@@ -54,7 +54,7 @@ int	main()
 
 	std::cout << "str value: " << str << std::endl;
 	std::cout << "PTR value: " << *stringPTR << std::endl;
-	std::cout << "REF value: " << stringREF << std::endl;
+	// std::cout << "REF value: " << stringREF << std::endl;
 
 	std::cout << std::endl;
 
