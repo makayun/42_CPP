@@ -1,6 +1,6 @@
 NAME = it_is_a_trap
 CC = clang++
-CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -Wpedantic -g -fsanitize=address
+CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic -g -fsanitize=address
 RM = rm -rf
 
 DEF_COLOR	= "\033[0;39m"

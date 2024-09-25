@@ -3,33 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:03:25 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/24 13:25:05 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/25 10:54:29 by maxmakagono      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef CLAPTRAP_HPP
+#define CLAPTRAP_HPP
+
 #include <iostream>
+
+#define COLOR_RES "\033[0m"
+
+enum e_stats
+{
+	HIT_POINTS,
+	ENERGY_POINTS,
+	ATTACK_DAMAGE,
+	STATS_MAX
+};
 
 class ClapTrap
 {
 	private:
 		std::string	name;
-		long		hit_p;
-		long		energy_p;
-		long		attack_dmg;
+		long		stats[STATS_MAX];
+		bool		is_destroyed;
+		void		set_stat( size_t stat_id, long const &in_value );
+		void		print_hp( void );
 
 	public:
-		ClapTrap( const std::string in_name );
-		ClapTrap( const ClapTrap &copy );
-		ClapTrap &operator= ( const ClapTrap &copy );
+		explicit	ClapTrap( const std::string &in_name );
+		explicit	ClapTrap( const ClapTrap &copy );
+		ClapTrap&	operator= ( const ClapTrap &copy );
 		~ClapTrap();
 
-		void	attack(const std::string& target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
+		void		attack(const std::string& target);
+		void		takeDamage(unsigned int amount);
+		void		beRepaired(unsigned int amount);
 
-		long	get_hp( void );
-		long	set_hp( long in_hp);
+		long		get_stat( size_t stat_id ) const;
+		std::string	&get_name( void );
 };
+
+#endif
