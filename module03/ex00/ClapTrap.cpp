@@ -6,14 +6,14 @@
 /*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:03:09 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/25 10:55:36 by maxmakagono      ###   ########.fr       */
+/*   Updated: 2024/09/25 11:12:52 by maxmakagono      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap( const std::string &in_name ) : is_destroyed(false) {
-	std::string			temp;
+std::string	set_color(const std::string &name)
+{
 	const std::string	colors[5] = {
 		"\033[31m", // Red
 		"\033[34m", // Blue
@@ -23,19 +23,28 @@ ClapTrap::ClapTrap( const std::string &in_name ) : is_destroyed(false) {
 	};
 	int					index;
 
+	index = name[0] % 5;
+
+	return (colors[index]);
+}
+
+ClapTrap::ClapTrap( const std::string &in_name ) : is_destroyed(false) {
+	std::string	temp;
+	std::string	color;	
+
 	if (in_name.empty())
 		temp = "Noname";
 	else
 		temp = in_name;
-
-	index = temp[0] % 5;
-	this->name.append(colors[index]);
-	this->name.append(temp);
-	this->name.append(COLOR_RES);
+	color = set_color( temp );
+	
+	this->name.append( color );
+	this->name.append( temp );
+	this->name.append( COLOR_RES );
 	stats[HIT_POINTS] = 10;
 	stats[ENERGY_POINTS] = 10;
 	stats[ATTACK_DAMAGE] = 10;
-	std::cout	<< "ClapTrap known as " << name << " is set and functioning" << std::endl;
+	std::cout	<< "ClapTrap known as " << name << " is now set and functioning" << std::endl;
 }
 
 ClapTrap::ClapTrap( const ClapTrap &copy ) {
