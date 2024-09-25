@@ -6,7 +6,7 @@
 /*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:03:25 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/25 10:54:29 by maxmakagono      ###   ########.fr       */
+/*   Updated: 2024/09/25 15:22:38 by maxmakagono      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ class ClapTrap
 		std::string	name;
 		long		stats[STATS_MAX];
 		bool		is_destroyed;
+		
+		std::string	set_color( const std::string &name );
 		void		set_stat( size_t stat_id, long const &in_value );
 		void		print_hp( void );
 
@@ -45,7 +47,8 @@ class ClapTrap
 		void		beRepaired(unsigned int amount);
 
 		long		get_stat( size_t stat_id ) const;
-		std::string	&get_name( void );
+		const std::string& get_name(void) const;
+
 };
 
 #endif

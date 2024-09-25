@@ -6,13 +6,13 @@
 /*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:03:09 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/25 11:12:52 by maxmakagono      ###   ########.fr       */
+/*   Updated: 2024/09/25 14:32:37 by maxmakagono      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-std::string	set_color(const std::string &name)
+std::string	ClapTrap::set_color( const std::string &name )
 {
 	const std::string	colors[5] = {
 		"\033[31m", // Red
@@ -38,9 +38,7 @@ ClapTrap::ClapTrap( const std::string &in_name ) : is_destroyed(false) {
 		temp = in_name;
 	color = set_color( temp );
 	
-	this->name.append( color );
-	this->name.append( temp );
-	this->name.append( COLOR_RES );
+	this->name = color + temp + COLOR_RES;
 	stats[HIT_POINTS] = 10;
 	stats[ENERGY_POINTS] = 10;
 	stats[ATTACK_DAMAGE] = 10;
@@ -48,12 +46,19 @@ ClapTrap::ClapTrap( const std::string &in_name ) : is_destroyed(false) {
 }
 
 ClapTrap::ClapTrap( const ClapTrap &copy ) {
+	this->name = "an empty junk";
+	std::cout	<< "ClapTrap known as " << name << " is now set but not yet functioning" << std::endl;
 	*this = copy;
 }
 
 ClapTrap &ClapTrap::operator= ( const ClapTrap &copy ) {
+	std::cout << this->name << " is now a copy of " << copy.get_name() << std::endl;
 	for (size_t i = 0; i < STATS_MAX; i++)
 		stats[i] = copy.get_stat(i);
+	this->name = copy.get_name();
+	this->name.insert(this->name.find(COLOR_RES), "_copy");
+	if (stats[HIT_POINTS] <= 0)
+		this->is_destroyed = true; 
 	return (*this);
 }
 
@@ -114,9 +119,10 @@ void	ClapTrap::beRepaired( unsigned int amount ) {
 	}
 }
 
-std::string	&ClapTrap::get_name( void ) {
-	return (name);
+const std::string& ClapTrap::get_name(void) const {
+    return name;
 }
+
 
 void ClapTrap::print_hp( void ) {
 	std::cout << name << "'s current HP is " << stats[HIT_POINTS] << std::endl;
