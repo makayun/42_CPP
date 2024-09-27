@@ -6,7 +6,7 @@
 /*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:03:09 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/26 14:34:43 by maxmakagono      ###   ########.fr       */
+/*   Updated: 2024/09/26 14:08:29 by maxmakagono      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ ClapTrap &ClapTrap::operator= ( const ClapTrap &copy ) {
 
 ClapTrap::~ClapTrap() {
 	if (this->is_destroyed == false)
-		std::cout << name << " is now turned off." << std::endl;
+		std::cout << "ClapTrap " << name << " is now turned off." << std::endl;
 }
 
 void	ClapTrap::set_stat( size_t stat_id, long const &in_value ) {

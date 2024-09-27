@@ -6,7 +6,7 @@
 /*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:03:25 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/26 13:45:01 by maxmakagono      ###   ########.fr       */
+/*   Updated: 2024/09/27 09:02:44 by maxmakagono      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ enum e_stats
 
 class ClapTrap
 {
-	private:
+	protected:
 		std::string	name;
 		long		stats[STATS_MAX];
-		bool		is_destroyed;
 		
 		std::string	set_color( const std::string &name );
 		void		set_stat( size_t stat_id, long const &in_value );

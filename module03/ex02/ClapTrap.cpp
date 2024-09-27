@@ -6,7 +6,7 @@
 /*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:03:09 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/26 14:34:43 by maxmakagono      ###   ########.fr       */
+/*   Updated: 2024/09/27 09:24:54 by maxmakagono      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 std::string	ClapTrap::set_color( const std::string &in_name )
 {
 	const std::string	colors[5] = {
-		"\033[31m", // Red
+		"\033[32m", // Green
 		"\033[34m", // Blue
 		"\033[35m", // Magenta
-		"\033[32m", // Green
+		"\033[31m", // Red
 		"\033[33m", // Yellow
 	};
 	int					index;
@@ -28,7 +28,7 @@ std::string	ClapTrap::set_color( const std::string &in_name )
 	return (colors[index]);
 }
 
-ClapTrap::ClapTrap( const std::string &in_name ) : is_destroyed(false) {
+ClapTrap::ClapTrap( const std::string &in_name ) {
 	std::string	temp;
 	std::string	color;	
 
@@ -55,16 +55,14 @@ ClapTrap &ClapTrap::operator= ( const ClapTrap &copy ) {
 	std::cout << this->name << " is now a copy of " << copy.get_name() << std::endl;
 	for (size_t i = 0; i < STATS_MAX; i++)
 		stats[i] = copy.get_stat( i );
-	if (stats[HIT_POINTS] <= 0)
-		this->is_destroyed = true; 
 	this->name = copy.get_name();
 	this->name.insert( this->name.find(COLOR_RES), "_copy" );
 	return (*this);
 }
 
 ClapTrap::~ClapTrap() {
-	if (this->is_destroyed == false)
-		std::cout << name << " is now turned off." << std::endl;
+	if (stats[HIT_POINTS] > 0)
+		std::cout << "ClapTrap " << name << " is now turned off." << std::endl;
 }
 
 void	ClapTrap::set_stat( size_t stat_id, long const &in_value ) {
@@ -80,7 +78,7 @@ long	ClapTrap::get_stat( size_t stat_id ) const {
 }
 
 void	ClapTrap::attack( const std::string& target ) {
-	if (this->is_destroyed == false)
+	if (stats[HIT_POINTS] > 0)
 	{
 		std::cout	<< name << " attacks " << target
 					<< " causing " << stats[ATTACK_DAMAGE] << " points of damage!"
@@ -89,7 +87,7 @@ void	ClapTrap::attack( const std::string& target ) {
 }
 
 void	ClapTrap::takeDamage( unsigned int amount ) {
-	if (this->is_destroyed == false)
+	if (stats[HIT_POINTS] > 0)
 	{
 		const long signed_amount = static_cast<long>(amount);
 	
@@ -99,15 +97,12 @@ void	ClapTrap::takeDamage( unsigned int amount ) {
 		if (stats[HIT_POINTS] > 0)
 			print_hp();
 		else
-		{
-			this->is_destroyed = true;
 			std::cout << name << " is now destroyed" << std::endl;
-		}
 	}
 }
 
 void	ClapTrap::beRepaired( unsigned int amount ) {
-	if (this->is_destroyed == false)
+	if (stats[HIT_POINTS] > 0)
 	{
 		const long signed_amount = static_cast<long>(amount);
 	

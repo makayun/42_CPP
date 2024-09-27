@@ -7,6 +7,7 @@ DEF_COLOR	= "\033[0;39m"
 GRAY		= "\033[0;90m"
 
 FILES =	ClapTrap \
+		ScavTrap \
 		main \
 
 SRCS = $(addsuffix .cpp, $(FILES))
