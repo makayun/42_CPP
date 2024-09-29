@@ -6,7 +6,7 @@
 /*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 00:13:54 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/29 09:44:24 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/09/29 10:01:37 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,9 @@ void FragTrap::attack( const std::string &target ) {
 					<< ", restoring " << stats[ATTACK_DAMAGE] << " hit points!"
 					<< std::endl;
 	}
+}
+
+void	FragTrap::highFivesGuys() {
+	std::cout << name << ": Yaaaay! High five everuone!" << std::endl;
 }
 

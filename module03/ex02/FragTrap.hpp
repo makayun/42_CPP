@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
+/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:58:03 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/28 00:34:39 by maxmakagono      ###   ########.fr       */
+/*   Updated: 2024/09/29 09:47:13 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@
 #include "ClapTrap.hpp"
 #include <iostream>
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
-    private:
-        void        frag_init();
-         
-    public:
-        FragTrap();
-        explicit    FragTrap(const std::string &in_name);
-        explicit    FragTrap(const FragTrap &copy);
-        FragTrap&   operator=(const FragTrap &copy);
-        ~FragTrap();
+	private:
+		void		frag_init();
 
-        void attack(const std::string &target);
-        void highFivesGuys(void);
+	public:
+		FragTrap();
+		explicit	FragTrap(const std::string &in_name);
+		explicit	FragTrap(const FragTrap &copy);
+		FragTrap&	operator=(const FragTrap &copy);
+		~FragTrap();
+
+		void attack(const std::string &target);
+		void highFivesGuys(void);
 };
 
 #endif

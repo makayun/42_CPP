@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:03:25 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/29 10:05:55 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/09/28 00:23:09 by maxmakagono      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class ClapTrap
 	protected:
 		std::string	name;
 		long		stats[STATS_MAX];
-
+		
 		std::string	set_color( const std::string &name );
 		void		set_name( const std::string &in_name);
 		void		set_stat( size_t stat_id, long const &in_value );

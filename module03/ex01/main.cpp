@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
+/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 22:31:00 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/28 00:21:26 by maxmakagono      ###   ########.fr       */
+/*   Updated: 2024/09/29 09:58:21 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,48 +16,48 @@
 
 int main()
 {
-    ClapTrap robot_one( "Bender" );
-    ScavTrap robot_two( "Calculon" );
+	ClapTrap	robot_one( "Bender" );
+	ScavTrap	robot_two( "Calculon" );
 
-    std::cout << std::endl;
+	std::cout << std::endl;
 
-    robot_one.beRepaired( 10 );
-    robot_two.beRepaired( 10 );
-    
-    std::cout << std::endl;
+	robot_one.beRepaired( 10 );
+	robot_two.beRepaired( 10 );
 
-    robot_one.attack( robot_two.get_name() );
-    robot_two.takeDamage( robot_one.get_stat(ATTACK_DAMAGE) );
+	std::cout << std::endl;
 
-    std::cout << std::endl;
+	robot_one.attack( robot_two.get_name() );
+	robot_two.takeDamage( robot_one.get_stat(ATTACK_DAMAGE) );
 
-    robot_two.attack( robot_one.get_name() );
-    robot_one.takeDamage( robot_two.get_stat(ATTACK_DAMAGE) );
+	std::cout << std::endl;
 
-    std::cout << std::endl;
+	robot_two.attack( robot_one.get_name() );
+	robot_one.takeDamage( robot_two.get_stat(ATTACK_DAMAGE) );
 
-    robot_one.attack( robot_two.get_name() );
-    robot_one.beRepaired( 10 );
-    robot_one.beRepaired( 10 );
-    robot_one.beRepaired( 10 );
-    // none of this will happen
+	std::cout << std::endl;
 
-    ScavTrap robot_three( "" );
-    robot_three = robot_two;
-    ClapTrap robot_four( robot_one );
+	robot_one.attack( robot_two.get_name() );
+	robot_one.beRepaired( 10 );
+	robot_one.beRepaired( 10 );
+	robot_one.beRepaired( 10 );
+	// none of this will happen
 
-    std::cout << std::endl;
+	ScavTrap	robot_three( "" );
+	robot_three = robot_two;
+	ClapTrap	robot_four( robot_one );
 
-    robot_four.attack( robot_three.get_name() ); // Won't happen, because he copied a destroyed one
-    robot_three.attack( robot_two.get_name() );
-    robot_two.takeDamage( robot_three.get_stat( ATTACK_DAMAGE ) );
-    
-    std::cout << std::endl;
+	std::cout << std::endl;
 
-    ScavTrap    robot_five( "Eleanore" );
-    robot_five.guardGate();
+	robot_four.attack( robot_three.get_name() ); // Won't happen, because he copied a destroyed one
+	robot_three.attack( robot_two.get_name() );
+	robot_two.takeDamage( robot_three.get_stat( ATTACK_DAMAGE ) );
 
-    std::cout << std::endl;
-    
-    return (0);
+	std::cout << std::endl;
+
+	ScavTrap	robot_five( "Eleanore" );
+	robot_five.guardGate();
+
+	std::cout << std::endl;
+
+	return (0);
 }
