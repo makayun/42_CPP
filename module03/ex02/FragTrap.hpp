@@ -5,22 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 15:08:51 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/26 15:10:55 by maxmakagono      ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include <iostream>
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:58:03 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/26 13:51:55 by maxmakagono      ###   ########.fr       */
+/*   Updated: 2024/09/28 00:34:39 by maxmakagono      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +17,15 @@
 #include <iostream>
 
 class FragTrap : public ClapTrap
-{       
+{
+    private:
+        void        frag_init();
+         
     public:
-        explicit FragTrap(const std::string &in_name);
-        FragTrap(const FragTrap &copy);
-        FragTrap& operator=(const FragTrap &copy);
+        FragTrap();
+        explicit    FragTrap(const std::string &in_name);
+        explicit    FragTrap(const FragTrap &copy);
+        FragTrap&   operator=(const FragTrap &copy);
         ~FragTrap();
 
         void attack(const std::string &target);

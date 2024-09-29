@@ -6,7 +6,7 @@
 /*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:58:03 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/26 13:51:55 by maxmakagono      ###   ########.fr       */
+/*   Updated: 2024/09/28 00:21:30 by maxmakagono      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ class ScavTrap : public ClapTrap
 {
     private:
         bool    gate_keeper_mode;
+        void    scav_init();
         
     public:
-        explicit ScavTrap(const std::string &in_name);
-        ScavTrap(const ScavTrap &copy);
-        ScavTrap& operator=(const ScavTrap &copy);
+        ScavTrap();
+        explicit    ScavTrap(const std::string &in_name);
+        explicit    ScavTrap(const ScavTrap &copy);
+        ScavTrap&   operator=(const ScavTrap &copy);
         ~ScavTrap();
 
         void attack(const std::string &target);
