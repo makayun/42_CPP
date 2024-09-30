@@ -3,19 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 00:13:54 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/29 10:01:37 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/09/29 21:22:50 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-void	FragTrap::frag_init() {
-	set_stat(HIT_POINTS, 100);
-	set_stat(ENERGY_POINTS, 100);
-	set_stat(ATTACK_DAMAGE, 30);
+void	FragTrap::init_hp() {
+	this->stats[HIT_POINTS] = 100;
+}
+
+void	FragTrap::init_ep() {
+	this->stats[ENERGY_POINTS] = 100;
+}
+
+void	FragTrap::init_ad() {
+	this->stats[ATTACK_DAMAGE] = 30;
+}
+
+void	FragTrap::frag_init()
+{
+	init_hp();
+	init_ep();
+	init_ad();
 	std::cout << "ClapTrap known as " << name << " is now a beautiful FragTrap" << std::endl;
 }
 
@@ -46,8 +59,11 @@ FragTrap::~FragTrap() {
 }
 
 void FragTrap::attack( const std::string &target ) {
-	if (stats[HIT_POINTS] > 0)
+	if (stats[ENERGY_POINTS] <= 0)
+		std::cout << "Not enough energy points!" << std::endl;
+	else if (stats[HIT_POINTS] > 0)
 	{
+		--stats[ENERGY_POINTS];
 		std::cout	<< name << " heals " << target
 					<< ", restoring " << stats[ATTACK_DAMAGE] << " hit points!"
 					<< std::endl;
@@ -55,6 +71,5 @@ void FragTrap::attack( const std::string &target ) {
 }
 
 void	FragTrap::highFivesGuys() {
-	std::cout << name << ": Yaaaay! High five everuone!" << std::endl;
+	std::cout << name << ": Yaaaay! High five everyone!\n" << std::endl;
 }
-

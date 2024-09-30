@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 22:31:00 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/29 09:31:38 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/09/29 21:04:22 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,16 @@ int main()
 	robot_two = DiamondTrap("Anette");
 	std::cout << std::endl;
 
+	robot_one.whoAmI();
+	std::cout << std::endl;
+
+	robot_two.whoAmI();
+	std::cout << std::endl;
+
 	robot_three.whoAmI();
+	std::cout << std::endl;
+
+	robot_four.whoAmI();
 	std::cout << std::endl;
 
 	return (0);

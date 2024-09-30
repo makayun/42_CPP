@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 01:03:27 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/29 09:38:52 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/09/29 21:24:14 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
 void	DiamondTrap::diamond_init() {
-	set_stat(HIT_POINTS, FragTrap::get_stat(HIT_POINTS));
-	set_stat(ENERGY_POINTS, ScavTrap::get_stat(ENERGY_POINTS));
-	set_stat(ATTACK_DAMAGE, FragTrap::get_stat(ATTACK_DAMAGE));
+	FragTrap::init_hp();
+	ScavTrap::init_ep();
+	FragTrap::init_ad();
 	std::cout << "DiamondTrap known as " << name << " is here now, just take it" << std::endl;
 }
 

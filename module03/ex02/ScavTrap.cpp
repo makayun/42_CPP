@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 00:13:54 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/29 09:46:51 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/09/29 20:12:12 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ ScavTrap::~ScavTrap() {
 }
 
 void ScavTrap::attack( const std::string &target ) {
-	if (this->get_stat(HIT_POINTS) > 0)
+	if (stats[ENERGY_POINTS] <= 0)
+		std::cout << "Not enough energy points!" << std::endl;
+	else if (this->get_stat(HIT_POINTS) > 0)
 	{
+		--stats[ENERGY_POINTS];
 		std::cout	<< this->get_name() << " coldly attacks " << target
 					<< ", heartlessly causing " << this->get_stat(ATTACK_DAMAGE) << " points of damage!"
 					<< std::endl;

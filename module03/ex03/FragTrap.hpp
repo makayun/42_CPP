@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:58:03 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/29 09:47:13 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/09/29 21:24:42 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@
 
 class FragTrap : virtual public ClapTrap
 {
-	private:
+	protected:
 		void		frag_init();
+		void		init_ep();
+		void		init_hp();
+		void		init_ad();
 
 	public:
 		FragTrap();

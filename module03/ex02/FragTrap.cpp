@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 00:13:54 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/29 10:00:41 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/09/29 20:35:05 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,11 @@ FragTrap::~FragTrap() {
 }
 
 void FragTrap::attack( const std::string &target ) {
-	if (stats[HIT_POINTS] > 0)
+	if (stats[ENERGY_POINTS] <= 0)
+		std::cout << "Not enough energy points!" << std::endl;
+	else if (stats[HIT_POINTS] > 0)
 	{
+		--stats[ENERGY_POINTS];
 		std::cout	<< name << " heals " << target
 					<< ", restoring " << stats[ATTACK_DAMAGE] << " hit points!"
 					<< std::endl;
@@ -55,5 +58,5 @@ void FragTrap::attack( const std::string &target ) {
 }
 
 void	FragTrap::highFivesGuys() {
-	std::cout << name << ": Yaaaay! High five everuone!" << std::endl;
+	std::cout << name << ": Yaaaay! High five everyone!" << std::endl;
 }

@@ -3,20 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/26 00:13:54 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/29 09:46:51 by mmakegon         ###   ########.fr       */
+/*   Created: 2024/09/26 00:13:54 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/09/29 21:21:24 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
+void	ScavTrap::init_hp() {
+	this->stats[HIT_POINTS] = 100;
+}
+
+void	ScavTrap::init_ep() {
+	this->stats[ENERGY_POINTS] = 50;
+}
+
+void	ScavTrap::init_ad() {
+	this->stats[ATTACK_DAMAGE] = 20;
+}
+
 void	ScavTrap::scav_init()
 {
-	this->set_stat(HIT_POINTS, 100);
-	this->set_stat(ENERGY_POINTS, 50);
-	this->set_stat(ATTACK_DAMAGE, 20);
+	init_hp();
+	init_ep();
+	init_ad();
 	std::cout	<< "ClapTrap known as " << name << " is transformed to ScavTrap" << std::endl;
 }
 
@@ -46,8 +58,11 @@ ScavTrap::~ScavTrap() {
 }
 
 void ScavTrap::attack( const std::string &target ) {
-	if (this->get_stat(HIT_POINTS) > 0)
+	if (stats[ENERGY_POINTS] <= 0)
+		std::cout << "Not enough energy points!" << std::endl;
+	else if (this->get_stat(HIT_POINTS) > 0)
 	{
+		--stats[ENERGY_POINTS];
 		std::cout	<< this->get_name() << " coldly attacks " << target
 					<< ", heartlessly causing " << this->get_stat(ATTACK_DAMAGE) << " points of damage!"
 					<< std::endl;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:03:25 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/29 10:05:44 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/09/29 20:32:43 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define CLAPTRAP_HPP
 
 #include <iostream>
+#include <limits.h>
 
 #define COLOR_RES "\033[0m"
 
@@ -36,6 +37,8 @@ class ClapTrap
 		void		set_stat( size_t stat_id, long const &in_value );
 		void		clap_init( void );
 		void		print_hp( void );
+		void		print_ep( void );
+
 
 	public:
 		ClapTrap();

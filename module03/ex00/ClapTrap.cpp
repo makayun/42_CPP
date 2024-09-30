@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 13:03:09 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/29 09:28:32 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/09/29 20:33:00 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,15 @@ long	ClapTrap::get_stat( size_t stat_id ) const {
 void	ClapTrap::attack( const std::string& target ) {
 	if (stats[HIT_POINTS] > 0)
 	{
+		if (stats[ENERGY_POINTS] <= 0) {
+			std::cout << "Not enough energy points!" << std::endl;
+			return ;
+		}
+		--stats[ENERGY_POINTS];
 		std::cout	<< name << " attacks " << target
 					<< " causing " << stats[ATTACK_DAMAGE] << " points of damage!"
 					<< std::endl;
+		print_ep();
 	}
 }
 
@@ -117,13 +123,19 @@ void	ClapTrap::takeDamage( unsigned int amount ) {
 void	ClapTrap::beRepaired( unsigned int amount ) {
 	if (stats[HIT_POINTS] > 0)
 	{
+		if (stats[ENERGY_POINTS] <= 0) {
+			std::cout << "Not enough energy points!" << std::endl;
+			return ;
+		}
 		const long signed_amount = static_cast<long>(amount);
 
 		stats[HIT_POINTS] += signed_amount;
 		if (stats[HIT_POINTS] < 0)
 			stats[HIT_POINTS] = LONG_MAX;
+		--stats[ENERGY_POINTS];
 		std::cout << name << " has repaired " << amount << " hit points" << std::endl;
 		print_hp();
+		print_ep();
 	}
 }
 
@@ -134,6 +146,11 @@ const std::string& ClapTrap::get_name(void) const {
 void	ClapTrap::set_name( const std::string &in_name ) {
 	this->name = in_name;
 }
+
+void ClapTrap::print_ep( void ) {
+	std::cout << name << "'s current EP is " << stats[ENERGY_POINTS] << std::endl;
+}
+
 
 void ClapTrap::print_hp( void ) {
 	std::cout << name << "'s current HP is " << stats[HIT_POINTS] << std::endl;

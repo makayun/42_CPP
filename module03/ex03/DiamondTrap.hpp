@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 00:50:07 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/29 09:38:45 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/09/29 21:05:08 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ class DiamondTrap : public ScavTrap, public FragTrap
 		void		diamond_init();
 
 	public:
-		explicit	DiamondTrap( std::string name );
-		explicit	DiamondTrap( const DiamondTrap &copy);
+		DiamondTrap( std::string name );
+		DiamondTrap( const DiamondTrap &copy);
 		DiamondTrap& operator=( const DiamondTrap &copy );
 		~DiamondTrap();
 

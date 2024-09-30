@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 22:31:00 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/29 10:01:15 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/09/29 20:26:04 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ int main()
 		std::cout << std::endl;
 
 		while ((enemy.get_stat(HIT_POINTS) > 0) && (hero.get_stat(HIT_POINTS) > 0))
+				// && (enemy.get_stat(ENERGY_POINTS) > 0) && (hero.get_stat(ENERGY_POINTS) > 0))
 		{
-			while (enemy.get_stat(ATTACK_DAMAGE) >= hero.get_stat(HIT_POINTS))
+			while (enemy.get_stat(ATTACK_DAMAGE) >= hero.get_stat(HIT_POINTS) && (hero.get_stat(ENERGY_POINTS) > 0))
 			{
 				healer.attack(hero.get_name());
 				hero.beRepaired(healer.get_stat(ATTACK_DAMAGE));

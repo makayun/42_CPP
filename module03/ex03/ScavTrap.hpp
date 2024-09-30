@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScavTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 23:58:03 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/29 09:47:09 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/09/29 21:19:34 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,22 @@
 
 class ScavTrap : virtual public ClapTrap
 {
-    private:
-        bool        gate_keeper_mode;
-        void        scav_init();
+	protected:
+		bool		gate_keeper_mode;
+		void		scav_init();
+		void		init_ep();
+		void		init_hp();
+		void		init_ad();
 
-    public:
-        ScavTrap();
-        explicit    ScavTrap(const std::string &in_name);
-        explicit    ScavTrap(const ScavTrap &copy);
-        ScavTrap&   operator=(const ScavTrap &copy);
-        ~ScavTrap();
+	public:
+		ScavTrap();
+		explicit	ScavTrap(const std::string &in_name);
+		explicit	ScavTrap(const ScavTrap &copy);
+		ScavTrap&	operator=(const ScavTrap &copy);
+		~ScavTrap();
 
-        void attack(const std::string &target);
-        void guardGate();
+		void		attack(const std::string &target);
+		void		guardGate();
 };
 
 #endif
