@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 12:28:28 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/30 15:22:20 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:52:53 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 #define ANIMAL_HPP
 
 #include <iostream>
+
+#define ANML_COLOR "\033[1;32m"
+
+#ifndef RES_COLOR
+#define RES_COLOR "\033[0m"
+#endif
 
 class Animal
 {
@@ -28,6 +34,7 @@ class Animal
 		virtual		~Animal();
 
 		virtual void		makeSound(void) const;
+		const std::string	getType(void) const;
 };
 
 #endif

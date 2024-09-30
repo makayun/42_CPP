@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:39:56 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/30 15:18:59 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:40:38 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 #include <iostream>
 #include "Animal.hpp"
+
+#define CAT_COLOR "\033[1;35m"
+
+#ifndef RES_COLOR
+#define RES_COLOR "\033[0m"
+#endif
 
 class Cat : public Animal
 {

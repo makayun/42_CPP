@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 12:25:02 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/30 15:25:39 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:57:12 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,36 @@
 
 int main()
 {
-const Animal* meta = new Animal();
-const Animal* j = new Dog();
-const Animal* i = new Cat();
-// std::cout << j->getType() << " " << std::endl;
-// std::cout << i->getType() << " " << std::endl;
-i->makeSound(); //will output the cat sound!
-j->makeSound();
-meta->makeSound();
+	{
+		const Animal* meta = new Animal();
+		const Animal* i = new Cat();
+		const Animal* j = new Dog();
 
-delete meta;
-delete i;
-delete j;
-return 0;
+		std::cout << "i's type: " << i->getType() << std::endl;
+		std::cout << "j's type: " << j->getType() << std::endl;
+
+		i->makeSound(); //will output the cat sound!
+		j->makeSound();
+		meta->makeSound();
+
+		delete meta;
+		delete i;
+		delete j;
+	}
+	std::cout << "\n\n" << std::endl;
+	{
+		WrongAnimal	wrong;
+
+		std::cout << "type: " << wrong.getType() << std::endl;
+		wrong.makeSound();
+	}
+	std::cout << "\n\n" << std::endl;
+	{
+		WrongCat	wrong;
+
+		std::cout << "type: " << wrong.getType() << std::endl;
+		wrong.makeSound();
+	}
+
+	return 0;
 }

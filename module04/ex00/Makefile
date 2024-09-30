@@ -1,5 +1,5 @@
 NAME = pets
-CC = clang++
+CC = c++
 CPP_FLAGS = -Wall -Werror -Wextra -Wshadow -std=c++98 -pedantic -g -fsanitize=address
 RM = rm -rf
 
