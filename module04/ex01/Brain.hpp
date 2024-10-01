@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 15:14:37 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/01 12:12:13 by mmakagon         ###   ########.fr       */
+/*   Created: 2024/10/01 13:12:21 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/10/01 15:28:32 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-#define DOG_HPP
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 
 #include <iostream>
-#include "Animal.hpp"
 
-#define DOG_COLOR "\033[1;34m"
+#define IDEAS_MAX 100
 
-#ifndef RES_COLOR
-#define RES_COLOR "\033[0m"
-#endif
-
-class Dog : virtual public Animal
+class Brain
 {
-	public:
-		Dog();
-		explicit	Dog(const Dog &copy);
-		Dog&		operator=(const Dog &copy);
-		~Dog();
+	private:
+		std::string ideas[IDEAS_MAX];
 
-		void		makeSound(void) const;
+	public:
+		Brain();
+		explicit    Brain(const Brain &copy);
+		Brain&    operator=(const Brain &copy);
+		~Brain();
 };
 
 #endif

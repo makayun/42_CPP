@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 12:28:28 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/09/30 16:52:53 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/01 12:11:40 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ class Animal
 
 	public:
 		Animal();
-		explicit	Animal(const std::string &in_type);
-		explicit	Animal(const Animal &copy);
-		Animal&		operator=(const Animal &copy);
-		virtual		~Animal();
+		explicit			Animal(const std::string &in_type);
+		explicit			Animal(const Animal &copy);
+		Animal&				operator=(const Animal &copy);
+		virtual				~Animal();
 
 		virtual void		makeSound(void) const;
 		const std::string	getType(void) const;

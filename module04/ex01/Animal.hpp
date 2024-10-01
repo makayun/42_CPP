@@ -1,36 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 15:14:37 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/01 12:12:13 by mmakagon         ###   ########.fr       */
+/*   Created: 2024/09/30 12:28:28 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/10/01 15:54:57 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-#define DOG_HPP
+#ifndef ANIMAL_HPP
+#define ANIMAL_HPP
 
 #include <iostream>
-#include "Animal.hpp"
+#include "Brain.hpp"
 
-#define DOG_COLOR "\033[1;34m"
+#define ANML_COLOR "\033[1;32m"
 
 #ifndef RES_COLOR
 #define RES_COLOR "\033[0m"
 #endif
 
-class Dog : virtual public Animal
+class Animal
 {
-	public:
-		Dog();
-		explicit	Dog(const Dog &copy);
-		Dog&		operator=(const Dog &copy);
-		~Dog();
+	protected:
+		std::string	type;
+		Brain		*brain;
+		void		findBrain(void);
 
-		void		makeSound(void) const;
+	public:
+		Animal();
+		explicit			Animal(const std::string &in_type);
+		explicit			Animal(const Animal &copy);
+		Animal&				operator=(const Animal &copy);
+		virtual				~Animal();
+
+		virtual void		makeSound(void) const;
+		const std::string	getType(void) const;
 };
 
 #endif

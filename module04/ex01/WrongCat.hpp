@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   WrongWrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 15:14:37 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/01 12:12:13 by mmakagon         ###   ########.fr       */
+/*   Created: 2024/09/30 16:08:01 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/09/30 16:13:01 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-#define DOG_HPP
+
+#ifndef WRONGCAT_HPP
+#define WRONGCAT_HPP
 
 #include <iostream>
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
-#define DOG_COLOR "\033[1;34m"
+#define WRC_COLOR "\033[1;33m"
 
 #ifndef RES_COLOR
 #define RES_COLOR "\033[0m"
 #endif
 
-class Dog : virtual public Animal
+class WrongCat : public WrongAnimal
 {
 	public:
-		Dog();
-		explicit	Dog(const Dog &copy);
-		Dog&		operator=(const Dog &copy);
-		~Dog();
+		WrongCat();
+		explicit	WrongCat(const WrongCat &copy);
+		WrongCat&	operator=(const WrongCat &copy);
+		virtual		~WrongCat();
 
 		void		makeSound(void) const;
 };
