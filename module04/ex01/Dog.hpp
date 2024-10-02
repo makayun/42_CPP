@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 15:14:37 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/01 12:12:13 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/01 21:48:02 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #define RES_COLOR "\033[0m"
 #endif
 
-class Dog : virtual public Animal
+class Dog : public Animal
 {
 	public:
 		Dog();

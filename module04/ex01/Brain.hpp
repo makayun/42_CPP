@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 13:12:21 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/01 15:28:32 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/01 23:39:33 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ class Brain
 		explicit    Brain(const Brain &copy);
 		Brain&    operator=(const Brain &copy);
 		~Brain();
+
+		const std::string	getIdea(size_t id) const;
+		void				setIdea(const std::string &in_idea, size_t id);
 };
 
 #endif

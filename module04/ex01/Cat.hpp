@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:39:56 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/01 12:11:58 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/01 21:47:48 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 #define RES_COLOR "\033[0m"
 #endif
 
-class Cat : virtual public Animal
+class Cat : public Animal
 {
 	public:
 		Cat();

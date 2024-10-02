@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 15:15:33 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/01 15:56:26 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/02 01:12:23 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 Dog::Dog() : Animal::Animal("Dog") {
 	std::cout	<< DOG_COLOR << type << RES_COLOR
 				<< ": default constructor called" << std::endl;
-	findBrain();
+	growBrain();
 }
 
 Dog::Dog(const Dog &copy) {
@@ -36,7 +36,6 @@ Dog& Dog::operator=(const Dog &copy) {
 Dog::~Dog(void) {
 	std::cout	<< DOG_COLOR << type << RES_COLOR
 				<< ": destructor called" << std::endl;
-	delete brain;
 }
 
 void	Dog::makeSound(void) const {

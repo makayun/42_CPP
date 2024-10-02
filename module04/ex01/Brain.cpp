@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 15:18:19 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/01 15:35:11 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/01 23:43:12 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,12 @@ Brain& Brain::operator=(const Brain &copy) {
 }
 
 Brain::~Brain() {
+}
+
+const std::string	Brain::getIdea(size_t id) const {
+	return (ideas[id]);
+}
+
+void	Brain::setIdea(const std::string &in_idea, size_t id) {
+	ideas[id] = in_idea;
 }

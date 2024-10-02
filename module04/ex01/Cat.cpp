@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:45:55 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/01 15:56:40 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/02 01:12:18 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 Cat::Cat() : Animal::Animal("Cat") {
 	std::cout	<< CAT_COLOR << type << RES_COLOR
 				<< ": default constructor called" << std::endl;
-	findBrain();
+	growBrain();
 }
 
 Cat::Cat(const Cat &copy) {
@@ -35,7 +35,6 @@ Cat& Cat::operator=(const Cat &copy) {
 Cat::~Cat(void) {
 	std::cout	<< CAT_COLOR << type << RES_COLOR
 				<< ": destructor called" << std::endl;
-	delete brain;
 }
 
 void	Cat::makeSound(void) const {
