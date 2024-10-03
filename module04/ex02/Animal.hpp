@@ -6,7 +6,7 @@
 /*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 12:28:28 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/02 11:44:04 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:10:36 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@
 class Animal
 {
 	protected:
-		Brain		*brain;
-		std::string	type;
-		void		growBrain(void);
+		Brain				*brain;
+		std::string			type;
+		void				growBrain(void);
 
-	public:
 		Animal();
 		explicit			Animal(const std::string &in_type);
 		explicit			Animal(const Animal &copy);
+
+	public:
 		Animal&				operator=(const Animal &copy);
 		virtual				~Animal();
 

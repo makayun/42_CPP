@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 14:39:56 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/02 13:14:51 by mmakegon         ###   ########.fr       */
+/*   Created: 2024/10/01 13:12:21 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/10/01 23:39:33 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef BRAIN_HPP
+#define BRAIN_HPP
 
 #include <iostream>
-#include "Animal.hpp"
 
-#define CAT_COLOR "\033[1;35m"
+#define IDEAS_MAX 100
 
-#ifndef RES_COLOR
-#define RES_COLOR "\033[0m"
-#endif
-
-class Cat : public Animal
+class Brain
 {
-	public:
-		Cat();
-		explicit	Cat(const Cat &copy);
-		Cat&		operator=(const Cat &copy);
-		~Cat();
+	private:
+		std::string ideas[IDEAS_MAX];
 
-		void		makeSound(void) const;
+	public:
+		Brain();
+		explicit    Brain(const Brain &copy);
+		Brain&    operator=(const Brain &copy);
+		~Brain();
+
+		const std::string	getIdea(size_t id) const;
+		void				setIdea(const std::string &in_idea, size_t id);
 };
 
 #endif

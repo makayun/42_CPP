@@ -1,47 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   WrongWrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/30 12:28:28 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/02 11:44:04 by mmakegon         ###   ########.fr       */
+/*   Created: 2024/09/30 16:07:53 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/09/30 16:08:54 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#ifndef WRONGANIMAL_HPP
+#define WRONGANIMAL_HPP
 
 #include <iostream>
-#include "Brain.hpp"
 
-#define ANML_COLOR "\033[1;32m"
+#define WRA_COLOR "\033[1;31m"
 
 #ifndef RES_COLOR
 #define RES_COLOR "\033[0m"
 #endif
 
-class Animal
+class WrongAnimal
 {
 	protected:
-		Brain		*brain;
 		std::string	type;
-		void		growBrain(void);
 
 	public:
-		Animal();
-		explicit			Animal(const std::string &in_type);
-		explicit			Animal(const Animal &copy);
-		Animal&				operator=(const Animal &copy);
-		virtual				~Animal();
+		WrongAnimal();
+		explicit		WrongAnimal(const std::string &in_type);
+		explicit		WrongAnimal(const WrongAnimal &copy);
+		WrongAnimal&	operator=(const WrongAnimal &copy);
+		virtual			~WrongAnimal();
 
 		virtual void		makeSound(void) const;
 		const std::string	getType(void) const;
-
-		Brain* 				findBrain(void);
-		const std::string	getIdea(size_t id) const;
-		virtual void		setIdea(const std::string &in_idea, size_t id);
 };
 
 #endif

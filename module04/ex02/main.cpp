@@ -6,7 +6,7 @@
 /*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 12:25:02 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/02 13:58:06 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/10/03 10:12:34 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
-#define PETS_COUNT 3
+#define PETS_COUNT 10
 #define CATS_COUNT PETS_COUNT/2
 #define DOGS_COUNT PETS_COUNT-CATS_COUNT
 
@@ -38,26 +38,29 @@ int main()
 		if (rawMemory == nullptr)
 			return (1);
 		Animal				*some_pets = static_cast<Animal*>(rawMemory);
+		int					i = 0;
 
 		std::cout << "Come here, my sweethearts!" << std::endl;
 		try {
-			for (size_t i = 0; i < PETS_COUNT; i++) {
+			while  (i < PETS_COUNT) {
 				if (i % 2 == 0)
 					new (&some_pets[i]) Dog;
 				else
 					new (&some_pets[i]) Cat;
+				i++;
 			}
 		}
 		catch (const std::bad_alloc& e) {
 			std::cerr << "Not enough memory for your pets: " << e.what() << std::endl;
-			for (size_t i = 0; i < PETS_COUNT ; i++)
-				delete &some_pets[i];
+			for (size_t j = 0; j < i; j++)
+				some_pets[j].~Animal();
+			operator delete[](some_pets);
 			return (1);
 		}
 
 		std::cout << "\nWho's a good pet?" << std::endl;
-		for (size_t i = 0; i < PETS_COUNT; i++)
-			some_pets[i].makeSound();
+		for (size_t j = 0; j < PETS_COUNT; j++)
+			some_pets[j].makeSound();
 
 		std::cout << "\nNow you're sharing ideas?" << std::endl;
 		some_pets[0].setIdea("Broccoli are evil aliens", 0);
@@ -67,8 +70,8 @@ int main()
 
 		std::cout << std::endl;
 
-		for (size_t i = 0; i < PETS_COUNT; i++)
-			some_pets[i].~Animal();
+		for (size_t j = 0; j < PETS_COUNT; j++)
+			some_pets[j].~Animal();
 
 		operator delete[](some_pets);
 	}
@@ -153,5 +156,12 @@ int main()
 	}
 
 	print_separator();
+
+	// Animal dead;
+	// (void)dead;
+
+	// Animal *dead_again = new Animal;
+	// (void)dead_again;
+
 	return 0;
 }
