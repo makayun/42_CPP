@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 12:25:02 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/03 13:06:10 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:08:57 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ int main()
 
 	print_separator();
 
-	Animal dead;
-	(void) dead;
+	Animal unknown;
+	(void) unknown;
+
 	return 0;
 }
