@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 14:45:55 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/02 13:27:42 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:38:40 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,17 @@
 Cat::Cat() : Animal::Animal("Cat") {
 	std::cout	<< CAT_COLOR << type << RES_COLOR
 				<< ": default constructor called" << std::endl;
-	growBrain();
 }
 
 Cat::Cat(const Cat &copy) {
 	*this = copy;
-
-	if (copy.brain)
-		this->brain = new Brain(*copy.brain);
-
 	std::cout	<< CAT_COLOR << type << RES_COLOR
 				<< ": copy constructor called" << std::endl;
 }
 
 Cat& Cat::operator=(const Cat &copy) {
-	if (this != &copy) {
-		// this->type = copy.type;
-
-		if (this->brain)
-			delete this->brain;
-
-		if (copy.brain)
-			this->brain = new Brain(*copy.brain);
-		else
-			this->brain = nullptr;
-	}
+	if (this != &copy)
+		this->type = copy.type;
 	std::cout	<< CAT_COLOR << this->type << RES_COLOR
 				<< ": assignment operator called" << std::endl;
 	return (*this);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 12:28:28 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/02 11:44:04 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/10/03 12:43:33 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@
 class Animal
 {
 	protected:
-		Brain		*brain;
 		std::string	type;
-		void		growBrain(void);
+		Brain		*brain;
 
 	public:
 		Animal();
@@ -39,7 +38,6 @@ class Animal
 		virtual void		makeSound(void) const;
 		const std::string	getType(void) const;
 
-		Brain* 				findBrain(void);
 		const std::string	getIdea(size_t id) const;
 		virtual void		setIdea(const std::string &in_idea, size_t id);
 };

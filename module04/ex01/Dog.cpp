@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 15:15:33 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/02 13:28:00 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:40:11 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,17 @@
 Dog::Dog() : Animal::Animal("Dog") {
 	std::cout	<< DOG_COLOR << type << RES_COLOR
 				<< ": default constructor called" << std::endl;
-	growBrain();
 }
 
 Dog::Dog(const Dog &copy) {
 	*this = copy;
-
-	if (copy.brain)
-		this->brain = new Brain(*copy.brain);
-
 	std::cout	<< DOG_COLOR << type << RES_COLOR
 				<< ": copy constructor called" << std::endl;
 }
 
 Dog& Dog::operator=(const Dog &copy) {
-	if (this != &copy) {
-		// this->type = copy.type;
-
-		if (this->brain)
-			delete this->brain;
-
-		if (copy.brain)
-			this->brain = new Brain(*copy.brain);
-		else
-			this->brain = nullptr;
-	}
+	if (this != &copy)
+		this->type = copy.type;
 	std::cout	<< DOG_COLOR << this->type << RES_COLOR
 				<< ": assignment operator called" << std::endl;
 	return (*this);

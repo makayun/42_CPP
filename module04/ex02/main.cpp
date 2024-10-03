@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 12:25:02 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/03 10:12:34 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/10/03 13:05:56 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
-#define PETS_COUNT 10
+#define PETS_COUNT 4
 #define CATS_COUNT PETS_COUNT/2
 #define DOGS_COUNT PETS_COUNT-CATS_COUNT
 
@@ -31,55 +31,7 @@ int main()
 	print_separator();
 
 	{
-		const size_t		cats_size = (CATS_COUNT) * sizeof(Cat);
-		const size_t		dogs_size = (DOGS_COUNT) * sizeof(Dog);
-		const size_t		memory_size = cats_size + dogs_size;
-		void				*rawMemory = operator new[](memory_size);
-		if (rawMemory == nullptr)
-			return (1);
-		Animal				*some_pets = static_cast<Animal*>(rawMemory);
-		int					i = 0;
-
-		std::cout << "Come here, my sweethearts!" << std::endl;
-		try {
-			while  (i < PETS_COUNT) {
-				if (i % 2 == 0)
-					new (&some_pets[i]) Dog;
-				else
-					new (&some_pets[i]) Cat;
-				i++;
-			}
-		}
-		catch (const std::bad_alloc& e) {
-			std::cerr << "Not enough memory for your pets: " << e.what() << std::endl;
-			for (size_t j = 0; j < i; j++)
-				some_pets[j].~Animal();
-			operator delete[](some_pets);
-			return (1);
-		}
-
-		std::cout << "\nWho's a good pet?" << std::endl;
-		for (size_t j = 0; j < PETS_COUNT; j++)
-			some_pets[j].makeSound();
-
-		std::cout << "\nNow you're sharing ideas?" << std::endl;
-		some_pets[0].setIdea("Broccoli are evil aliens", 0);
-		some_pets[1] = some_pets[0];
-		std::cout	<< "So what do you want to tell me?" << std::endl
-					<< some_pets[1].getType() + ": " <<  some_pets[1].getIdea(0) << std::endl;
-
-		std::cout << std::endl;
-
-		for (size_t j = 0; j < PETS_COUNT; j++)
-			some_pets[j].~Animal();
-
-		operator delete[](some_pets);
-	}
-
-	print_separator();
-
-	{
-		Animal *other_pets[PETS_COUNT] = {nullptr};
+		Animal *other_pets[PETS_COUNT] = {NULL};
 
 		try {
 			for (size_t i = 0; i < PETS_COUNT; i++) {
@@ -94,19 +46,15 @@ int main()
 			std::cerr << "Not enough memory for your pets: " << e.what() << std::endl;
 
 			for (size_t i = 0; i < PETS_COUNT; i++) {
-				if (other_pets[i] != nullptr) {
+				if (other_pets[i] != NULL) {
 					delete other_pets[i];
-					other_pets[i] = nullptr;
+					other_pets[i] = NULL;
 				}
 			}
 			return(1);
 		}
 
-		std::cout << "\nShow me where your brains are!" << std::endl;
-		for (size_t i = 0; i < PETS_COUNT; i++)
-			std::cout << other_pets[i]->findBrain() << std::endl;
-
-		std::cout << "\nSome nasty ideas again?" << std::endl;
+		std::cout << "\nSome nasty ideas?" << std::endl;
 		other_pets[0]->setIdea("Broccoli are evil aliens", 0);
 		*other_pets[1] = *other_pets[0];
 		std::cout << other_pets[1]->getType() + ": " << other_pets[1]->getIdea(0) + "\n" << std::endl;
@@ -158,10 +106,7 @@ int main()
 	print_separator();
 
 	// Animal dead;
-	// (void)dead;
-
-	// Animal *dead_again = new Animal;
-	// (void)dead_again;
+	// (void) dead;
 
 	return 0;
 }

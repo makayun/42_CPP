@@ -1,6 +1,6 @@
 NAME = pets
 CC = c++
-CPP_FLAGS = -Wall -Werror -Wextra -Wshadow -std=c++98 -pedantic -g -fsanitize=address
+CPP_FLAGS = -Wall -Werror -Wextra -Wshadow -std=c++98 -pedantic -g
 RM = rm -rf
 
 DEF_COLOR	= "\033[0;39m"
