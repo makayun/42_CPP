@@ -1,34 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ICharacter.hpp                                     :+:      :+:    :+:   */
+/*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:39:22 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/03 13:42:23 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/07 12:09:47 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICHARACTER_HPP
-#define ICHARACTER_HPP
+#ifndef CHARACTER_HPP
+#define CHARACTER_HPP
 
 #include <iostream>
 #include "AMateria.hpp"
+
+#define SLOTS_MAX 4
 
 class AMateria;
 
 class ICharacter
 {
+	public:
+		virtual ~ICharacter() {}
+		virtual std::string const & getName() const = 0;
+		virtual void equip(AMateria* m) = 0;
+		virtual void unequip(int idx) = 0;
+		virtual void use(int idx, ICharacter& target) = 0;
+};
+
+class Character : public ICharacter
+{
 	private:
+		std::string	name;
+		AMateria 	*slot[SLOTS_MAX];
 
 	protected:
 
 	public:
-		ICharacter();
-		explicit    ICharacter(const ICharacter &copy);
-		ICharacter&    operator=(const ICharacter &copy);
-		~ICharacter();
+		Character();
+		explicit    Character(const Character &copy);
+		Character&    operator=(const Character &copy);
+		~Character();
 };
+
 
 #endif

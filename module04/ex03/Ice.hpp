@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Ice.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 13:30:07 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/04 09:43:50 by mmakegon         ###   ########.fr       */
+/*   Created: 2024/10/04 10:36:32 by mmakegon          #+#    #+#             */
+/*   Updated: 2024/10/07 13:06:28 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#ifndef ICE_HPP
+#define ICE_HPP
 
-int main()
+#include <iostream>
+#include <string>
+#include "AMateria.hpp"
+
+
+class Ice : public AMateria
 {
-	return (0);
-}
+	public:
+		Ice(void);
+		explicit	Ice(const Ice &copy);
+		Ice&		operator=(const Ice &copy);
+		~Ice(void);
+
+		void		use(ICharacter& target);
+		Ice*		clone(void)const;
+};
+
+#endif

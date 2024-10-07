@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Animal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 12:33:11 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/03 12:55:02 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:27:23 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,24 +44,23 @@ Animal::Animal(const Animal &copy) {
 
 Animal& Animal::operator=(const Animal &copy) {
 	if (this != &copy)
-		this->type = copy.type;
+	{
+		std::string temp = this->type;
 
-	std::string temp = this->type;
+		if (temp != "Unknown animal")
+			temp.append("'s base class");
 
-	if (temp != "Unknown animal")
-		temp.append("'s base class");
+		std::cout	<< ANML_COLOR << temp << RES_COLOR
+					<< ": assignment operator called" << std::endl;
 
-	std::cout	<< ANML_COLOR << temp << RES_COLOR
-				<< ": assignment operator called" << std::endl;
+		if (this->brain)
+			delete this->brain;
 
-	if (this->brain)
-		delete this->brain;
-
-	if (copy.brain)
-			this->brain = new Brain(*copy.brain);
-		else
-			this->brain = NULL;
-
+		if (copy.brain)
+				this->brain = new Brain(*copy.brain);
+			else
+				this->brain = NULL;
+	}
 	return (*this);
 }
 
