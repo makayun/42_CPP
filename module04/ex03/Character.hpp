@@ -6,7 +6,7 @@
 /*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:39:22 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/07 12:09:47 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/10/07 14:29:54 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ class Character : public ICharacter
 		std::string	name;
 		AMateria 	*slot[SLOTS_MAX];
 
-	protected:
-
 	public:
 		Character();
-		explicit    Character(const Character &copy);
-		Character&    operator=(const Character &copy);
+		explicit	Character(const std::string &in_name);
+		explicit	Character(const Character &copy);
+		Character&	operator=(const Character &copy);
 		~Character();
 };
 
