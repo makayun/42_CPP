@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   AMateria.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:30:35 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/07 12:09:21 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/10/14 10:28:04 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class AMateria
 		/* "Pure viirtual function",	^^^^
 		this class bassically can't use it
 		and it should be overwriten in the child class.
-		Makes this class an abstract one.*/
+		Makes this class an "abstract one".*/
 
 };
 

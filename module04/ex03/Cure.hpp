@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 14:06:02 by mmakegon          #+#    #+#             */
-/*   Updated: 2024/10/07 14:12:26 by mmakegon         ###   ########.fr       */
+/*   Updated: 2024/10/11 14:27:57 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,3 +24,4 @@ class Cure : public AMateria
 		void		use(ICharacter& target);
 		Cure*		clone(void)const;
 };
+

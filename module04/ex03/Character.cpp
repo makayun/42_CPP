@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AMateria.cpp                                       :+:      :+:    :+:   */
+/*   Character.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/07 12:09:02 by mmakegon          #+#    #+#             */
-/*   Updated: 2024/10/14 10:27:53 by mmakagon         ###   ########.fr       */
+/*   Created: 2024/10/14 10:34:15 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/10/14 12:15:47 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "AMateria.hpp"
+#include "Character.hpp"
 
-AMateria::AMateria(void) : type("empty") {
+Character::Character(const std::string &in_name) : name(in_name) {
+	for (int i = 0; i < SLOTS_MAX; i++)
+		slot[i] = NULL;
 }
 
-AMateria::AMateria(std::string const& in_type) {
-	this->type = in_type;
-}
-
-AMateria::AMateria(const AMateria &copy) {
+Character::Character(const Character &copy) {
 	*this = copy;
 }
 
-AMateria &AMateria::operator=(const AMateria &copy) {
-	(void)copy;
+Character& Character::operator=(const Character &copy) {
+	if (this != &copy) {
+		this->name = copy.getName();
+		for (int i = 0; i < SLOTS_MAX; i++)
+			this->slot[i] = copy.slot[i];
+	}
 	return (*this);
 }
 
-AMateria::~AMateria(void) {
-}
-
-std::string const& AMateria::getType() const {
-	return (this->type);
-}
-
-void AMateria::use(ICharacter& target) {
-	(void)target;
+Character::~Character() {
+	for (int)
 }

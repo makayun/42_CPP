@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maxmakagonov <maxmakagonov@student.42.f    +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 00:39:42 by maxmakagono       #+#    #+#             */
-/*   Updated: 2024/09/24 11:15:49 by maxmakagono      ###   ########.fr       */
+/*   Updated: 2024/10/14 14:35:31 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ class Fixed
     // Min / max
         static Fixed &min( Fixed &a, Fixed &b );
         static Fixed &max( Fixed &a, Fixed &b );
-        
+
         static const Fixed &min( const Fixed &a, const Fixed &b );
         static const Fixed &max( const Fixed &a, const Fixed &b );
 

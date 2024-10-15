@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MaterialSource.hpp                                 :+:      :+:    :+:   */
+/*   MateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATERIALSOURCE_HPP
-#define MATERIALSOURCE_HPP
+#ifndef MateriaSource_HPP
+#define MateriaSource_HPP
 
 #include <iostream>
 #include "AMateria.hpp"
@@ -24,17 +24,17 @@ class IMateriaSource
 		virtual AMateria* createMateria(std::string const & type) = 0;
 };
 
-class MaterialSource : public IMateriaSource
+class MateriaSource : public IMateriaSource
 {
 	private:
 
 	protected:
 
 	public:
-		MaterialSource();
-		explicit    MaterialSource(const MaterialSource &copy);
-		MaterialSource&    operator=(const MaterialSource &copy);
-		~MaterialSource();
+		MateriaSource();
+		explicit    MateriaSource(const MateriaSource &copy);
+		MateriaSource&    operator=(const MateriaSource &copy);
+		~MateriaSource();
 };
 
 #endif
