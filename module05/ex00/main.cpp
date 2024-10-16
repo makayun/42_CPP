@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:01:18 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/16 12:37:19 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/16 13:42:18 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,19 @@
 #define COLOR_RES "\033[0m"
 #endif
 
-#define SEPARATE std::cout << "\n" << std::setw(50) << std::setfill('=') << "\n" << std::endl;
+#define NEW_SECTION std::cout << "\n" << std::setw(50) << std::setfill('=') << "\n" << std::endl;
 
 int main()
 {
 	Bureaucrat first("Carl", 1);
 	Bureaucrat second("Bob", 150);
 
-	SEPARATE
+	NEW_SECTION
 
 	std::cout	<< first << std::endl
 				<< second << std::endl;
 
-	SEPARATE
+	NEW_SECTION
 
 	try
 	{
@@ -54,7 +54,7 @@ int main()
 					<< COLOR_RES << std::endl;
 	}
 
-	SEPARATE
+	NEW_SECTION
 
 	std::cout	<< first << "\n"
 				<< second << "\n"
@@ -63,7 +63,7 @@ int main()
 				<< COLOR_RES << std::endl;
 
 
-	SEPARATE
+	NEW_SECTION
 
 	try
 	{
@@ -75,7 +75,7 @@ int main()
 		std::cout << "This we won't see, because no exceptiond was thrown and so we've never entered this catch block" << std::endl;
 	}
 
-	SEPARATE
+	NEW_SECTION
 
 	try
 	{
@@ -87,7 +87,7 @@ int main()
 		std::cerr << e.what() << '\n';
 	}
 
-	SEPARATE
+	NEW_SECTION
 
 	std::cout << second << std::endl;
 	second.promote();

@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:38:06 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/16 12:14:25 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/16 13:09:33 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ std::string Bureaucrat::getName(void) const {
 	return (name);
 }
 
-unsigned short Bureaucrat::getGrade(void) const {
+short Bureaucrat::getGrade(void) const {
 	return (grade);
 }
 

@@ -6,9 +6,12 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:06:58 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/16 12:13:36 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/16 13:55:18 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef BUREAUCRAT_HPP
+#define BUREAUCRAT_HPP
 
 #include <iostream>
 
@@ -30,6 +33,8 @@ The lesser the number - the greater rights the bureaucrat has */
 #define COLOR_RES "\033[0m"
 #endif
 
+class Form;
+
 class Bureaucrat
 {
 	private:
@@ -48,18 +53,22 @@ class Bureaucrat
 
 	public:
 		Bureaucrat(void);
-		explicit			Bureaucrat(const std::string& in_name, const short in_grade);
-		explicit			Bureaucrat(const Bureaucrat &copy);
-		Bureaucrat&			operator=(const Bureaucrat &copy);
+		explicit		Bureaucrat(const std::string& in_name, const short in_grade);
+		explicit		Bureaucrat(const Bureaucrat &copy);
+		Bureaucrat&		operator=(const Bureaucrat &copy);
 		~Bureaucrat();
 
-		void				promote(void);
-		void				promote(short value);
-		void				demote(void);
-		void				demote(short value);
+		void			promote(void);
+		void			promote(short value);
+		void			demote(void);
+		void			demote(short value);
 
-		std::string			getName(void) const;
-		unsigned short		getGrade(void) const;
+		std::string		getName(void) const;
+		short			getGrade(void) const;
+
+		void			signForm(Form& in_form);
 };
 
 std::ostream&	operator<<(std::ostream &out, Bureaucrat const &in);
+
+#endif

@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:42:17 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/15 15:32:23 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/16 13:55:19 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 #define FORM_HPP
 
 #include <iostream>
+
+#ifndef COLOR_RED
+#define COLOR_RED "\033[1;91m"
+#endif
+
+#ifndef COLOR_RES
+#define COLOR_RES "\033[0m"
+#endif
 
 #ifndef GRADE_MAX
 #define GRADE_MAX 1
@@ -34,8 +42,22 @@ class Form
 		const short			exec_grade;
 		bool				is_signed;
 
-		void				GradeTooHighException(std::string message);
-		void				GradeTooLowException(std::string message);
+		class GradeTooHighException : public std::out_of_range {
+			public:
+				GradeTooHighException(const std::string& message);
+		};
+
+		class GradeTooLowException : public std::out_of_range {
+			public:
+				GradeTooLowException(const std::string& message);
+		};
+
+		class FormIsSignedException : public std::invalid_argument {
+			public:
+				FormIsSignedException(void);
+		};
+
+
 
 	public:
 		Form(void);

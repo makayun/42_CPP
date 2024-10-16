@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:12:45 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/15 15:33:22 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/16 13:43:40 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ Form::Form(const std::string in_name, const short in_sign_grade, const short in_
 			is_signed(false)
 {
 	if (sign_grade < GRADE_MAX || exec_grade < GRADE_MAX)
-		GradeTooHighException("bad form initialisation, the grade is too high");
+		throw GradeTooHighException("Bad form initialisation, the grade is too high");
 	else if (sign_grade > GRADE_MIN || exec_grade > GRADE_MIN)
-		GradeTooLowException("bad form initialisation, the grade is too high");
+		throw GradeTooLowException("Bad form initialisation, the grade is too low");
 }
 
 Form::Form(const Form& copy) :	name(copy.getName()),
@@ -53,12 +53,16 @@ Form::~Form() {
 
 /* EXCEPTIONS */
 
-void Form::GradeTooHighException(std::string message) {
-	throw std::out_of_range(getName() + ": " + message);
+Form::GradeTooHighException::GradeTooHighException(const std::string& message)
+	: std::out_of_range(COLOR_RED + message + COLOR_RES) {
 }
 
-void Form::GradeTooLowException(std::string message) {
-	throw std::out_of_range(getName() + ": " + message);
+Form::GradeTooLowException::GradeTooLowException(const std::string& message)
+	: std::out_of_range(COLOR_RED + message + COLOR_RES) {
+}
+
+Form::FormIsSignedException::FormIsSignedException(void)
+	: std::invalid_argument(COLOR_RED + std::string("The form is alredy signed!") + COLOR_RES) {
 }
 
 
@@ -85,12 +89,9 @@ bool Form::getIsSigned(void) const {
 
 void Form::beSigned(const Bureaucrat& in_brcrt) {
 	if (this->is_signed == true)
-		std::cout << this->name << ": already signed" << std::endl;
+		throw FormIsSignedException();
+	else if (in_brcrt.getGrade() > this->sign_grade)
+		throw GradeTooLowException(in_brcrt.getName() + "'s grade is too low");
 	else
-	{
-		if (in_brcrt.getGrade() > this->sign_grade)
-			GradeTooLowException("can't be signed, " + in_brcrt.getName() + "'s grade is too low");
-		else
-			this->is_signed = true;
-	}
+		this->is_signed = true;
 }
