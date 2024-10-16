@@ -7,7 +7,6 @@ DEF_COLOR	= "\033[0;39m"
 GRAY		= "\033[0;90m"
 
 FILES = Bureaucrat \
-		Form \
 		main \
 
 SRCS = $(addsuffix .cpp, $(FILES))
