@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:06:58 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/16 13:55:18 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/17 08:30:14 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ class Bureaucrat
 		void			signForm(Form& in_form);
 };
 
-std::ostream&	operator<<(std::ostream &out, Bureaucrat const &in);
+std::ostream&	operator<<(std::ostream &out, Bureaucrat const& in);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:38:06 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/16 13:55:04 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/17 08:36:31 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ short Bureaucrat::getGrade(void) const {
 	return (grade);
 }
 
-std::ostream&	operator<<(std::ostream &out, Bureaucrat const &in) {
+std::ostream&	operator<<(std::ostream &out, Bureaucrat const& in) {
 	out	<< in.getName() << ", bureaucrat grade " << in.getGrade();
 
 	return (out);
@@ -65,7 +65,7 @@ void	Bureaucrat::promote(void) {
 		throw GradeTooHighException(name);
 	else {
 		grade--;
-		std::cout << name << " had been promoted to grade" << grade << std::endl;
+		std::cout << name << " had been promoted to grade " << grade << std::endl;
 	}
 }
 
@@ -74,7 +74,7 @@ void	Bureaucrat::promote(short value) {
 		throw GradeTooHighException(name);
 	else {
 		grade -= value;
-		std::cout << name << " had been promoted to grade" << grade << std::endl;
+		std::cout << name << " had been promoted to grade " << grade << std::endl;
 	}
 }
 
@@ -83,7 +83,7 @@ void	Bureaucrat::demote(void) {
 		throw GradeTooLowException(name);
 	else {
 		grade++;
-		std::cout << name << " had been demoted to grade" << grade << std::endl;
+		std::cout << name << " had been demoted to grade " << grade << std::endl;
 	}
 }
 
@@ -92,7 +92,7 @@ void	Bureaucrat::demote(short value) {
 		throw GradeTooLowException(name);
 	else {
 		grade += value;
-		std::cout << name << " had been demoted to grade" << grade << std::endl;
+		std::cout << name << " had been demoted to grade " << grade << std::endl;
 	}
 }
 

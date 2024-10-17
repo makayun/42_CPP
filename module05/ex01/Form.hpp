@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:42:17 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/16 13:55:19 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/17 08:30:09 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,7 @@ class Form
 
 		void		beSigned(const Bureaucrat& in_brcrt);
 };
+
+std::ostream&	operator<<(std::ostream &out, Form const& in);
 
 #endif

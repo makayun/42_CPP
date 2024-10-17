@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakegon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 14:12:45 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/16 13:43:40 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/17 08:35:07 by mmakegon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 Form::Form(void) :	name("Empty form"),
 					sign_grade(GRADE_MIN),
 					exec_grade(GRADE_MIN),
-					is_signed(false) {
+					is_signed(false)
+{
 }
 
 Form::Form(const std::string in_name, const short in_sign_grade, const short in_exec_grade) :
@@ -94,4 +95,11 @@ void Form::beSigned(const Bureaucrat& in_brcrt) {
 		throw GradeTooLowException(in_brcrt.getName() + "'s grade is too low");
 	else
 		this->is_signed = true;
+}
+
+std::ostream&	operator<<(std::ostream &out, Form const& in) {
+	out	<< in.getName()
+		<< ", sign grade: " << in.getSignGrade()
+		<< ", exec grade: " << in.getExecGrade();
+	return (out);
 }
