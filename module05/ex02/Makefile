@@ -9,6 +9,8 @@ GRAY		= "\033[0;90m"
 FILES = Bureaucrat \
 		AForm \
 		PresidentialPardonForm \
+		RobotomyRequestForm \
+		ShrubberyCreationForm \
 		main \
 
 SRCS = $(addsuffix .cpp, $(FILES))

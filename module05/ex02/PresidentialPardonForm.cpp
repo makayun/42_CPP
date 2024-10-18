@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.cpp                          :+:      :+:    :+:   */
+/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 13:59:31 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/18 14:22:20 by mmakagon         ###   ########.fr       */
+/*   Created: 2024/10/18 16:19:25 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/10/18 16:19:26 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 #include "Bureaucrat.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm(), target("no target") {
+PresidentialPardonForm::PresidentialPardonForm() : AForm() {
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& in_target)
@@ -27,22 +27,19 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& cop
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& copy) {
 	if (this != &copy) {
 		AForm::operator=(copy);
-		this->target = copy.target;
+		this->target = copy.getTarget();
 	}
 	return (*this);
+}
+
+std::string PresidentialPardonForm::getTarget(void) const {
+	return (this->target);
 }
 
 PresidentialPardonForm::~PresidentialPardonForm() {
 }
 
-void PresidentialPardonForm::execute(const Bureaucrat& executor) const {
-	if (getIsSigned())
-	{
-		if (executor.getGrade() > this->getExecGrade())
-			throw AForm::GradeTooLowException(executor.getName() + "'s grade is too low");
-
-		std::cout << target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
-	}
-	else
-		throw AForm::FormIsNotSignedException();
+void	PresidentialPardonForm::execute(const Bureaucrat& executor) const {
+	AForm::execute(executor);
+	std::cout << target << " has been pardoned by Zaphod Beeblerbox" << std::endl;
 }

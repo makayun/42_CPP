@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AAForm.cpp                                          :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/15 14:12:45 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/18 13:17:56 by mmakagon         ###   ########.fr       */
+/*   Created: 2024/10/18 16:18:37 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/10/19 00:35:37 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,28 @@
 /* CONSTRUCTORS - DESTRUCTORS */
 
 AForm::AForm(void) :	name("Empty Aform"),
-					sign_grade(GRADE_MIN),
-					exec_grade(GRADE_MIN),
-					is_signed(false)
+						sign_grade(GRADE_MIN),
+						exec_grade(GRADE_MIN),
+						is_signed(false)
 {
 }
 
-AForm::AForm(const std::string in_name, const short in_sign_grade, const short in_exec_grade) :
+AForm::AForm(const std::string& in_name, const short in_sign_grade, const short in_exec_grade) :
 			name(in_name),
 			sign_grade(in_sign_grade),
 			exec_grade(in_exec_grade),
 			is_signed(false)
 {
 	if (sign_grade < GRADE_MAX || exec_grade < GRADE_MAX)
-		throw GradeTooHighException("Bad Aform initialisation, the grade is too high");
+		throw GradeTooHighException("Bad form initialisation, the grade is too high");
 	else if (sign_grade > GRADE_MIN || exec_grade > GRADE_MIN)
-		throw GradeTooLowException("Bad Aform initialisation, the grade is too low");
+		throw GradeTooLowException("Bad form initialisation, the grade is too low");
 }
 
 AForm::AForm(const AForm& copy) :	name(copy.getName()),
-								sign_grade(copy.getSignGrade()),
-								exec_grade(copy.getExecGrade()),
-								is_signed(copy.getIsSigned())
+									sign_grade(copy.getSignGrade()),
+									exec_grade(copy.getExecGrade()),
+									is_signed(copy.getIsSigned())
 {
 	*this = copy;
 }
@@ -101,9 +101,23 @@ void AForm::beSigned(const Bureaucrat& in_brcrt) {
 		this->is_signed = true;
 }
 
+void AForm::execute(const Bureaucrat& executor) const {
+	if (getIsSigned())
+	{
+		if (executor.getGrade() > this->getExecGrade())
+			throw AForm::GradeTooLowException(executor.getName() + "'s grade is too low");
+	}
+	else
+		throw AForm::FormIsNotSignedException();
+}
+
+
+/* OUTPUT */
+
 std::ostream&	operator<<(std::ostream &out, AForm const& in) {
 	out	<< in.getName()
-		<< ", sign grade: " << in.getSignGrade()
-		<< ", exec grade: " << in.getExecGrade();
+		<< ", sign grade: "	<< in.getSignGrade()
+		<< ", exec grade: "	<< in.getExecGrade()
+		<< ", is signed: "	<< in.getIsSigned();
 	return (out);
 }

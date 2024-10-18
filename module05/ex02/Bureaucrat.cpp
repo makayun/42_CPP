@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:38:06 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/18 14:22:42 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/19 00:46:42 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+
+/* CONSTRUCTORS - DESTRUCTORS */
+
+Bureaucrat::Bureaucrat(void) : name("Noname"), grade(GRADE_MIN) {
+}
 
 Bureaucrat::Bureaucrat(const std::string& in_name, const short in_grade) : name(in_name) {
 	if (in_grade < GRADE_MAX)
@@ -35,7 +40,10 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat &copy) {
 Bureaucrat::~Bureaucrat() {
 }
 
-std::string Bureaucrat::getName(void) const {
+
+/* GETTERS */
+
+const std::string& Bureaucrat::getName(void) const {
 	return (name);
 }
 
@@ -43,11 +51,8 @@ short Bureaucrat::getGrade(void) const {
 	return (grade);
 }
 
-std::ostream&	operator<<(std::ostream &out, Bureaucrat const& in) {
-	out	<< in.getName() << ", bureaucrat grade " << in.getGrade();
 
-	return (out);
-}
+/* EXCEPTIONS */
 
 Bureaucrat::GradeTooHighException::GradeTooHighException(const std::string& name)
 	: std::out_of_range(COLOR_RED + name + ": the grade is too high!" + COLOR_RES) {
@@ -57,8 +62,8 @@ Bureaucrat::GradeTooLowException::GradeTooLowException(const std::string& name)
 	: std::out_of_range(COLOR_RED + name + ": the grade is too low!" + COLOR_RES) {
 }
 
-Bureaucrat::Bureaucrat(void) : name("Noname"), grade(GRADE_MIN) {
-}
+
+/* MEMBER FUNCTIONS */
 
 void	Bureaucrat::promote(void) {
 	if (grade == GRADE_MAX)
@@ -109,4 +114,27 @@ void	Bureaucrat::signForm(AForm& in_form) {
 					<< " because: " << e.what()
 					<< COLOR_RES << std::endl;
 	}
+}
+
+void	Bureaucrat::executeForm(AForm const & in_form) {
+	try
+	{
+		in_form.execute(*this);
+		std::cout << name << " executed " << in_form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr	<< COLOR_RED
+					<< name << " couldn't execute " << in_form.getName()
+					<< " because: " << e.what()
+					<< COLOR_RES << std::endl;
+	}
+}
+
+/* OUTPUT */
+
+std::ostream&	operator<<(std::ostream &out, Bureaucrat const& in) {
+	out	<< in.getName() << ", bureaucrat grade " << in.getGrade();
+
+	return (out);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:06:58 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/18 14:20:26 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/19 01:01:09 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,30 +43,31 @@ class Bureaucrat
 
 		class GradeTooHighException : public std::out_of_range {
 			public:
-				GradeTooHighException(const std::string& name);
+				explicit GradeTooHighException(const std::string& name);
 		};
 
 		class GradeTooLowException : public std::out_of_range {
 			public:
-				GradeTooLowException(const std::string& name);
+				explicit GradeTooLowException(const std::string& name);
 		};
 
 	public:
 		Bureaucrat(void);
-		explicit		Bureaucrat(const std::string& in_name, const short in_grade);
-		explicit		Bureaucrat(const Bureaucrat &copy);
-		Bureaucrat&		operator=(const Bureaucrat &copy);
+		explicit	Bureaucrat(const std::string& in_name, const short in_grade);
+		explicit	Bureaucrat(const Bureaucrat &copy);
+		Bureaucrat&	operator=(const Bureaucrat &copy);
 		~Bureaucrat();
 
-		void			promote(void);
-		void			promote(short value);
-		void			demote(void);
-		void			demote(short value);
+		void	promote(void);
+		void	promote(short value);
+		void	demote(void);
+		void	demote(short value);
 
-		std::string		getName(void) const;
-		short			getGrade(void) const;
+		const std::string&	getName(void) const;
+		short				getGrade(void) const;
 
-		void			signForm(AForm& in_form);
+		void	signForm(AForm& in_form);
+		void	executeForm(AForm const & form);
 };
 
 std::ostream&	operator<<(std::ostream &out, Bureaucrat const& in);

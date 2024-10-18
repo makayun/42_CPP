@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/14 15:01:18 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/18 14:36:39 by mmakagon         ###   ########.fr       */
+/*   Created: 2024/10/18 16:19:10 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/10/19 01:00:26 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 #define NEW_SECTION std::cout << "\n" << std::setw(50) << std::setfill('=') << "\n" << std::endl;
 #define PRINT_VAR(x) std::cout << #x << ": " << x << std::endl;
@@ -26,16 +28,39 @@ int main()
 	PresidentialPardonForm pardon_one("Steve Rogers");
 	PresidentialPardonForm pardon_two("Natasha Romanoff");
 
+	NEW_SECTION
 
+	PRINT_VAR(first);
 	PRINT_VAR(pardon_one);
-	try
-	{
-		first.signForm(pardon_one);
-		pardon_one.execute(first);
-		pardon_two.execute(first);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	PRINT_VAR(pardon_two);
+
+	NEW_SECTION
+
+	first.signForm(pardon_one);
+	PRINT_VAR(pardon_one);
+	first.executeForm(pardon_one);
+
+	pardon_one = pardon_two;
+	PRINT_VAR(pardon_one);
+
+	first.signForm(pardon_one);
+	first.executeForm(pardon_one);
+	first.executeForm(pardon_two);
+
+	NEW_SECTION
+
+	ShrubberyCreationForm trees("Backyard");
+	PRINT_VAR(trees);
+	first.signForm(trees);
+	first.executeForm(trees);
+	// trees.drawTrees(std::cout, 15, 6);
+
+	NEW_SECTION
+
+	RobotomyRequestForm request("Fry");
+	PRINT_VAR(request);
+	first.signForm(request);
+	first.executeForm(request);
+
+	NEW_SECTION
 }

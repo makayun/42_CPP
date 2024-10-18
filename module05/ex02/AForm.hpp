@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AAForm.hpp                                          :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/14 15:42:17 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/18 13:18:56 by mmakagon         ###   ########.fr       */
+/*   Created: 2024/10/18 16:18:56 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/10/19 00:44:24 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef AAFORM_HPP
-#define AAFORM_HPP
+
+#ifndef AFORM_HPP
+#define AFORM_HPP
 
 #include <iostream>
 
@@ -45,12 +46,12 @@ class AForm
 
 		class GradeTooHighException : public std::out_of_range {
 			public:
-				GradeTooHighException(const std::string& message);
+				explicit GradeTooHighException(const std::string& message);
 		};
 
 		class GradeTooLowException : public std::out_of_range {
 			public:
-				GradeTooLowException(const std::string& message);
+				explicit GradeTooLowException(const std::string& message);
 		};
 
 		class FormIsSignedException : public std::invalid_argument {
@@ -63,9 +64,8 @@ class AForm
 				FormIsNotSignedException(void);
 		};
 
-	protected:
 		AForm(void);
-		AForm(const std::string in_name, const short in_sign_grade, const short in_exec_grade);
+		AForm(const std::string& in_name, const short in_sign_grade, const short in_exec_grade);
 
 
 	public:
@@ -73,12 +73,13 @@ class AForm
 		AForm&		operator=(const AForm& copy);
 		~AForm();
 
-		std::string	getName(void) const;
-		short		getSignGrade(void) const;
-		short		getExecGrade(void) const;
-		bool		getIsSigned(void) const;
+		std::string		getName(void) const;
+		short			getSignGrade(void) const;
+		short			getExecGrade(void) const;
+		bool			getIsSigned(void) const;
 
-		void		beSigned(const Bureaucrat& in_brcrt);
+		void			beSigned(const Bureaucrat& in_brcrt);
+		virtual void	execute(const Bureaucrat& executor) const;
 };
 
 std::ostream&	operator<<(std::ostream &out, AForm const& in);

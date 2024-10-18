@@ -6,7 +6,7 @@
 #define RED "\033[0;31m"
 #define RES "\033[0m"
 
-void writeTree(std::ostream& out, short width, short trees) {
+void drawTrees(std::ostream& out, short width, short trees) {
 	int q = width / 2 + 1;
 
 	if (&out == &std::cout)
@@ -36,12 +36,12 @@ int main()
 {
 	std::ofstream file("trees.txt");
 	if (file.is_open()) {
-		writeTree(file, 9, 4);
+		drawTrees(file, 9, 4);
 		file.close();
 	}
 	else
 		std::cerr << "Can't open the file!" << std::endl;
 
-	writeTree(std::cout, 6, 3);
+	drawTrees(std::cout, 6, 3);
 
 }
