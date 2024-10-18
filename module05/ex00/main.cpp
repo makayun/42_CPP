@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:01:18 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/16 13:42:18 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/18 11:42:02 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,7 @@ int main()
 		first.demote(40);
 		first.demote(108);
 		first.promote(150);
-		std::cout	<< COLOR_CYAN
-					<< "This won't be printed, because the program will jump to the catch block"
-					<< COLOR_RES << std::endl;
+		std::cout	<< "This won't be printed, because the program will jump to the catch block";
 	}
 	catch(const std::exception& e)
 	{
@@ -52,15 +50,13 @@ int main()
 		std::cout	<< COLOR_CYAN
 					<< "We caught an exception and printed it, but we also can do here whatever we want"
 					<< COLOR_RES << std::endl;
+
+		std::cout	<< first << "\n"
+					<< second << "\n"
+					<< COLOR_CYAN
+					<< "Carl didn't change his grade, but the program still goes on, because we managed the exception in the catch block"
+					<< COLOR_RES << std::endl;
 	}
-
-	NEW_SECTION
-
-	std::cout	<< first << "\n"
-				<< second << "\n"
-				<< COLOR_CYAN
-				<< "Carl didn't change his grade, but the program still goes on, because we managed the exception in the catch block"
-				<< COLOR_RES << std::endl;
 
 
 	NEW_SECTION
