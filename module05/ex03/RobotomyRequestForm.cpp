@@ -6,18 +6,18 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 16:19:41 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/21 12:41:21 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/21 14:34:41 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 #include "Bureaucrat.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm() {
+RobotomyRequestForm::RobotomyRequestForm() : Form() {
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string& in_target)
-	: AForm("RobotomyRequestForm", 72, 45), target(in_target) {
+	: Form("Robotomy request", 72, 45), target(in_target) {
 	}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy) {
@@ -26,7 +26,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy) {
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& copy) {
 	if (this != &copy) {
-		AForm::operator=(copy);
+		Form::operator=(copy);
 		this->target = copy.getTarget();
 	}
 	return (*this);
@@ -46,7 +46,7 @@ void	RobotomyRequestForm::execute(const Bureaucrat& executor) const {
 
 	std::cout << "** some drilling noises **" << std::endl;
 	if (random_address & 1) {
-		AForm::execute(executor);
+		Form::execute(executor);
 		std::cout << target << " was successfully robotomized" << std::endl;
 	}
 	else

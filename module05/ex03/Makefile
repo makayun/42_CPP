@@ -27,7 +27,7 @@ $(NAME): $(SRCS) $(HDRS)
 
 clean:
 	@printf $(GRAY)
-	$(RM) $(NAME)*
+	$(RM) $(NAME)* *_shrubbery
 	@printf $(DEF_COLOR)
 
 fclean: clean

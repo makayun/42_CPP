@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 16:19:10 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/19 01:47:24 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/21 14:17:44 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,29 @@ int main()
 {
 	Bureaucrat	king("Charles", 1);
 	Intern		someRandomIntern;
-	AForm*		rrf;
+	Form*		rrf;
+	Form*		frf;
 
+	NEW_SECTION
 
 	rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-	king.signForm(*rrf);
-	king.executeForm(*rrf);
+	if (rrf) {
+		PRINT_VAR(*rrf);
+		king.signForm(*rrf);
+		king.executeForm(*rrf);
+	}
+
+	NEW_SECTION
+
+	frf = someRandomIntern.makeForm("42 freeze request", "Max");
+	if (frf) {
+		PRINT_VAR(*frf);
+		king.signForm(*frf);
+		king.executeForm(*frf);
+	}
+
+	NEW_SECTION
+
+	delete rrf;
+	delete frf;
 }

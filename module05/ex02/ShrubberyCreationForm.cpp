@@ -6,18 +6,18 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 16:19:54 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/21 11:26:51 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/21 14:33:13 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 #include "Bureaucrat.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm() {
+ShrubberyCreationForm::ShrubberyCreationForm() : Form() {
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string& in_target)
-	: AForm("ShrubberyCreationForm", 145, 137), target(in_target) {
+	: Form("Shrubbery creation", 145, 137), target(in_target) {
 	}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) {
@@ -26,7 +26,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) 
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm& copy) {
 	if (this != &copy) {
-		AForm::operator=(copy);
+		Form::operator=(copy);
 		this->target = copy.getTarget();
 	}
 	return (*this);
@@ -58,7 +58,7 @@ void ShrubberyCreationForm::drawTrees(std::ostream& out, short width, short tree
 }
 
 void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
-	AForm::execute(executor);
+	Form::execute(executor);
 	std::string filename = target + "_shrubbery";
 	std::ofstream file(filename.c_str(), std::ofstream::out);
 	if (file.is_open()) {

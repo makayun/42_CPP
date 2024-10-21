@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   AForm.hpp                                          :+:      :+:    :+:   */
+/*   Form.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 16:18:56 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/19 00:44:24 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/21 13:34:06 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#ifndef AFORM_HPP
-#define AFORM_HPP
+#ifndef Form_HPP
+#define Form_HPP
 
 #include <iostream>
 
@@ -34,7 +34,7 @@
 
 class Bureaucrat;
 
-class AForm
+class Form
 {
 	private:
 		const std::string	name;
@@ -64,14 +64,14 @@ class AForm
 				FormIsNotSignedException(void);
 		};
 
-		AForm(void);
-		AForm(const std::string& in_name, const short in_sign_grade, const short in_exec_grade);
+		Form(void);
+		Form(const std::string& in_name, const short in_sign_grade, const short in_exec_grade);
 
 
 	public:
-		explicit	AForm(const AForm& copy);
-		AForm&		operator=(const AForm& copy);
-		~AForm();
+		explicit	Form(const Form& copy);
+		Form&		operator=(const Form& copy);
+		virtual		~Form();
 
 		std::string		getName(void) const;
 		short			getSignGrade(void) const;
@@ -82,6 +82,6 @@ class AForm
 		virtual void	execute(const Bureaucrat& executor) const;
 };
 
-std::ostream&	operator<<(std::ostream &out, AForm const& in);
+std::ostream&	operator<<(std::ostream &out, Form const& in);
 
 #endif

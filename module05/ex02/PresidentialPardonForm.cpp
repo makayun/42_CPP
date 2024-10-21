@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 16:19:25 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/18 16:19:26 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/21 14:32:49 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 #include "Bureaucrat.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : AForm() {
+PresidentialPardonForm::PresidentialPardonForm() : Form() {
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const std::string& in_target)
-	: AForm("PresidentialPardonForm", 25, 5), target(in_target) {
+	: Form("Presidential pardon", 25, 5), target(in_target) {
 	}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& copy) {
@@ -26,7 +26,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& cop
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& copy) {
 	if (this != &copy) {
-		AForm::operator=(copy);
+		Form::operator=(copy);
 		this->target = copy.getTarget();
 	}
 	return (*this);
@@ -40,6 +40,6 @@ PresidentialPardonForm::~PresidentialPardonForm() {
 }
 
 void	PresidentialPardonForm::execute(const Bureaucrat& executor) const {
-	AForm::execute(executor);
+	Form::execute(executor);
 	std::cout << target << " has been pardoned by Zaphod Beeblerbox" << std::endl;
 }

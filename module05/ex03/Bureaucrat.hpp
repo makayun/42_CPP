@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:06:58 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/19 01:01:09 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/21 14:16:34 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ The lesser the number - the greater rights the bureaucrat has */
 #define COLOR_RES "\033[0m"
 #endif
 
-class AForm;
+class Form;
 
 class Bureaucrat
 {
@@ -66,8 +66,8 @@ class Bureaucrat
 		const std::string&	getName(void) const;
 		short				getGrade(void) const;
 
-		void	signForm(AForm& in_form);
-		void	executeForm(AForm const & form);
+		void	signForm(Form& in_form);
+		void	executeForm(Form const & form);
 };
 
 std::ostream&	operator<<(std::ostream &out, Bureaucrat const& in);

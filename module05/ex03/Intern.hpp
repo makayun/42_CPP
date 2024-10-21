@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 01:13:10 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/19 02:28:30 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/21 14:39:07 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define INTERN_HPP
 
 #include <iostream>
+#include <string>
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
@@ -26,7 +27,7 @@ class Intern
 		Intern&		operator=(const Intern &copy);
 		~Intern();
 
-		AForm*	makeForm(const std::string& in_type, const std::string& in_target);
+		Form*	makeForm(const std::string& in_type, const std::string& in_target);
 };
 
 #endif

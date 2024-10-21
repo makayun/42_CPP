@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:38:06 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/19 00:46:42 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/21 14:17:44 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	Bureaucrat::demote(short value) {
 	}
 }
 
-void	Bureaucrat::signForm(AForm& in_form) {
+void	Bureaucrat::signForm(Form& in_form) {
 	try
 	{
 		in_form.beSigned(*this);
@@ -116,7 +116,7 @@ void	Bureaucrat::signForm(AForm& in_form) {
 	}
 }
 
-void	Bureaucrat::executeForm(AForm const & in_form) {
+void	Bureaucrat::executeForm(Form const & in_form) {
 	try
 	{
 		in_form.execute(*this);
