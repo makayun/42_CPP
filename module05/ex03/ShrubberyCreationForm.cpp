@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 16:19:54 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/19 01:08:29 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/21 11:26:51 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void ShrubberyCreationForm::drawTrees(std::ostream& out, short width, short tree
 
 void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
 	AForm::execute(executor);
-	std::ofstream file(target + "_shrubbery");
+	std::string filename = target + "_shrubbery";
+	std::ofstream file(filename.c_str(), std::ofstream::out);
 	if (file.is_open()) {
 		drawTrees(file, TREES_WIDTH, TREES_COUNT);
 		file.close();
