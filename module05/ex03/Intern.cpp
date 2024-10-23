@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/19 01:17:46 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/21 14:39:33 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/23 09:22:00 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Intern::~Intern(void) {
 }
 
 Form* Intern::makeForm(const std::string& in_type, const std::string& in_target) {
-	std::string types[3] = {"presidential pardon", "robotomy request", "shrubbery creation"};
+	const std::string types[3] = {"presidential pardon", "robotomy request", "shrubbery creation"};
 	std::string	messages[2] = {"Intern creates ",
 							COLOR_RED "Intern doesn't know this type of form: " COLOR_RES};
 	Form		*ret = NULL;

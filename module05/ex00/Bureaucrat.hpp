@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 14:06:58 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/16 13:09:57 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/23 09:21:47 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ class Bureaucrat
 
 		class GradeTooHighException : public std::out_of_range {
 			public:
-				GradeTooHighException(const std::string& name);
+				explicit GradeTooHighException(const std::string& name);
 		};
 
 		class GradeTooLowException : public std::out_of_range {
