@@ -1,29 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 14:07:18 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/30 15:21:21 by mmakagon         ###   ########.fr       */
+/*   Created: 2024/10/30 15:36:57 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/10/30 15:54:14 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERIALIZER_HPP
-#define SERIALIZER_HPP
-
+#include <iostream>
 #include <stdint.h>
-#include "Data.h"
+#include "Base.hpp"
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
-class Serializer
-{
-	private:
-		Serializer();
+Base* generate(void) {
+	int*		random = new int(42);
+	uintptr_t	raw = reinterpret_cast<uintptr_t>(random) >> 6;
+	delete (random);
 
-	public:
-		static uintptr_t	serialize(Data* ptr);
-		static Data*		deserialize(uintptr_t raw);
-};
+	unsigned long i = raw % 3;
+	switch (i)
+	{
+		case 0:
+			return new A;
+		case 1:
+			return new B;
+		case 2:
+			return new C;
+		default:
+			return NULL;
+	}
+}
 
-#endif
+void identify(Base* p) {
+	
+}
+
+int main() {
+
+}
