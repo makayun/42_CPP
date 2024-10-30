@@ -6,7 +6,8 @@ RM = rm -rf
 DEF_COLOR	= "\033[0;39m"
 GRAY		= "\033[0;90m"
 
-FILES = main \
+FILES = ScalarConverter \
+		main \
 
 SRCS = $(addsuffix .cpp, $(FILES))
 
@@ -21,7 +22,7 @@ $(NAME): $(SRCS) $(HDRS)
 
 clean:
 	@printf $(GRAY)
-	$(RM) $(NAME)* *_shrubbery
+	$(RM) $(NAME)*
 	@printf $(DEF_COLOR)
 
 fclean: clean
