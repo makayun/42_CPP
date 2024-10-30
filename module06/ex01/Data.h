@@ -1,43 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   Data.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 13:46:22 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/30 14:09:37 by mmakagon         ###   ########.fr       */
+/*   Created: 2024/10/30 14:39:23 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/10/30 14:41:09 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCLARACONVERTER_HPP
-#define SCLARACONVERTER_HPP
+#ifndef DATA_H
+#define DATA_H
 
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <cstdlib>
-#include <limits>
-#include <cctype>
-
-enum e_types {
-	CONVERT_ERR = -1,
-	CHAR,
-	INT,
-	FLOAT,
-	DOUBLE,
-	PSEUDO_FLOAT,
-	PSEUDO_DOUBLE,
-	TYPE_MAX
-};
-
-class ScalarConverter
-{
-	private:
-		ScalarConverter();
-
-	public:
-		static bool convert(const std::string& input);
-};
+typedef struct t_Data {
+	int		i;
+	int		j;
+}				Data;
 
 #endif

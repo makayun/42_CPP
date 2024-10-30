@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 13:49:25 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/30 13:50:48 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/30 14:00:18 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int parseType(const std::string& input) {
 	while (i < len && std::isdigit(input[i])) {
 		i++;
 		if (i < len && input[i] == '.') {
-			if (dot) return (CONVERT_ERR); // multiple dots
+			if (dot)
+				return (CONVERT_ERR);
 			dot = true;
 			i++;
 		}

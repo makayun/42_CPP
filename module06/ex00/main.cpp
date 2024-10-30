@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/30 14:01:29 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/10/30 14:01:42 by mmakagon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include "ScalarConverter.hpp"
-
-
 
 int main(int argc, char **argv) {
 	if (argc != 2)
@@ -10,4 +20,5 @@ int main(int argc, char **argv) {
 		std::string input(argv[1]);
 		ScalarConverter::convert(input);
 	}
+	return (42);
 }

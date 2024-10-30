@@ -1,43 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   Serializer.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 13:46:22 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/30 14:09:37 by mmakagon         ###   ########.fr       */
+/*   Created: 2024/10/30 14:07:18 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/10/30 14:51:36 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCLARACONVERTER_HPP
-#define SCLARACONVERTER_HPP
+#ifndef SERIALIZER_HPP
+#define SERIALIZER_HPP
 
-#include <iostream>
-#include <iomanip>
-#include <string>
-#include <cstdlib>
-#include <limits>
-#include <cctype>
+#include <stdint.h>
+#include "Data.h"
 
-enum e_types {
-	CONVERT_ERR = -1,
-	CHAR,
-	INT,
-	FLOAT,
-	DOUBLE,
-	PSEUDO_FLOAT,
-	PSEUDO_DOUBLE,
-	TYPE_MAX
-};
-
-class ScalarConverter
+class Serializer
 {
-	private:
-		ScalarConverter();
+	// private:
+	// 	Serializer();
 
 	public:
-		static bool convert(const std::string& input);
+		static uintptr_t	serialize(Data* ptr);
+		static Data*		deserialize(uintptr_t raw);
 };
 
 #endif
