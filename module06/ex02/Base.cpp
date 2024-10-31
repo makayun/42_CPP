@@ -1,22 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   Base.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/30 15:36:48 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/30 23:27:18 by mmakagon         ###   ########.fr       */
+/*   Created: 2024/10/30 23:43:13 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/10/30 23:43:33 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_HPP
-#define BASE_HPP
+#include "Base.hpp"
 
-class Base {
-	public:
-		Base();
-		virtual ~Base();
-};
+Base::Base(void) {}
 
-#endif
+Base::~Base(void) {}

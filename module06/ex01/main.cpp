@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 14:46:51 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/30 15:13:04 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/31 18:23:59 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,24 @@ int main() {
 	PRINT_VAR(b_ptr)
 
 	PRINT_DATA(a_ptr)
+	PRINT_DATA(b_ptr)
+
+	NEW_SECTION
+
+	raw = Serializer::serialize(&b);
+	b_ptr = Serializer::deserialize(raw);
+
+	PRINT_VAR(a_ptr)
+	PRINT_VAR(b_ptr)
+
+	PRINT_DATA(a_ptr)
+	PRINT_DATA(b_ptr)
+
+	NEW_SECTION
+
+	raw += sizeof(int);
+	unsigned int* i = reinterpret_cast<unsigned int*>(Serializer::deserialize(raw));
+	*i = 4242;
 	PRINT_DATA(b_ptr)
 
 	NEW_SECTION
