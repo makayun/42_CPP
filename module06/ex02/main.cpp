@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 15:36:57 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/10/31 18:31:44 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/10/31 20:05:31 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@
 #include "C.hpp"
 
 Base* generate(void) {
-	static int random_var;
+	int*		random_var = new int(42);
 	uintptr_t	random_addr = reinterpret_cast<uintptr_t>(&random_var);
+	delete random_var;
 
 	unsigned i = random_addr % 3;
 	switch (i)
@@ -36,8 +37,7 @@ Base* generate(void) {
 }
 
 void identify(Base* p) {
-	if (p)
-	{
+	if (p) {
 		const std::string output = "ABC";
 		Base*	array[3] = {dynamic_cast<A*>(p), dynamic_cast<B*>(p), dynamic_cast<C*>(p)};
 
@@ -60,7 +60,7 @@ void identify(Base& p)
 		(void)a;
 		std::cout << 'A' << std::endl;
 	}
-	catch(const std::bad_cast& e)
+	catch(const std::exception& e)
 	{
 		try
 		{
@@ -68,7 +68,7 @@ void identify(Base& p)
 			(void)b;
 			std::cout << 'B' << std::endl;
 		}
-		catch(const std::bad_cast& e)
+		catch(const std::exception& e)
 		{
 			try
 			{
@@ -76,7 +76,7 @@ void identify(Base& p)
 				(void)c;
 				std::cout << 'C' << std::endl;
 			}
-			catch(const std::bad_cast& e)
+			catch(const std::exception& e)
 			{
 				std::cout << "None of known sub-classes" << std::endl;
 			}
