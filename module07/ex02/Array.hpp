@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 18:46:05 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/01 19:10:22 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/04 14:17:37 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,17 @@ template<typename T>
 class Array {
 	private:
 		T*		_elements;
-		ssize_t _size;
+		size_t	_size;
 
 	public:
 		Array();
-		explicit	Array(unsigned int n);
-		explicit	Array(const Array& copy);
+		explicit	Array(const unsigned int n);
+		Array(const Array& copy);
 		Array&		operator=(const Array& copy);
-		T			operator[](long n) const;
+		~Array();
+		T&			operator[](long n) const;
+
+		size_t		size() const;
 
 };
 
