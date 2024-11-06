@@ -1,6 +1,6 @@
-NAME = templates
+NAME = find
 CC = c++
-CPP_FLAGS = -I./ -Wall -Werror -Wextra -std=c++98 -pedantic -g -fsanitize=address
+CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic -g -fsanitize=address
 RM = rm -rf
 
 DEF_COLOR	= "\033[0;39m"

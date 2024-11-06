@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/01 13:59:48 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/01 14:40:03 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/06 11:00:53 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,7 @@ int main()
 	PRINT_VAR(whatever::min(str1, str2));
 
 	NEW_SECTION
+
+	// PRINT_VAR(whatever::max(42.42, '*'));
+	// PRINT_VAR(whatever::max(42.42, (double)'*'));
 }
