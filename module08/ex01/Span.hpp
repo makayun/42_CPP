@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:44:56 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/06 15:18:56 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:02:02 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 class Span
 {
 	private:
 		std::vector<int>	_elements;
-		unsigned int		_size;
+		unsigned int		_max_size;
 
 	public:
 		Span();
@@ -28,6 +29,8 @@ class Span
 		explicit	Span(const Span& copy);
 		Span&		operator=(const Span& copy);
 		~Span();
+
+		void addNumber(const int& n);
 };
 
 #endif
