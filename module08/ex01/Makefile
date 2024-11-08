@@ -7,10 +7,11 @@ DEF_COLOR	= "\033[0;39m"
 GRAY		= "\033[0;90m"
 
 FILES = main \
+		Span \
 
 SRCS = $(addsuffix .cpp, $(FILES))
 
-HDRS = $(wildcard *pp)
+HDRS = $(wildcard *.hpp)
 
 all: $(NAME)
 

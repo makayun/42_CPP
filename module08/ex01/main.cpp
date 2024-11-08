@@ -3,32 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:44:41 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/07 15:34:37 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:31:34 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <vector>
+#include <set>
 #include <algorithm>
 #include <numeric>
+#include "Span.hpp"
 
-int main() {
-	std::vector<int> v;
-	v.resize(10);
-
-	for (size_t i = 0; i < 10; i++)
-		v[i] = i * 2;
-
-
-	for (size_t i = 0; i < v.size(); i++)
-		std::cout << v[i] << " ";
-	std::vector<int> res;
-	res.resize(v.size());
-	std::adjacent_difference(v.begin(), v.end(), res.begin());
-	for (size_t i = 0; i < res.size(); i++)
-		std::cout << res[i] << " ";
-
+int main()
+{
+	Span sp = Span(5);
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
+	return 0;
 }
