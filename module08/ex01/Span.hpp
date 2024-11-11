@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:44:56 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/08 15:30:35 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/09 03:29:01 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <set>
 #include <numeric>
 #include <algorithm>
+#include <random>
+#include <limits>
 
 class Span
 {
@@ -33,6 +35,9 @@ class Span
 		~Span();
 
 		void			addNumber(const int& n);
+		void			fillRandom(const int& number_of_elements);
+		void			clear(void);
+
 		unsigned int	longestSpan(void) const;
 		unsigned int	shortestSpan(void) const;
 		unsigned int	shortestSpan2(void) const;

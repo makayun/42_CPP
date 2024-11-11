@@ -11,7 +11,7 @@ FILES = main \
 
 SRCS = $(addsuffix .cpp, $(FILES))
 
-HDRS = $(wildcard *.hpp)
+HDRS = $(wildcard *pp)
 
 all: $(NAME)
 
