@@ -1,4 +1,4 @@
-NAME = templates
+NAME = containers
 CC = c++
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic -g -fsanitize=address
 RM = rm -rf
@@ -11,7 +11,7 @@ FILES = main \
 
 SRCS = $(addsuffix .cpp, $(FILES))
 
-HDRS = $(wildcard *.pp)
+HDRS = $(wildcard *pp)
 
 all: $(NAME)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:44:56 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/11 11:51:10 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:04:54 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 #include <set>
 #include <numeric>
 #include <algorithm>
-#include <random>
+#include <cstdlib>
+#include <ctime>
 #include <limits>
 
 class Span
@@ -40,12 +41,22 @@ class Span
 		void			fillRandom(const int& number_of_elements);
 		void			clear(void);
 
-		template<typename C>
-		void			addFromOther(const C& in_container, typename C::iterator from, typename C::iterator to) {
-			if (_elements.size() + in_container.size() >= _max_size)
+
+		template<typename Container>
+		void addFromOther(const Container& in_cont) {
+			if (_elements.size() + std::distance(in_cont.begin(), in_cont.end()) > _max_size)
 				throw std::logic_error("The new size exceeds the upper limit");
-			_elements.insert(from, to);
+
+			_elements.insert(in_cont.begin(), in_cont.end());
 		}
+
+		// template<typename Iterator>
+		// void addFromOther(const Iterator from, const Iterator to) {
+		// 	if (_elements.size() + std::distance(from, to) > _max_size)
+		// 		throw std::logic_error("The new size exceeds the upper limit");
+
+		// 	_elements.insert(from, to);
+		// }
 
 		unsigned int	longestSpan(void) const;
 		unsigned int	shortestSpan(void) const;

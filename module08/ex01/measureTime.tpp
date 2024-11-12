@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   measureTime.tpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 01:39:41 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/11 10:05:06 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:46:51 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,18 @@ void measureTime(ClassType& obj, void(ClassType::*funptr)(const ArgType&), const
 	elapsed = static_cast<double>(end - start) / CLOCKS_PER_SEC;
 	std::cout << "Elapsed time: " << std::fixed << elapsed << " seconds" << std::endl;
 }
+
+// template<typename ClassOut, typename ArgType>
+// void measureTime(ClassOut& obj, void(ClassOut::*funptr)(ArgType, ArgType), ArgType arg_one, ArgType arg_two) {
+// 	std::clock_t	start, end;
+// 	double			elapsed;
+
+// 	start = std::clock();
+// 	(obj.*funptr)(arg_one, arg_two);
+// 	end = std::clock();
+
+// 	elapsed = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+// 	std::cout << "Elapsed time: " << std::fixed << elapsed << " seconds" << std::endl;
+// }
 
 #endif

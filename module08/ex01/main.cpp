@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:44:41 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/11 11:51:38 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:43:30 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ int main()
 		tiny.addNumber(11);
 
 		testSpans(tiny, N);
-
-		tiny.clear();
-		tiny.fillRandom(N);
-		for (int i = 0; i < N; i++)
-			std::cout << tiny[i] << std::endl;
 	}
 
 	NEW_SECTION
@@ -60,8 +55,8 @@ int main()
 
 		NEW_SECTION
 
-		N = 100000; // hundred thousand
 		big.clear();
+		N = 100000; // hundred thousand
 		std::cout << "FillRandom with " << N << " elements:" << std::endl;
 		measureTime(big, &Span::fillRandom, N);
 		testSpans(big, N);
@@ -71,10 +66,16 @@ int main()
 
 	// {
 	// 	N = 1000000; // one million
-	// 	std::vector<int> v(N);
-	// 	std::random_device rd;
-	// 	std::mt19937 gen(rd());
-	// 	std::uniform_int_distribution<int> dist(INT_MIN, INT_MAX);
+	// 	std::vector<int> v;
+	// 	Span			huge(N);
+	// 	v.reserve(N);
+
+	// 	std::srand(std::time(NULL));
+	// 	for (int i = 0; i < N; ++i)
+	// 		v.push_back(std::rand());
+	// 	std::cout << "AddFromOther with " << N << " elements:" << std::endl;
+	// 	measureTime(huge, &Span::addFromOther, v);
+	// 	testSpans(huge, N);
 	// }
 
 	return 0;

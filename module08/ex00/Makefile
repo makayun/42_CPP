@@ -1,4 +1,4 @@
-NAME = find
+NAME = containers
 CC = c++
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic -g -fsanitize=address
 RM = rm -rf
