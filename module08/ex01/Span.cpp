@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:44:53 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/09 03:54:14 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/11 11:53:22 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,22 @@ void Span::fillRandom(const int& number_of_elements) {
 
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	std::uniform_int_distribution<> dis(INT_MIN, INT_MAX);
+	std::uniform_int_distribution<> dis(-100, 100);
 	for (int i = 0; i < number_of_elements; ++i)
 		_elements.insert(dis(gen));
 }
 
 void Span::clear(void) {
 	_elements.clear();
+}
+
+const int& Span::operator[](const int& n) const {
+	if (n < 0 || n >= static_cast<int>(_elements.size()))
+		throw std::out_of_range("Index is out of bounds");
+
+	std::set<int>::iterator it = _elements.begin();
+	std::advance(it, n);
+	return *it;
 }
 
 
@@ -75,7 +84,7 @@ unsigned int Span::shortestSpan(void) const {
 	if (_elements.size() < 2)
 		throw std::logic_error("Not enough elements!");
 
-	std::vector<int> differences(_elements.size());
+	std::vector<unsigned int> differences(_elements.size());
 	std::adjacent_difference(_elements.begin(), _elements.end(), differences.begin());
 	return (*std::min_element(std::next(differences.begin()), differences.end()));
 }

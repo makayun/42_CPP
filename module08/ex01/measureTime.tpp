@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 01:39:41 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/09 03:20:54 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/11 10:05:06 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <ctime>
 
 template<typename ClassType, typename ReturnType>
-void measureTime(const ClassType& obj, ReturnType(ClassType::*funptr)() const) {
+void measureTime(const ClassType& obj, ReturnType(ClassType::*funptr)(void) const) {
 	std::clock_t	start, end;
 	double			elapsed;
 	ReturnType		result;
