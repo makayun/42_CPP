@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:52:22 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/12 15:16:32 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:40:00 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ int main()
 	mstack.push(5);
 	mstack.push(737);
 	mstack.push(0);
-	// MutantStack<int>::iterator it = mstack.begin();
-	// MutantStack<int>::iterator ite = mstack.end();
-	// ++it;
-	// --it;
-	// while (it != ite)
-	// {
-	// std::cout << *it << std::endl;
-	// ++it;
-	// }
+	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
+	++it;
+	--it;
+	while (it != ite)
+	{
+	std::cout << *it << std::endl;
+	++it;
+	}
 	std::stack<int> s(mstack);
 	return 0;
 }
