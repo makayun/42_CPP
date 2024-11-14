@@ -6,25 +6,20 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:52:48 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/14 14:44:40 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:01:53 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MUTANTSTACK_HPP
 #define MUTANTSTACK_HPP
 
-#include <iostream>
 #include <stack>
-#include <deque>
-#include <algorithm>
-
-
 
 template<typename T>
 class MutantStack : public std::stack<T, std::deque<T> > {
 public:
-	typedef typename std::deque<T>::iterator iterator;
-	typedef typename std::deque<T>::const_iterator const_iterator;
+	typedef typename std::deque<T>::iterator		iterator;
+	typedef typename std::deque<T>::const_iterator	const_iterator;
 
 	iterator begin() {
 		return this->c.begin();
@@ -50,7 +45,5 @@ public:
 		return this->c.back();
 	}
 };
-
-#include "MutantStack.tpp"
 
 #endif
