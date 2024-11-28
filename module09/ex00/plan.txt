@@ -1,0 +1,15 @@
+- Check arguments, try to open both files, if anything - return an error
+
+- Read data.csv and parse it to an inner map (this->data):
+	check for a valid first line (has 'date', separator and something else)
+	set a separator by the first line (',' or ' | ' or whatever)
+	parse date for each line, check if valid, check if value is valid and add to data
+
+- Parse and multiply input:
+	check for a valid first line (has 'date', separator and something else)
+	set a separator by the first line (',' or ' | ' or whatever)
+	for each line:
+		parse date, check if valid, check if value is valid
+		find date in this->data, if not found - look for the closest previos
+		if no errors - multiply and print
+
