@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:01:54 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/28 12:58:29 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/28 13:05:36 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ typedef struct s_date {
 		if (month != other.month)
 			return month < other.month;
 		return day < other.day;
+	}
+
+	bool empty(void) {
+		return (!year && !month && !day);
 	}
 } t_date;
 
