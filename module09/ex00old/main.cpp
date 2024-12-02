@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:32:03 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/12/02 15:06:06 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:36:53 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int main(int argc, char** argv) {
 		return (42);
 	}
 
+	BitcoinExchange exchange;
+	exchange.processInput(argv[1]);
 
 	return 0;
 }
