@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 14:44:53 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/12 11:40:16 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/28 12:57:48 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ unsigned int Span::longestSpan(void) const {
 		throw std::logic_error("Not enough elements!");
 
 	std::multiset<int>::iterator it = _elements.end();
-	--it;
+	std::advance(it, -1);
 	return (*it - *_elements.begin());
 }
 
@@ -101,11 +101,8 @@ unsigned int Span::shortestSpan2(void) const {
 	std::set<unsigned int> differences;
 	std::set<int>::iterator a = _elements.begin();
 	std::set<int>::iterator b = a;
-	b++;
-	while (b != _elements.end()) {
-		differences.insert(*b - *a);
-		++a;
-		++b;
-	}
+
+	while (++b != _elements.end())
+		differences.insert(*b - *a++);
 	return (*differences.begin());
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:01:54 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/28 15:36:45 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/12/02 12:47:04 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <string>
 #include <map>
 
@@ -41,13 +42,13 @@ class BitcoinExchange
 	private:
 		std::map<t_date, float> data;
 
-		std::string	parseSeparator(const std::string& first_line);
-		t_date		parseDate(const std::string& line, const std::string& separator);
-		float		parseValue(const std::string& line, const std::string& separator);
+		char		parseDelimiter(const std::string& first_line);
+		t_date		parseDate(const std::string& in_date);
+		float		parseValue(const std::string& in_value);
 		bool		parseLine(const std::string& line);
 
-		void		parseData(std::ifstream& data_file);
-		void		parseInput(std::ifstream& input_file);
+		void		parseDataFile(std::ifstream& data_file);
+		void		parseInputFile(std::ifstream& input_file);
 
 		void		printDate(const t_date& to_print) const;
 
