@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:01:54 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/28 13:05:36 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:36:45 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,17 @@ class BitcoinExchange
 		bool		parseLine(const std::string& line);
 
 		void		parseData(std::ifstream& data_file);
+		void		parseInput(std::ifstream& input_file);
 
-		void		printDate(const t_date& date);
+		void		printDate(const t_date& to_print) const;
 
 	public:
-		BitcoinExchange(); // do nothing or print some error
-		explicit BitcoinExchange(const std::string in_filename); // open data.csv
+		BitcoinExchange();
 		explicit BitcoinExchange(const BitcoinExchange& copy);
 		BitcoinExchange& operator=(const BitcoinExchange& copy);
 		~BitcoinExchange();
+
+		void		processInput(const std::string in_filename);
 };
 
 

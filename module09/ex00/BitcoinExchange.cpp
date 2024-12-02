@@ -3,27 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:17:29 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/11/28 12:59:17 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:49:33 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange() {}
-
-BitcoinExchange::BitcoinExchange(const std::string in_filename) {
+BitcoinExchange::BitcoinExchange() {
 	std::ifstream data_file("data.csv");
-	if (!data_file.is_open())
-		throw std::runtime_error("Can't open the data file!\n");
-
-	std::ifstream input_file(in_filename.c_str());
-	if (!input_file.is_open())
-		throw std::runtime_error("Can't open the input file!\n");
-
-	parseData(data_file);
+	if (data_file.is_open()) {
+		parseData(data_file);
+		data_file.close();
+	}
+	else
+		std::cerr << "Caan't open the data file!" << std::endl;
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange& copy) {
@@ -42,3 +38,28 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& copy) {
 }
 
 BitcoinExchange::~BitcoinExchange() {}
+
+void		BitcoinExchange::parseData(std::ifstream& data_file) {
+	std::string line = std::getline(data_file);
+	if (line.find("data") == line.end())
+}
+
+
+void		BitcoinExchange::processInput(const std::string in_filename) {
+	if (data.empty())
+		std::cerr << "Invalid data!" << std::endl;
+
+	else {
+		std::ifstream input_file(in_filename.c_str());
+		if (input_file.is_open()) {
+			parseInput(input_file);
+			input_file.close();
+		}
+		else
+			std::cerr << "Can't open input file!" << std::endl;
+	}
+}
+
+void		BitcoinExchange::printDate(const t_date& to_print) const {
+	std::cout << to_print.year << "-" << to_print.month << "-" << to_print.day;
+}

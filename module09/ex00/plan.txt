@@ -1,3 +1,5 @@
+- Construct the class, then call a method to parse input and print result, don't do everything in the constructor!!!
+
 - Check arguments, try to open both files, if anything - return an error
 
 - Read data.csv and parse it to an inner map (this->data):
