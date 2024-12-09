@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:17:29 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/12/09 13:27:33 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/12/09 14:45:38 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,46 @@ void	BitcoinExchange::parseDataFile(std::ifstream& data_file) {
 	}
 }
 
+void		BitcoinExchange::findAndPrint(const t_date& in_date, const float& in_value) const {
+	if (in_value > 1000.0F)
+		throw (std::out_of_range("Error: too large a number."));
+
+	std::map<t_date, float>::const_iterator it = data.upper_bound(in_date);
+	if (it != data.begin()) {
+		--it;
+		if (it->first <= in_date) {
+			std::cout << it->first << " => " << in_value << " = " << it->second * in_value << std::endl;
+			return ;
+		}
+	}
+	std::cerr << "Can't find this or closest lower date: " << in_date << std::endl;
+}
+
+void		BitcoinExchange::parseInputFile(std::ifstream& input_file) {
+	std::string	line;
+	std::getline(input_file, line);
+
+	const std::string	delimiter = parseDelimiter(line);
+	if (delimiter.empty())
+		std::cerr << "Invalid input file's header!" << std::endl;
+
+	else {
+		t_date		temp_date;
+		float		temp_value;
+		while (std::getline(input_file, line)) {
+			if (line.empty()) continue;
+			try {
+				temp_date = parseDate(line, delimiter);
+				temp_value = parseValue(line, delimiter);
+				findAndPrint(temp_date, temp_value);
+			}
+			catch(const std::exception& e) {
+				std::cerr << e.what() << std::endl;
+				continue;
+			}
+		}
+	}
+}
 
 void	BitcoinExchange::processInput(const std::string in_filename) {
 	if (data.empty())

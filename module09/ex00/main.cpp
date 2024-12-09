@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:32:03 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/12/09 11:30:25 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/12/09 14:46:21 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int argc, char** argv) {
 	}
 
 	BitcoinExchange exchange;
-	// exchange.processInput(argv[1]);
+	exchange.processInput(argv[1]);
 
 	return 0;
 }

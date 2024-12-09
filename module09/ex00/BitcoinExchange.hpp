@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:01:54 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/12/09 13:24:11 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/12/09 14:54:31 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,17 @@ typedef struct s_date {
 		return (d[DAY] < other.d[DAY]);
 	}
 
-	bool empty(void) {
+	bool	operator==(const s_date& other) const {
+		return (d[YEAR] == other.d[YEAR] &&
+				d[MONTH] == other.d[MONTH] &&
+				d[DAY] == other.d[DAY]);
+	}
+
+	bool	operator<=(const s_date& other) const {
+		return (*this < other || *this == other);
+	}
+
+	bool	empty(void) {
 		return (!d[YEAR] && !d[MONTH] && !d[DAY]);
 	}
 } t_date;
@@ -58,6 +68,7 @@ class BitcoinExchange
 
 		void		parseDataFile(std::ifstream& data_file);
 		void		parseInputFile(std::ifstream& input_file);
+		void		findAndPrint(const t_date& in_date, const float& in_calue) const;
 
 	public:
 		BitcoinExchange();
