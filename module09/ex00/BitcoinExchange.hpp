@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:01:54 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/12/09 14:54:31 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:11:52 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,52 +28,39 @@ enum ymd {
 	DAY
 };
 
-typedef struct s_date {
+struct Date {
 	int	d[3];
+	Date();
+	Date(const Date& copy);
+	Date& operator=(const Date& copy);
+	~Date();
 
-	bool	operator<(const s_date& other) const {
-		if (d[YEAR] != other.d[YEAR])
-			return (d[YEAR] < other.d[YEAR]);
-		if (d[MONTH] != other.d[MONTH])
-			return (d[MONTH] < other.d[MONTH]);
-		return (d[DAY] < other.d[DAY]);
-	}
+	bool	operator<(const Date& other) const;
+	bool	operator==(const Date& other) const;
+	bool	operator<=(const Date& other) const;
+	bool	empty(void) const;
+};
 
-	bool	operator==(const s_date& other) const {
-		return (d[YEAR] == other.d[YEAR] &&
-				d[MONTH] == other.d[MONTH] &&
-				d[DAY] == other.d[DAY]);
-	}
-
-	bool	operator<=(const s_date& other) const {
-		return (*this < other || *this == other);
-	}
-
-	bool	empty(void) {
-		return (!d[YEAR] && !d[MONTH] && !d[DAY]);
-	}
-} t_date;
-
-std::ostream &operator<<( std::ostream &out, t_date const &in );
+std::ostream &operator<<(std::ostream &out, Date const &in);
 
 class BitcoinExchange
 {
 	private:
-		std::map<t_date, float> data;
+		std::map<Date, float> data;
 
 		std::string	parseDelimiter(const std::string& first_line);
-		t_date		parseDate(const std::string& line, const std::string& delimiter);
+		Date		parseDate(const std::string& line, const std::string& delimiter);
 		float		parseValue(const std::string& line, const std::string& delimiter);
 		bool		parseLine(const std::string& line);
 
 		void		parseDataFile(std::ifstream& data_file);
 		void		parseInputFile(std::ifstream& input_file);
-		void		findAndPrint(const t_date& in_date, const float& in_calue) const;
+		void		findAndPrint(const Date& in_date, const float& in_calue) const;
 
 	public:
 		BitcoinExchange();
-		explicit BitcoinExchange(const BitcoinExchange& copy);
-		BitcoinExchange& operator=(const BitcoinExchange& copy);
+		explicit			BitcoinExchange(const BitcoinExchange& copy);
+		BitcoinExchange&	operator=(const BitcoinExchange& copy);
 		~BitcoinExchange();
 
 		void		processInput(const std::string in_filename);

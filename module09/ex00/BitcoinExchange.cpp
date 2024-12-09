@@ -6,11 +6,14 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:17:29 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/12/09 14:45:38 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:14:59 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+
+
+/* GLORIOUS ORTHODOX BULLS**T */
 
 BitcoinExchange::BitcoinExchange() {
 	std::ifstream data_file("data.csv");
@@ -30,7 +33,7 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& copy) {
 	if (this != &copy) {
 		data.clear();
 
-		for (std::map<t_date, float>::const_iterator it = copy.data.begin(); it != copy.data.end(); ++it)
+		for (std::map<Date, float>::const_iterator it = copy.data.begin(); it != copy.data.end(); ++it)
 			data[it->first] = it->second;
 	}
 	return *this;
@@ -38,12 +41,15 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& copy) {
 
 BitcoinExchange::~BitcoinExchange() {}
 
-t_date	BitcoinExchange::parseDate(const std::string& line, const std::string& delimiter ) {
+
+/* PARSING LINES */
+
+Date	BitcoinExchange::parseDate(const std::string& line, const std::string& delimiter ) {
 	const size_t		del_pos = line.find(delimiter);
 	if (del_pos == std::string::npos)
 		throw (std::runtime_error("Error: bad input -> " + line));
 
-	t_date				ret;
+	Date				ret;
 	std::istringstream	date(line.substr(0, del_pos));
 	std::string			temp;
 	int i = 0;
@@ -100,6 +106,9 @@ std::string	BitcoinExchange::parseDelimiter(const std::string& first_line) {
 	return (ret);
 }
 
+
+/* DATA FILE */
+
 void	BitcoinExchange::parseDataFile(std::ifstream& data_file) {
 	std::string	line;
 	std::getline(data_file, line);
@@ -109,7 +118,7 @@ void	BitcoinExchange::parseDataFile(std::ifstream& data_file) {
 		std::cerr << "Invalid data file's header!" << std::endl;
 
 	else {
-		t_date		temp_date;
+		Date		temp_date;
 		float		temp_value;
 		while (std::getline(data_file, line)) {
 			if (line.empty()) continue;
@@ -127,11 +136,14 @@ void	BitcoinExchange::parseDataFile(std::ifstream& data_file) {
 	}
 }
 
-void		BitcoinExchange::findAndPrint(const t_date& in_date, const float& in_value) const {
+
+/* INPUT FILE */
+
+void		BitcoinExchange::findAndPrint(const Date& in_date, const float& in_value) const {
 	if (in_value > 1000.0F)
 		throw (std::out_of_range("Error: too large a number."));
 
-	std::map<t_date, float>::const_iterator it = data.upper_bound(in_date);
+	std::map<Date, float>::const_iterator it = data.upper_bound(in_date);
 	if (it != data.begin()) {
 		--it;
 		if (it->first <= in_date) {
@@ -151,7 +163,7 @@ void		BitcoinExchange::parseInputFile(std::ifstream& input_file) {
 		std::cerr << "Invalid input file's header!" << std::endl;
 
 	else {
-		t_date		temp_date;
+		Date		temp_date;
 		float		temp_value;
 		while (std::getline(input_file, line)) {
 			if (line.empty()) continue;
@@ -184,7 +196,54 @@ void	BitcoinExchange::processInput(const std::string in_filename) {
 }
 
 
-std::ostream &operator<<(std::ostream &out, t_date const &in) {
+/* DATE STRUCT */
+
+Date::Date(){
+	d[YEAR] = 0;
+	d[MONTH] = 0;
+	d[DAY] = 0;
+}
+
+Date::Date(const Date& copy) {
+	this->d[YEAR] = copy.d[YEAR];
+	this->d[MONTH] = copy.d[MONTH];
+	this->d[DAY] = copy.d[DAY];
+}
+
+Date& Date::operator=(const Date& copy) {
+	if (this != &copy) {
+		this->d[YEAR] = copy.d[YEAR];
+		this->d[MONTH] = copy.d[MONTH];
+		this->d[DAY] = copy.d[DAY];
+	}
+	return (*this);
+}
+
+Date::~Date(){}
+
+bool	Date::operator<(const Date& other) const {
+	if (d[YEAR] != other.d[YEAR])
+		return (d[YEAR] < other.d[YEAR]);
+	if (d[MONTH] != other.d[MONTH])
+		return (d[MONTH] < other.d[MONTH]);
+	return (d[DAY] < other.d[DAY]);
+}
+
+bool	Date::operator==(const Date& other) const {
+	return (d[YEAR] == other.d[YEAR] &&
+			d[MONTH] == other.d[MONTH] &&
+			d[DAY] == other.d[DAY]);
+}
+
+bool	Date::operator<=(const Date& other) const {
+	return (*this < other || *this == other);
+}
+
+bool	Date::empty(void) const {
+	return (!d[YEAR] && !d[MONTH] && !d[DAY]);
+}
+
+std::ostream &operator<<(std::ostream &out, Date const &in) {
 	out << in.d[YEAR] << "-"
 		<< std::setw(2) << std::setfill('0') << in.d[MONTH] << "-"
 		<< std::setw(2) << std::setfill('0') << in.d[DAY];
