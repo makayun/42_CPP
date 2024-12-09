@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:01:54 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/12/02 19:17:26 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/12/09 13:24:11 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,34 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <cstdlib>
+#include <iomanip>
+#include <climits>
 #include <map>
 
-typedef struct s_date {
-	int year;
-	int month;
-	int day;
+enum ymd {
+	YEAR,
+	MONTH,
+	DAY
+};
 
-	bool operator<(const s_date& other) const {
-		if (year != other.year)
-			return year < other.year;
-		if (month != other.month)
-			return month < other.month;
-		return day < other.day;
+typedef struct s_date {
+	int	d[3];
+
+	bool	operator<(const s_date& other) const {
+		if (d[YEAR] != other.d[YEAR])
+			return (d[YEAR] < other.d[YEAR]);
+		if (d[MONTH] != other.d[MONTH])
+			return (d[MONTH] < other.d[MONTH]);
+		return (d[DAY] < other.d[DAY]);
 	}
 
 	bool empty(void) {
-		return (!year && !month && !day);
+		return (!d[YEAR] && !d[MONTH] && !d[DAY]);
 	}
 } t_date;
+
+std::ostream &operator<<( std::ostream &out, t_date const &in );
 
 class BitcoinExchange
 {
@@ -49,8 +58,6 @@ class BitcoinExchange
 
 		void		parseDataFile(std::ifstream& data_file);
 		void		parseInputFile(std::ifstream& input_file);
-
-		void		printDate(const t_date& to_print) const;
 
 	public:
 		BitcoinExchange();
