@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:17:29 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/12/09 15:14:59 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:31:35 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ BitcoinExchange::~BitcoinExchange() {}
 
 /* PARSING LINES */
 
-Date	BitcoinExchange::parseDate(const std::string& line, const std::string& delimiter ) {
+Date		BitcoinExchange::parseDate(const std::string& line, const std::string& delimiter ) {
 	const size_t		del_pos = line.find(delimiter);
 	if (del_pos == std::string::npos)
 		throw (std::runtime_error("Error: bad input -> " + line));
@@ -80,7 +80,7 @@ Date	BitcoinExchange::parseDate(const std::string& line, const std::string& deli
 	return (ret);
 }
 
-float	BitcoinExchange::parseValue(const std::string& line, const std::string& delimiter) {
+float		BitcoinExchange::parseValue(const std::string& line, const std::string& delimiter) {
 	const size_t		del_pos = line.find(delimiter);
 	if (del_pos == std::string::npos)
 		throw (std::runtime_error("Error: missing delimiter: " + line));
@@ -109,7 +109,7 @@ std::string	BitcoinExchange::parseDelimiter(const std::string& first_line) {
 
 /* DATA FILE */
 
-void	BitcoinExchange::parseDataFile(std::ifstream& data_file) {
+void		BitcoinExchange::parseDataFile(std::ifstream& data_file) {
 	std::string	line;
 	std::getline(data_file, line);
 
@@ -180,7 +180,7 @@ void		BitcoinExchange::parseInputFile(std::ifstream& input_file) {
 	}
 }
 
-void	BitcoinExchange::processInput(const std::string in_filename) {
+void		BitcoinExchange::processInput(const std::string in_filename) {
 	if (data.empty())
 		std::cerr << "Invalid initial data!" << std::endl;
 
