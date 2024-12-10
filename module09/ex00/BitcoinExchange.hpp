@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:01:54 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/12/09 15:11:52 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/12/09 18:41:15 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ class BitcoinExchange
 	private:
 		std::map<Date, float> data;
 
-		std::string	parseDelimiter(const std::string& first_line);
-		Date		parseDate(const std::string& line, const std::string& delimiter);
-		float		parseValue(const std::string& line, const std::string& delimiter);
+		std::string	parseDelimiter(const std::string& first_line) const;
+		Date		parseDate(const std::string& line, const std::string& delimiter) const;
+		float		parseValue(const std::string& line, const std::string& delimiter) const;
 		bool		parseLine(const std::string& line);
 
 		void		parseDataFile(std::ifstream& data_file);
-		void		parseInputFile(std::ifstream& input_file);
+		void		parseInputFile(std::ifstream& input_file) const;
 		void		findAndPrint(const Date& in_date, const float& in_calue) const;
 
 	public:
@@ -63,7 +63,7 @@ class BitcoinExchange
 		BitcoinExchange&	operator=(const BitcoinExchange& copy);
 		~BitcoinExchange();
 
-		void		processInput(const std::string in_filename);
+		void		processInput(const std::string in_filename) const;
 };
 
 

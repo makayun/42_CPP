@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:17:29 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/12/09 15:31:35 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/12/09 18:23:46 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ BitcoinExchange::~BitcoinExchange() {}
 
 /* PARSING LINES */
 
-Date		BitcoinExchange::parseDate(const std::string& line, const std::string& delimiter ) {
+Date		BitcoinExchange::parseDate(const std::string& line, const std::string& delimiter ) const {
 	const size_t		del_pos = line.find(delimiter);
 	if (del_pos == std::string::npos)
 		throw (std::runtime_error("Error: bad input -> " + line));
@@ -54,8 +54,11 @@ Date		BitcoinExchange::parseDate(const std::string& line, const std::string& del
 	std::string			temp;
 	int i = 0;
 
-	for ( ; i < 3 && getline(date, temp, '-'); ++i)
+	for ( ; i < 3 && getline(date, temp, '-'); ++i) {
+		if (temp.empty())
+			throw (std::runtime_error("Error: bad input -> " + line));
 		ret.d[i] = std::atoi(temp.c_str());
+	}
 	if (i < 3)
 		throw (std::runtime_error("Error: bad input -> " + line));
 
@@ -80,12 +83,14 @@ Date		BitcoinExchange::parseDate(const std::string& line, const std::string& del
 	return (ret);
 }
 
-float		BitcoinExchange::parseValue(const std::string& line, const std::string& delimiter) {
+float		BitcoinExchange::parseValue(const std::string& line, const std::string& delimiter) const {
 	const size_t		del_pos = line.find(delimiter);
 	if (del_pos == std::string::npos)
 		throw (std::runtime_error("Error: missing delimiter: " + line));
 
 	const std::string temp = line.substr(del_pos + delimiter.length(), std::string::npos);
+	if (temp.empty())
+		throw(std::runtime_error("Error: bad input -> " + line));
 	const double ret = std::atof(temp.c_str());
 
 	if (ret < 0)
@@ -96,7 +101,7 @@ float		BitcoinExchange::parseValue(const std::string& line, const std::string& d
 	return(static_cast<float>(ret));
 }
 
-std::string	BitcoinExchange::parseDelimiter(const std::string& first_line) {
+std::string	BitcoinExchange::parseDelimiter(const std::string& first_line) const {
 	std::string ret;
 
 	if (!first_line.empty() && first_line.find("date") != std::string::npos) {
@@ -154,7 +159,7 @@ void		BitcoinExchange::findAndPrint(const Date& in_date, const float& in_value) 
 	std::cerr << "Can't find this or closest lower date: " << in_date << std::endl;
 }
 
-void		BitcoinExchange::parseInputFile(std::ifstream& input_file) {
+void		BitcoinExchange::parseInputFile(std::ifstream& input_file) const {
 	std::string	line;
 	std::getline(input_file, line);
 
@@ -180,7 +185,7 @@ void		BitcoinExchange::parseInputFile(std::ifstream& input_file) {
 	}
 }
 
-void		BitcoinExchange::processInput(const std::string in_filename) {
+void		BitcoinExchange::processInput(const std::string in_filename) const {
 	if (data.empty())
 		std::cerr << "Invalid initial data!" << std::endl;
 

@@ -1,4 +1,4 @@
-NAME = btc
+NAME = RPN
 CC = c++
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic -g -fsanitize=address
 RM = rm -rf
@@ -7,7 +7,6 @@ DEF_COLOR	= "\033[0;39m"
 GRAY		= "\033[0;90m"
 
 FILES = main \
-		BitcoinExchange \
 
 
 SRCS = $(addsuffix .cpp, $(FILES))
