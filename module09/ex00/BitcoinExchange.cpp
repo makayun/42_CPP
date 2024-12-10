@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:17:29 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/12/09 18:23:46 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/12/10 12:44:45 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 BitcoinExchange::BitcoinExchange() {
 	std::ifstream data_file("data.csv");
 	if (data_file.is_open()) {
-		parseDataFile(data_file);
+		parseFile(data_file, &BitcoinExchange::addPair);
 		data_file.close();
 	}
 	else
@@ -42,7 +42,7 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& copy) {
 BitcoinExchange::~BitcoinExchange() {}
 
 
-/* PARSING LINES */
+/* PARSING */
 
 Date		BitcoinExchange::parseDate(const std::string& line, const std::string& delimiter ) const {
 	const size_t		del_pos = line.find(delimiter);
@@ -111,12 +111,9 @@ std::string	BitcoinExchange::parseDelimiter(const std::string& first_line) const
 	return (ret);
 }
 
-
-/* DATA FILE */
-
-void		BitcoinExchange::parseDataFile(std::ifstream& data_file) {
+void		BitcoinExchange::parseFile(std::ifstream& in_file, void (BitcoinExchange::*funcPoint)(const Date&, const float&)) {
 	std::string	line;
-	std::getline(data_file, line);
+	std::getline(in_file, line);
 
 	const std::string	delimiter = parseDelimiter(line);
 	if (delimiter.empty())
@@ -125,26 +122,32 @@ void		BitcoinExchange::parseDataFile(std::ifstream& data_file) {
 	else {
 		Date		temp_date;
 		float		temp_value;
-		while (std::getline(data_file, line)) {
+
+		while (std::getline(in_file, line)) {
 			if (line.empty()) continue;
 			try {
 				temp_date = parseDate(line, delimiter);
 				temp_value = parseValue(line, delimiter);
+				(this->*funcPoint)(temp_date, temp_value);
 			}
 			catch(const std::exception& e) {
 				std::cerr << e.what() << std::endl;
-				data.clear();
-				return ;
 			}
-			data[temp_date] = temp_value;
 		}
 	}
 }
 
 
+/* DATA FILE */
+
+void BitcoinExchange::addPair(const Date& in_date, const float& in_value) {
+	data[in_date] = in_value;
+}
+
+
 /* INPUT FILE */
 
-void		BitcoinExchange::findAndPrint(const Date& in_date, const float& in_value) const {
+void		BitcoinExchange::findAndPrint(const Date& in_date, const float& in_value) {
 	if (in_value > 1000.0F)
 		throw (std::out_of_range("Error: too large a number."));
 
@@ -159,40 +162,14 @@ void		BitcoinExchange::findAndPrint(const Date& in_date, const float& in_value) 
 	std::cerr << "Can't find this or closest lower date: " << in_date << std::endl;
 }
 
-void		BitcoinExchange::parseInputFile(std::ifstream& input_file) const {
-	std::string	line;
-	std::getline(input_file, line);
-
-	const std::string	delimiter = parseDelimiter(line);
-	if (delimiter.empty())
-		std::cerr << "Invalid input file's header!" << std::endl;
-
-	else {
-		Date		temp_date;
-		float		temp_value;
-		while (std::getline(input_file, line)) {
-			if (line.empty()) continue;
-			try {
-				temp_date = parseDate(line, delimiter);
-				temp_value = parseValue(line, delimiter);
-				findAndPrint(temp_date, temp_value);
-			}
-			catch(const std::exception& e) {
-				std::cerr << e.what() << std::endl;
-				continue;
-			}
-		}
-	}
-}
-
-void		BitcoinExchange::processInput(const std::string in_filename) const {
+void		BitcoinExchange::processInput(const std::string in_filename) {
 	if (data.empty())
 		std::cerr << "Invalid initial data!" << std::endl;
 
 	else {
 		std::ifstream input_file(in_filename.c_str());
 		if (input_file.is_open()) {
-			parseInputFile(input_file);
+			parseFile(input_file, &BitcoinExchange::findAndPrint);
 			input_file.close();
 		}
 		else
