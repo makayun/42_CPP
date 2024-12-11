@@ -1,12 +1,13 @@
 NAME = RPN
 CC = c++
-CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic -g -fsanitize=address
+CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic -g
 RM = rm -rf
 
 DEF_COLOR	= "\033[0;39m"
 GRAY		= "\033[0;90m"
 
 FILES = main \
+		RPN \
 
 
 SRCS = $(addsuffix .cpp, $(FILES))
@@ -22,7 +23,7 @@ $(NAME): $(SRCS) $(HDRS)
 
 clean:
 	@printf $(GRAY)
-	$(RM) $(NAME)*
+	$(RM) $(NAME) $(NAME).dSYM
 	@printf $(DEF_COLOR)
 
 fclean: clean

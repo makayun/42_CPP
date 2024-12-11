@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 19:16:16 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/12/11 09:33:34 by mmakagon         ###   ########.fr       */
+/*   Created: 2024/12/11 10:06:39 by mmakagon          #+#    #+#             */
+/*   Updated: 2024/12/11 10:27:30 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RPN.hpp"
+#ifndef RPN_HPP
+#define RPN_HPP
 
-int main(int argc, char** argv) {
-	if (argc != 2) {
-		std::cerr << "Try again" << std::endl;
-		return(42);
-	}
+#include <iostream>
+#include <sstream>
+#include <climits>
+#include <stack>
 
-	return (rpn(argv[1]));
-}
+void	calculate(std::stack<int>& numbers, const std::string& str);
+int		rpn(const char* in_arg);
+
+#endif
