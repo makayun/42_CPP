@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 10:06:31 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/12/11 10:36:52 by mmakagon         ###   ########.fr       */
+/*   Updated: 2024/12/11 10:45:16 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int		rpn(const char* in_arg) {
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << e.what() << '\n';
+		std::cerr << e.what() << std::endl;
 		return (1);
 	}
 }
