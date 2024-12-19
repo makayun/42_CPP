@@ -29,4 +29,7 @@ fclean: clean
 
 re: clean all
 
-phony: all clean fclean re
+debug: CPP_FLAGS += -DDEBUG
+debug: re
+
+.PHONY: all clean fclean re
