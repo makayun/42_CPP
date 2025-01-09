@@ -1,17 +1,16 @@
-NAME = PmergeMe
-CC = c++
+NAME	:= PmergeMe
+CC		:= c++
+RM		:= rm -rf
 CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic -g -fsanitize=address
-RM = rm -rf
 
-DEF_COLOR	= "\033[0;39m"
-GRAY		= "\033[0;90m"
+DEF_COLOR	:= "\033[0;39m"
+GRAY		:= "\033[0;90m"
 
-FILES = main \
-
+FILES := main \
 
 SRCS = $(addsuffix .cpp, $(FILES))
 
-HDRS = $(wildcard *pp)
+HDRS = $(wildcard *hpp)
 
 all: $(NAME)
 
@@ -22,7 +21,7 @@ $(NAME): $(SRCS) $(HDRS)
 
 clean:
 	@printf $(GRAY)
-	$(RM) $(NAME)*
+	$(RM) $(NAME) *.dSYM
 	@printf $(DEF_COLOR)
 
 fclean: clean
