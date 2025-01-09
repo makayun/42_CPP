@@ -7,6 +7,8 @@ DEF_COLOR	:= "\033[0;39m"
 GRAY		:= "\033[0;90m"
 
 FILES := main \
+		PmergeMe \
+
 
 SRCS = $(addsuffix .cpp, $(FILES))
 
@@ -30,5 +32,8 @@ re: clean all
 
 debug: CPP_FLAGS += -DDEBUG
 debug: re
+
+fast: CPP_FLAGS += -Ofast
+fast: re
 
 .PHONY: all clean fclean re
