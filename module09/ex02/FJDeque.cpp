@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 11:37:04 by mmakagon          #+#    #+#             */
-/*   Updated: 2025/01/10 13:47:20 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/01/10 23:52:07 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 /* VERY ORTHODOX AND CANNONICAL */
 
-FJDeque::FJDeque(std::deque<int>& in_arr) : a(in_arr), comparisons(0) {}
+FJDeque::FJDeque(std::deque<int>& in_arr) : arr(in_arr), comparisons(0) {}
 
-FJDeque::FJDeque(const FJDeque &copy) : a(copy.a), comparisons(0) {}
+FJDeque::FJDeque(const FJDeque &copy) : arr(copy.arr), comparisons(0) {}
 
 FJDeque &FJDeque::operator=(const FJDeque &copy) {
 	if (this != &copy) {
-		this->a = copy.a;
+		this->arr = copy.arr;
 		this->comparisons = 0;
 	}
 	return (*this);
@@ -33,7 +33,7 @@ FJDeque::~FJDeque(void) {}
 void FJDeque::sort(void) {
 	size_t chunk_size = 1;
 
-	while (a.size() / chunk_size > 1) {
+	while (arr.size() / chunk_size > 1) {
 		wrap(static_cast<ptrdiff_t>(chunk_size));
 		chunk_size *= 2;
 	}
@@ -46,13 +46,13 @@ void FJDeque::sort(void) {
 }
 
 void FJDeque::wrap(const ptrdiff_t chunk_size) {
-	std::deque<int>::iterator a_l = a.begin();
-	std::deque<int>::iterator b_l = a.begin();
+	std::deque<int>::iterator a_l = arr.begin();
+	std::deque<int>::iterator b_l = arr.begin();
 	std::deque<int>::iterator a_r;
 
 	std::advance(a_l, chunk_size);
 
-	while (std::distance(a_l, a.end()) >= chunk_size) {
+	while (std::distance(a_l, arr.end()) >= chunk_size) {
 		++comparisons;
 		if (*a_l > *b_l) {
 			a_r = a_l;
@@ -66,43 +66,24 @@ void FJDeque::wrap(const ptrdiff_t chunk_size) {
 
 void FJDeque::unwrap(const size_t chunk_size) {
 	std::deque<int>	b;
-	std::deque<int>	tail;
 
-	makeTail(tail, chunk_size);
-	smallerChunksToB(b, chunk_size);
+	smallerChunksToB(b, static_cast<ptrdiff_t>(chunk_size));
 	merge(b, chunk_size);
 
-	a.insert(a.end(), tail.cbegin(), tail.cend());
+	std::copy(a.cbegin(), a.cend(), arr.begin());
+	a.clear();
 }
 
-void FJDeque::makeTail(std::deque<int>& tail, const size_t chunk_size) {
-	tail.resize(a.size() % chunk_size);
-	if (tail.size()) {
-		std::deque<int>::const_iterator tail_in_a = a.cend();
-		std::advance(tail_in_a, -tail.size());
-		std::copy(tail_in_a, a.cend(), tail.begin());
-		a.resize(a.size() - tail.size());
-	}
-}
+void FJDeque::smallerChunksToB(std::deque<int>& b, const ptrdiff_t chunk_size) {
+	const size_t size_without_tail = arr.size() - (arr.size() % chunk_size);
+	const size_t size_of_paired_chunks = arr.size() / chunk_size / 2 * chunk_size * 2;
+	size_t	i = 0;
 
-void FJDeque::smallerChunksToB(std::deque<int>& b, const size_t chunk_size) {
-	std::stable_partition(a.begin(), a.end(), SmallerChunksDeque<int>(a, chunk_size));
+	for ( ; i < size_of_paired_chunks; ++i)
+		(i / chunk_size) % 2 == 0 ? a.push_back(arr.at(i)) : b.push_back(arr.at(i));
 
-	const size_t chunks_count = a.size() / chunk_size;
-	b.resize(chunks_count / 2 * chunk_size);
-
-	std::deque<int>::const_iterator a_mid = a.cbegin();
-	std::advance(a_mid, b.size());
-	std::copy(a.cbegin(), a_mid, b.begin());
-	a.erase(a.cbegin(), a_mid);
-
-	// If there's an unpaired chunk - move it to 'b'
-	if (a.size() > b.size()) {
-		std::deque<int>::const_iterator unpaired_it = a.end();
-		std::advance(unpaired_it, -chunk_size);
-		b.insert(b.end(), unpaired_it, a.cend());
-		a.resize(a.size() - chunk_size);
-	}
+	for ( ; i < size_without_tail; ++i)
+		b.push_back(arr.at(i));
 }
 
 void FJDeque::merge(const std::deque<int>& b, const size_t chunk_size) {

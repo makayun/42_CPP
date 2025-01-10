@@ -76,7 +76,7 @@ void FJVector::smallerChunksToB(std::vector<int>& b, const size_t chunk_size) {
 	b.resize(chunks_count / 2 * chunk_size);
 
 	std::vector<int>::const_iterator a_mid = a.cbegin();
-	std::advance(a_mid, b.size());
+	a_mid += b.size();
 	std::copy(a.cbegin(), a_mid, b.begin());
 	a.erase(a.cbegin(), a_mid);
 

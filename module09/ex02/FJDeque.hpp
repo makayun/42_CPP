@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 11:29:18 by mmakagon          #+#    #+#             */
-/*   Updated: 2025/01/10 13:10:27 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/01/10 22:00:49 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,33 +23,17 @@ std::ostream& operator<<(std::ostream& out, const std::deque<T>& in) {
 	return (out);
 }
 
-template<typename T>
-struct SmallerChunksDeque {
-	const std::deque<T>& deq;
-	const std::size_t chunk_size;
-
-	SmallerChunksDeque(const std::deque<T>& d, const std::size_t cs) : deq(d), chunk_size(cs) {}
-
-	bool operator()(const int& value) const {
-		size_t i = 0;
-		for ( ; i < deq.size(); ++i)
-			if (&deq[i] == &value)
-				break;
-
-		return (i / chunk_size) % 2 != 0;
-	}
-};
-
 class FJDeque
 {
 	private:
-		std::deque<int>&	a;
+		std::deque<int>&	arr;
+		std::deque<int>		a;
 		size_t				comparisons;
 
 		void wrap(const ptrdiff_t chunk_size);
 		void unwrap(const size_t chunk_size);
 		void makeTail(std::deque<int>& tail, const size_t chunk_size);
-		void smallerChunksToB(std::deque<int>& b, const size_t chunk_size);
+		void smallerChunksToB(std::deque<int>& b, const ptrdiff_t chunk_size);
 		void merge(const std::deque<int>& b, const size_t chunk_size);
 		void firstBToTheLeft(const std::deque<int>& b, const size_t chunk_size);
 		void insertion(std::deque<int>::const_iterator a_l_it, const std::deque<int>::const_iterator& a_r_it,

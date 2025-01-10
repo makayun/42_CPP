@@ -40,4 +40,17 @@ void generateJacubsthal(T& jcbsthl, size_t size) {
 	}
 }
 
+template<typename ClassType>
+void measureTime(ClassType& obj, void(ClassType::*funptr)(void)) {
+	std::clock_t	start, end;
+	double			elapsed;
+
+	start = std::clock();
+	(obj.*funptr)();
+	end = std::clock();
+
+	elapsed = static_cast<double>(end - start) / CLOCKS_PER_SEC;
+	std::cout << "Elapsed time: " << std::fixed << elapsed << " seconds" << std::endl;
+}
+
 #endif

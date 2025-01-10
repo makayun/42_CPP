@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:34:50 by mmakagon          #+#    #+#             */
-/*   Updated: 2025/01/10 13:32:20 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/01/10 22:34:23 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,15 @@ int main(int argc, char** argv) {
 	assert(d == control_d);
 	assert(v == control_v);
 
+	std::cout << "Before: " << d << std::endl;
 	FJDeque deq(d);
-	deq.sort();
+	measureTime(deq, &FJDeque::sort);
+	std::cout << "After: " << d << std::endl;
 	std::sort(control_d.begin(), control_d.end());
 	assert(d == control_d);
 
 	FJVector vec(v);
-	vec.sort();
+	measureTime(vec, &FJVector::sort);
 	std::sort(control_v.begin(), control_v.end());
 	assert (v == control_v);
 }
