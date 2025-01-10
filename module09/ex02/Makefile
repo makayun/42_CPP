@@ -8,6 +8,8 @@ GRAY		:= "\033[0;90m"
 
 FILES := main \
 		PmergeMe \
+		FJVector \
+		FJDeque \
 
 
 SRCS = $(addsuffix .cpp, $(FILES))
