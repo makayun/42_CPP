@@ -75,8 +75,7 @@ void FJVector::smallerChunksToB(std::vector<int>& b, const size_t chunk_size) {
 	const size_t chunks_count = a.size() / chunk_size;
 	b.resize(chunks_count / 2 * chunk_size);
 
-	std::vector<int>::const_iterator a_mid = a.cbegin();
-	a_mid += b.size();
+	std::vector<int>::const_iterator a_mid = a.cbegin() + b.size();
 	std::copy(a.cbegin(), a_mid, b.begin());
 	a.erase(a.cbegin(), a_mid);
 
@@ -100,8 +99,8 @@ void FJVector::merge(const std::vector<int>& b, const size_t chunk_size) {
 		std::vector<int>::const_iterator b_l;
 
 		for (size_t i = 1; i < jcbsthl.size(); ++i) {
-			a_r = a.cbegin() + (jcbsthl.at(i) + i) * chunk_size;
-			b_l = b.cbegin() + jcbsthl.at(i) * chunk_size;
+			a_r = a.cbegin() + (jcbsthl[i] + i) * chunk_size;
+			b_l = b.cbegin() + jcbsthl[i] * chunk_size;
 
 			insertion(a.begin(), a_r, b_l, chunk_size);
 		}
@@ -121,10 +120,8 @@ void FJVector::insertion(std::vector<int>::const_iterator a_l_it,
 	const size_t a_mid_index = distance / chunk_size / 2 * chunk_size;
 	std::vector<int>::const_iterator a_mid_it = a_l_it + a_mid_index;
 
-	if (distance / chunk_size <= 2)
-		insertTwo(a_l_it, b_l_it, chunk_size);
-	else if (distance / chunk_size == 3)
-		insertThree(a_mid_it, b_l_it, chunk_size);
+	if (distance / chunk_size <= 3)
+		insert(a_mid_it, b_l_it, chunk_size);
 	else if (*b_l_it > *a_mid_it) {
 		++comparisons;
 		insertion(a_mid_it + chunk_size, a_r_it, b_l_it, chunk_size);
@@ -135,20 +132,7 @@ void FJVector::insertion(std::vector<int>::const_iterator a_l_it,
 	}
 }
 
-void FJVector::insertTwo(std::vector<int>::const_iterator& a_l_it,
-						const std::vector<int>::const_iterator& b_l_it,
-						const size_t chunk_size)
-{
-	std::vector<int>::const_iterator b_r_it = b_l_it + chunk_size;
-	++comparisons;
-	while (a_l_it != a.cend() && *b_l_it > *a_l_it) {
-		a_l_it += chunk_size;
-		++comparisons;
-	}
-	a.insert(a_l_it, b_l_it, b_r_it);
-}
-
-void FJVector::insertThree(std::vector<int>::const_iterator& a_l_it,
+void FJVector::insert(std::vector<int>::const_iterator& a_l_it,
 						const std::vector<int>::const_iterator& b_l_it,
 						const size_t chunk_size)
 {
@@ -157,7 +141,13 @@ void FJVector::insertThree(std::vector<int>::const_iterator& a_l_it,
 	++comparisons;
 	(*b_l_it > *a_l_it) ? (a_l_it += chunk_size) : (a_l_it -= chunk_size);
 
-	++comparisons;
-	a_l_it += (*b_l_it > *a_l_it) * chunk_size;
+	if (a_l_it != a.cend()) {
+		++comparisons;
+		a_l_it += (*b_l_it > *a_l_it) * chunk_size;
+	}
 	a.insert(a_l_it, b_l_it, b_r_it);
+}
+
+size_t FJVector::getSize(void) const{
+	return(a.size());
 }

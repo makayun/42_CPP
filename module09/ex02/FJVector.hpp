@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 11:35:23 by mmakagon          #+#    #+#             */
-/*   Updated: 2025/01/10 13:18:37 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/01/12 02:09:45 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ class FJVector
 		void insertion(std::vector<int>::const_iterator a_l_it, const std::vector<int>::const_iterator& a_r_it,
 						const std::vector<int>::const_iterator& b_l_it, const size_t chunk_size);
 		void insertTwo(std::vector<int>::const_iterator& a_l_it, const std::vector<int>::const_iterator& b_l_it, const size_t chunk_size);
-		void insertThree(std::vector<int>::const_iterator& a_mid_it, const std::vector<int>::const_iterator& b_l_it, const size_t chunk_size);
+		void insert(std::vector<int>::const_iterator& a_mid_it, const std::vector<int>::const_iterator& b_l_it, const size_t chunk_size);
 
 	public:
 		explicit	FJVector(std::vector<int>& in_arr);
@@ -60,6 +60,7 @@ class FJVector
 		~FJVector();
 
 		void sort(void);
+		size_t	getSize(void) const;
 };
 
 #endif

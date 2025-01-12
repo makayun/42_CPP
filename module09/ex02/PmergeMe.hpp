@@ -13,7 +13,13 @@
 #ifndef PMERGE_ME_HPP
 #define PMERGE_ME_HPP
 
+#include <sys/time.h>
 #include <iostream>
+#include <iomanip>
+#include <sstream>
+#include <climits>
+#include <deque>
+#include <vector>
 
 #ifdef DEBUG
 #define PRINT_VAR(x) std::cout << #x << ": " << x << std::endl
@@ -23,9 +29,10 @@
 #define SECTION(x)
 #endif
 
+bool fillContainers (std::vector<int>& v, std::deque<int>& d, int argc, char** argv);
+
 template<typename T>
 void generateJacubsthal(T& jcbsthl, size_t size) {
-	jcbsthl.clear(); // just in case
 	jcbsthl.push_back(0);
 	size_t	current_jcb = 1;
 	size_t	next_jcb = 3;
@@ -41,7 +48,16 @@ void generateJacubsthal(T& jcbsthl, size_t size) {
 }
 
 template<typename ClassType>
-void measureTime(ClassType& obj, void(ClassType::*funptr)(void)) {
+void printResults(ClassType& obj, const double elapsed, const std::string& containerType) {
+	std::cout << "Time to process a range of "
+			  << obj.getSize() << " elements with "
+			  << containerType << " : "
+			  << std::fixed << elapsed << " s"
+			  << std::endl;
+}
+
+template<typename ClassType>
+double measureTime(ClassType& obj, void(ClassType::*funptr)(void)) {
 	std::clock_t	start, end;
 	double			elapsed;
 
@@ -50,7 +66,7 @@ void measureTime(ClassType& obj, void(ClassType::*funptr)(void)) {
 	end = std::clock();
 
 	elapsed = static_cast<double>(end - start) / CLOCKS_PER_SEC;
-	std::cout << "Elapsed time: " << std::fixed << elapsed << " seconds" << std::endl;
+	return (elapsed);
 }
 
 #endif

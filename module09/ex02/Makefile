@@ -1,7 +1,7 @@
 NAME	:= PmergeMe
 CC		:= c++
 RM		:= rm -rf
-CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic -g -fsanitize=address
+CPP_FLAGS = -Wall -Werror -Wextra -std=c++98 -pedantic
 
 DEF_COLOR	:= "\033[0;39m"
 GRAY		:= "\033[0;90m"
@@ -37,5 +37,8 @@ debug: re
 
 fast: CPP_FLAGS += -Ofast
 fast: re
+
+safe: CPP_FLAGS += -g -fsanitize=address
+safe: re
 
 .PHONY: all clean fclean re
