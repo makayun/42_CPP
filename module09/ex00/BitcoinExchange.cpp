@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:17:29 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/12/10 12:44:45 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/01/13 10:00:39 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,17 @@ BitcoinExchange::~BitcoinExchange() {}
 
 /* PARSING */
 
+int			BitcoinExchange::daysInMonth(const Date& in_date) const {
+	switch (in_date.d[MONTH]){
+		case 2:
+			return (in_date.d[YEAR] % 4 == 0 && (in_date.d[YEAR] % 100 != 0 || in_date.d[YEAR] % 400 == 0)) ? 29 : 28;
+		case 4: case 6: case 9: case 11:
+			return (30);
+		default:
+			return (31);
+	}
+}
+
 Date		BitcoinExchange::parseDate(const std::string& line, const std::string& delimiter ) const {
 	const size_t		del_pos = line.find(delimiter);
 	if (del_pos == std::string::npos)
@@ -65,20 +76,7 @@ Date		BitcoinExchange::parseDate(const std::string& line, const std::string& del
 	if (ret.d[YEAR] < 1 || ret.d[MONTH] < 1 || ret.d[MONTH] > 12)
 		throw (std::out_of_range("Error: bad input -> " + line));
 
-	int days_in_month;
-	switch (ret.d[MONTH]){
-		case 2:
-			days_in_month = (ret.d[YEAR] % 4 == 0 && (ret.d[YEAR] % 100 != 0 || ret.d[YEAR] % 400 == 0)) ? 29 : 28;
-			break;
-		case 4: case 6: case 9: case 11:
-			days_in_month = 30;
-			break;
-		default:
-			days_in_month = 31;
-			break;
-	}
-
-	if (ret.d[DAY] < 1 || ret.d[DAY] > days_in_month)
+	if (ret.d[DAY] < 1 || ret.d[DAY] > daysInMonth(ret))
 		throw (std::out_of_range("Error: bad input -> " + line));
 	return (ret);
 }

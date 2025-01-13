@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmakagon <mmakagon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:01:54 by mmakagon          #+#    #+#             */
-/*   Updated: 2024/12/10 12:44:04 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/01/13 10:00:35 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ class BitcoinExchange
 
 		std::string	parseDelimiter(const std::string& first_line) const;
 		Date		parseDate(const std::string& line, const std::string& delimiter) const;
+		int			daysInMonth(const Date& in_date) const;
 		float		parseValue(const std::string& line, const std::string& delimiter) const;
 		bool		parseLine(const std::string& line);
 

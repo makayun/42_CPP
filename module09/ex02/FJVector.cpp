@@ -22,12 +22,18 @@ void FJVector::sort(void) {
 	size_t chunk_size = 1;
 
 	while (a.size() / chunk_size > 1) {
+		SECTION("\nWrap");
+		PRINT_VAR(chunk_size);
 		wrap(static_cast<ptrdiff_t>(chunk_size));
+		PRINT_VAR(a);
 		chunk_size *= 2;
 	}
 	chunk_size /= 2;
 	while (chunk_size > 0) {
+		SECTION("\nUnwrap");
+		PRINT_VAR(chunk_size);
 		unwrap(chunk_size);
+		PRINT_VAR(a);
 		chunk_size /= 2;
 	}
 	PRINT_VAR(comparisons);
@@ -55,6 +61,10 @@ void FJVector::unwrap(const size_t chunk_size) {
 
 	makeTail(tail, chunk_size);
 	smallerChunksToB(b, chunk_size);
+	SECTION("Before merge");
+	PRINT_VAR(a);
+	PRINT_VAR(b);
+	PRINT_VAR(tail);
 	merge(b, chunk_size);
 
 	a.insert(a.end(), tail.cbegin(), tail.cend());

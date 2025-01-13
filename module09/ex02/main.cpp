@@ -6,7 +6,7 @@
 /*   By: mmakagon <mmakagon@student.42.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 15:34:50 by mmakagon          #+#    #+#             */
-/*   Updated: 2025/01/12 01:57:27 by mmakagon         ###   ########.fr       */
+/*   Updated: 2025/01/13 09:41:55 by mmakagon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,31 @@ int main(int argc, char** argv) {
 		return (42);
 	}
 
-	std::deque<int>	d;
 	std::vector<int> v;
+	std::deque<int>	d;
 	v.reserve(argc - 1);
 
 	if (fillContainers(v, d, argc, argv) == false)
 		return (42);
 
-	std::deque<int>	control_d(d);
 	std::vector<int> control_v(v);
+	std::deque<int>	control_d(d);
 
 	std::cout << "Before: " << v << std::endl;
 
-	FJDeque deq(d);
-	const double deq_time = measureTime(deq, &FJDeque::sort);
-
 	FJVector vec(v);
 	const double vec_time = measureTime(vec, &FJVector::sort);
+
+	FJDeque deq(d);
+	const double deq_time = measureTime(deq, &FJDeque::sort);
 
 	std::cout << "After: " << v << std::endl;
 
 	printResults(vec, vec_time, "std::vector");
 	printResults(deq, deq_time, "std::deque");
 
-	std::sort(control_d.begin(), control_d.end());
 	std::sort(control_v.begin(), control_v.end());
-	assert(d == control_d);
+	std::sort(control_d.begin(), control_d.end());
 	assert (v == control_v);
+	assert(d == control_d);
 }
