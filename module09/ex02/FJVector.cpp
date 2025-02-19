@@ -24,7 +24,7 @@ void FJVector::sort(void) {
 	while (a.size() / chunk_size > 1) {
 		SECTION("\nWrap");
 		PRINT_VAR(chunk_size);
-		wrap(static_cast<ptrdiff_t>(chunk_size));
+		wrap(static_cast<std::ptrdiff_t>(chunk_size));
 		PRINT_VAR(a);
 		chunk_size *= 2;
 	}
@@ -39,7 +39,7 @@ void FJVector::sort(void) {
 	PRINT_VAR(comparisons);
 }
 
-void FJVector::wrap(const ptrdiff_t chunk_size) {
+void FJVector::wrap(const std::ptrdiff_t chunk_size) {
 	std::vector<int>::iterator a_l = a.begin() + chunk_size;
 	std::vector<int>::iterator b_l = a.begin();
 	std::vector<int>::iterator a_r;
@@ -67,14 +67,14 @@ void FJVector::unwrap(const size_t chunk_size) {
 	PRINT_VAR(tail);
 	merge(b, chunk_size);
 
-	a.insert(a.end(), tail.cbegin(), tail.cend());
+	a.insert(a.end(), tail.begin(), tail.end());
 }
 
 void FJVector::makeTail(std::vector<int>& tail, const size_t chunk_size) {
 	tail.resize(a.size() % chunk_size);
 	if (tail.size()) {
-		std::vector<int>::const_iterator tail_in_a = a.cend() - tail.size();
-		std::copy(tail_in_a, a.cend(), tail.begin());
+		std::vector<int>::iterator tail_in_a = a.end() - tail.size();
+		std::copy(tail_in_a, a.end(), tail.begin());
 		a.resize(a.size() - tail.size());
 	}
 }
@@ -85,18 +85,18 @@ void FJVector::smallerChunksToB(std::vector<int>& b, const size_t chunk_size) {
 	const size_t chunks_count = a.size() / chunk_size;
 	b.resize(chunks_count / 2 * chunk_size);
 
-	std::vector<int>::const_iterator a_mid = a.cbegin() + b.size();
-	std::copy(a.cbegin(), a_mid, b.begin());
-	a.erase(a.cbegin(), a_mid);
+	std::vector<int>::iterator a_mid = a.begin() + b.size();
+	std::copy(a.begin(), a_mid, b.begin());
+	a.erase(a.begin(), a_mid);
 
 	// If there's an unpaired chunk - move it to 'b'
 	if (a.size() > b.size()) {
-		b.insert(b.end(), a.cend() - chunk_size, a.cend());
+		b.insert(b.end(), a.end() - chunk_size, a.end());
 		a.resize(a.size() - chunk_size);
 	}
 }
 
-void FJVector::merge(const std::vector<int>& b, const size_t chunk_size) {
+void FJVector::merge(std::vector<int>& b, const size_t chunk_size) {
 
 	firstBToTheLeft(b, chunk_size);
 
@@ -105,12 +105,12 @@ void FJVector::merge(const std::vector<int>& b, const size_t chunk_size) {
 	if (chunks_in_b > 1) {
 		std::vector<size_t>	jcbsthl;
 		generateJacubsthal(jcbsthl, chunks_in_b);
-		std::vector<int>::const_iterator a_r;
-		std::vector<int>::const_iterator b_l;
+		std::vector<int>::iterator a_r;
+		std::vector<int>::iterator b_l;
 
 		for (size_t i = 1; i < jcbsthl.size(); ++i) {
-			a_r = a.cbegin() + (jcbsthl[i] + i) * chunk_size;
-			b_l = b.cbegin() + jcbsthl[i] * chunk_size;
+			a_r = a.begin() + (jcbsthl[i] + i) * chunk_size;
+			b_l = b.begin() + jcbsthl[i] * chunk_size;
 
 			insertion(a.begin(), a_r, b_l, chunk_size);
 		}
@@ -118,17 +118,17 @@ void FJVector::merge(const std::vector<int>& b, const size_t chunk_size) {
 }
 
 inline void FJVector::firstBToTheLeft(const std::vector<int>& b, const size_t chunk_size) {
-	a.insert(a.cbegin(), b.cbegin(), b.cbegin() + chunk_size);
+	a.insert(a.begin(), b.begin(), b.begin() + chunk_size);
 }
 
-void FJVector::insertion(std::vector<int>::const_iterator a_l_it,
-						const std::vector<int>::const_iterator& a_r_it,
-						const std::vector<int>::const_iterator& b_l_it,
+void FJVector::insertion(std::vector<int>::iterator a_l_it,
+						const std::vector<int>::iterator& a_r_it,
+						const std::vector<int>::iterator& b_l_it,
 						const size_t chunk_size)
 {
 	const size_t distance = a_r_it - a_l_it;
 	const size_t a_mid_index = distance / chunk_size / 2 * chunk_size;
-	std::vector<int>::const_iterator a_mid_it = a_l_it + a_mid_index;
+	std::vector<int>::iterator a_mid_it = a_l_it + a_mid_index;
 
 	if (distance / chunk_size <= 3)
 		insert(a_mid_it, b_l_it, chunk_size);
@@ -142,16 +142,16 @@ void FJVector::insertion(std::vector<int>::const_iterator a_l_it,
 	}
 }
 
-void FJVector::insert(std::vector<int>::const_iterator& a_l_it,
-						const std::vector<int>::const_iterator& b_l_it,
+void FJVector::insert(std::vector<int>::iterator& a_l_it,
+						const std::vector<int>::iterator& b_l_it,
 						const size_t chunk_size)
 {
-	std::vector<int>::const_iterator b_r_it = b_l_it + chunk_size;
+	std::vector<int>::iterator b_r_it = b_l_it + chunk_size;
 
 	++comparisons;
 	(*b_l_it > *a_l_it) ? (a_l_it += chunk_size) : (a_l_it -= chunk_size);
 
-	if (a_l_it != a.cend()) {
+	if (a_l_it != a.end()) {
 		++comparisons;
 		a_l_it += (*b_l_it > *a_l_it) * chunk_size;
 	}

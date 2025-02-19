@@ -19,13 +19,17 @@ bool fillContainers (std::vector<int>& v, std::deque<int>& d, int argc, char** a
 	for (int i = 1; i < argc && argv[i]; ++i) {
 		ss.clear();
 		ss.str(argv[i]);
-		if (!(ss >> temp) || temp < 1 || temp > INT_MAX) {
+		if (!(ss >> temp)) {
+			std::cerr << "WRONG NUMBER" << std::endl;
+			return (false);
+		}
+		if (temp < 1 || temp > INT_MAX) {
 			std::cerr << "Error" << std::endl;
 			return (false);
 		}
 		int value = static_cast<int>(temp);
 		d.push_back(value);
-		v.emplace_back(value);
+		v.push_back(value);
 	}
 	return (true);
 }

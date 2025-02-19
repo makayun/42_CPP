@@ -18,6 +18,8 @@
 #include <iomanip>
 #include <sstream>
 #include <climits>
+#include <algorithm>
+#include <cassert>
 #include <deque>
 #include <vector>
 
@@ -58,12 +60,12 @@ void printResults(ClassType& obj, const double elapsed, const std::string& conta
 
 template<typename ClassType>
 double measureTime(ClassType& obj, void(ClassType::*funptr)(void)) {
-	std::clock_t	start, end;
+	clock_t	start, end;
 	double			elapsed;
 
-	start = std::clock();
+	start = clock();
 	(obj.*funptr)();
-	end = std::clock();
+	end = clock();
 
 	elapsed = static_cast<double>(end - start) / CLOCKS_PER_SEC;
 	return (elapsed);
