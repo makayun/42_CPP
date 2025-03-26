@@ -12,140 +12,69 @@
 
 #include "ScalarConverter.hpp"
 
-int parseType(const std::string& input) {
-	const ssize_t len = input.size();
-	ssize_t i = 0;
-	bool dot = false;
+bool printPseudo(const std::string& f, const std::string& d) {
+	std::cout	<< "char: impossible\n"
+				<< "int: impossible\n"
+				<< "float: " << f << "\n"
+				<< "double: " << d
+				<< std::endl;
+	return (true);
+}
 
-	if (len == 0)
-		return (CONVERT_ERR);
-	if (len == 1 && !std::isdigit(input[0]) && std::isprint(input[0]))
-		return (CHAR);
-	if (input[0] == '-' || input[0] == '+')
-		i++;
-	while (i < len && std::isdigit(input[i])) {
-		i++;
-		if (i < len && input[i] == '.') {
-			if (dot)
-				return (CONVERT_ERR);
-			dot = true;
-			i++;
-		}
+bool printNum(double d) {
+	std::string character = "Non displayable";
+	std::string integer = "impossible";
+	std::string floating = "impossible";
+	std::ostringstream	oss;
+
+	if (d >= std::numeric_limits<float>::min() && d <= std::numeric_limits<float>::max()) {
+		oss << std::fixed << std::setprecision(1) << static_cast<float>(d);
+		floating = oss.str();
 	}
-	if (i == len && std::isdigit(input[len - 1]))
-		return (dot ? DOUBLE : INT);
-	if (dot && i == len - 1 && input[i] == 'f')
-		return (FLOAT);
+
+	if (d >= std::numeric_limits<int>::min() && d <= std::numeric_limits<int>::max()) {
+		int i = static_cast<int>(d);
+		oss.str("");
+		oss << i;
+		integer = oss.str();
+		if (std::isprint(i))
+			character = static_cast<char>(i);
+	}
+
+	std::cout	<< "char: " << character << "\n"
+				<< "int: " << integer << "\n"
+				<< "float: " << floating << "f\n"
+				<< "double: " << std::fixed << std::setprecision(1) << d << std::endl;
+	return (true);
+}
+
+bool printChar(const char c) {
+	std::cout	<< "char: " << c << "\n"
+				<< "int: " << static_cast<int>(c) << "\n"
+				<< "float: " << std::fixed << std::setprecision(1) << static_cast<float>(c) << "f\n"
+				<< "double: " << static_cast<double>(c)
+				<< std::endl;
+	return (true);
+}
+
+bool printErr() {
+	std::cerr << "Wrong input!" << std::endl;
+	return (false);
+}
+
+bool ScalarConverter::convert2(const std::string& input) {
 	if (input == "-inff" || input == "+inff" || input == "nanf")
-		return (PSEUDO_FLOAT);
+		return (printPseudo(input, input.substr(0, input.size() - 1)));
 	if (input == "-inf" || input == "+inf" || input == "nan")
-		return (PSEUDO_DOUBLE);
-	return (CONVERT_ERR);
-}
+		return (printPseudo(input + "f", input));
 
-bool printPseudoLiteral(const std::string& input, const int& type) {
-	if (type == PSEUDO_FLOAT)
-		std::cout << "char: impossible\nint: impossible\nfloat: " << input << "\ndouble: " << input.substr(0, input.size() - 1) << std::endl;
+	std::stringstream	ss(input);
+	double				d;
+
+	if (ss >> d && ss.eof())
+			return (printNum(d));
+	else if (input.size() == 1)
+		return (printChar(input[0]));
 	else
-		std::cout << "char: impossible\nint: impossible\nfloat: " << input << "f\ndouble: " << input << std::endl;
-	return (true);
-}
-
-bool displayConversions(char value) {
-	std::cout << "char: ";
-	if (std::isprint(value))
-		std::cout << "'" << value << "'" << std::endl;
-	else
-		std::cout << "Non displayable" << std::endl;
-
-	std::cout << "int: " << static_cast<int>(value) << std::endl;
-	std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
-	std::cout << "double: " << static_cast<double>(value) << std::endl;
-	return (true);
-}
-
-bool displayConversions(long value) {
-	std::cout << "char: ";
-	if (value >= std::numeric_limits<char>::min() && value <= std::numeric_limits<char>::max() && std::isprint(static_cast<char>(value)))
-		std::cout << "'" << static_cast<char>(value) << "'" << std::endl;
-	else
-		std::cout << "Non displayable" << std::endl;
-
-	std::cout << "int: " << value << std::endl;
-	std::cout << "float: " << static_cast<float>(value) << "f" << std::endl;
-	std::cout << "double: " << static_cast<double>(value) << std::endl;
-	return (true);
-}
-
-bool displayConversions(float value) {
-	std::cout << "char: ";
-	if (value >= std::numeric_limits<char>::min() && value <= std::numeric_limits<char>::max() && std::isprint(static_cast<char>(value)))
-		std::cout << "'" << static_cast<char>(value) << "'" << std::endl;
-	else
-		std::cout << "Non displayable" << std::endl;
-
-	std::cout << "int: ";
-	if (value >= std::numeric_limits<int>::min() && value <= std::numeric_limits<int>::max())
-		std::cout << static_cast<int>(value) << std::endl;
-	else
-		std::cout << "impossible" << std::endl;
-
-	std::cout << "float: "  << value << "f" << std::endl;
-	std::cout << "double: " << static_cast<double>(value) << std::endl;
-	return (true);
-}
-
-bool displayConversions(double value) {
-	std::cout << "char: ";
-	if (value >= std::numeric_limits<char>::min() && value <= std::numeric_limits<char>::max() && std::isprint(static_cast<char>(value)))
-		std::cout << "'" << static_cast<char>(value) << "'" << std::endl;
-	else
-		std::cout << "Non displayable" << std::endl;
-
-	std::cout << "int: ";
-	if (value >= std::numeric_limits<int>::min() && value <= std::numeric_limits<int>::max())
-		std::cout << static_cast<int>(value) << std::endl;
-	else
-		std::cout << "impossible" << std::endl;
-
-	std::cout << "float: ";
-	if (value >= -std::numeric_limits<float>::max() && value <= std::numeric_limits<float>::max())
-		std::cout << static_cast<float>(value) << "f" << std::endl;
-	else
-		std::cout << "impossible" << std::endl;
-
-	std::cout << "double: " << value << std::endl;
-	return (true);
-}
-
-
-bool ScalarConverter::convert(const std::string& input) {
-	char		c;
-	long		i;
-	float		f;
-	double		d;
-	const int	type = parseType(input);
-
-	switch (type)
-	{
-		case CONVERT_ERR:
-			std::cerr << "Error: Invalid input '" << input << "'" << std::endl;
-			return false;
-		case CHAR:
-			c = input[0];
-			return (displayConversions(c));
-		case INT:
-			i = std::strtol(input.c_str(), NULL, 10);
-			return (displayConversions(i));
-		case FLOAT:
-			f = std::strtof(input.c_str(), NULL);
-			return (displayConversions(f));
-		case DOUBLE:
-			d = std::strtod(input.c_str(), NULL);
-			return (displayConversions(d));
-		case PSEUDO_FLOAT: case PSEUDO_DOUBLE:
-			return (printPseudoLiteral(input, type));
-		default:
-			return (false);
-	}
+		return (printErr());
 }
