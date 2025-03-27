@@ -15,10 +15,9 @@
 
 #include <iostream>
 #include <iomanip>
-#include <string>
-#include <cstdlib>
+#include <sstream>
 #include <limits>
-#include <cctype>
+#include <cmath>
 
 enum e_types {
 	CONVERT_ERR = -1,
@@ -39,5 +38,42 @@ class ScalarConverter
 	public:
 		static bool convert(const std::string& input);
 };
+
+template <typename TIn, typename TOut>
+std::string numString(const TIn in, TOut out) {
+	std::ostringstream	oss;
+
+	if (in < std::numeric_limits<TOut>::min()
+		|| in > std::numeric_limits<TOut>::max())
+		return ("impossible");
+
+	out = static_cast<TOut>(in);
+
+	oss << std::fixed << std::setprecision(10) << out;
+
+	std::string	ret = oss.str();
+	size_t		dot = ret.find('.');
+
+	if (dot != std::string::npos) {
+		size_t i = ret.size() - 1;
+		while (i > 0 && i > dot + 2 && ret[i] == '0')
+			--i;
+		ret.resize(i);
+	}
+	return (ret);
+}
+
+template <typename T>
+std::string c_String(const T num) {
+	if (num < 0 || num > 255)
+		return ("impossible");
+
+	char c = static_cast<char>(num);
+	if (!std::isprint(c))
+		return ("Non displayable");
+	std::string ret;
+	ret += c;
+	return ("'" + ret + "'");
+}
 
 #endif
